@@ -30,20 +30,23 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TCs-yr-Zux">
                                 <rect key="frame" x="96" y="272" width="186" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iVg-d5-tiv">
                                 <rect key="frame" x="96" y="341" width="186" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.1803921568627451" green="0.80000000000000004" blue="0.44313725490196076" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="loginButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="z0h-Uo-U52"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PVA-fg-pww">
                                 <rect key="frame" x="160" y="379" width="55" height="30"/>
@@ -56,6 +59,10 @@
                         </subviews>
                     </view>
                     <navigationItem key="navigationItem" id="DPh-vE-qvR"/>
+                    <connections>
+                        <outlet property="email" destination="O7m-ku-GxU" id="qMU-zB-Vh7"/>
+                        <outlet property="password" destination="TCs-yr-Zux" id="ez7-BQ-ptC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -64,7 +71,7 @@
         <!--Sign Up-->
         <scene sceneID="baV-j8-j2e">
             <objects>
-                <viewController title="Sign Up" id="Ahz-QG-Hba" sceneMemberID="viewController">
+                <viewController title="Sign Up" id="Ahz-QG-Hba" customClass="SignUpViewController" customModule="PantryFi" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="J7N-mp-Qbv"/>
                         <viewControllerLayoutGuide type="bottom" id="Jy9-er-oYu"/>
@@ -116,16 +123,30 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="V27-QM-iao"/>
+                                    <action selector="register:" destination="Ahz-QG-Hba" eventType="touchUpInside" id="cLe-AS-eIE"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Empty" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q9y-YB-4De">
+                                <rect key="frame" x="166" y="572" width="49" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.1803921568627451" green="0.80000000000000004" blue="0.44313725490196076" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="confirmPass" destination="3PD-dr-dQ1" id="v85-ao-uon"/>
+                        <outlet property="email" destination="SXI-V1-aD6" id="0Zc-YR-MKB"/>
+                        <outlet property="firstName" destination="dPZ-T5-XyF" id="HW6-bx-kNI"/>
+                        <outlet property="lastName" destination="vnE-gh-qcK" id="esR-kp-2gr"/>
+                        <outlet property="password" destination="JPQ-Z3-zlN" id="bar-tg-beW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LUt-YM-euB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="325.60000000000002" y="1403.7481259370315"/>
+            <point key="canvasLocation" x="326" y="1336"/>
         </scene>
     </scenes>
     <resources>

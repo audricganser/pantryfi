@@ -13,6 +13,7 @@
 		2BC8DC5A1E78758C00A7A3AD /* PantryFi.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2BC8DC581E78758C00A7A3AD /* PantryFi.xcdatamodeld */; };
 		2BC8DC5C1E78758C00A7A3AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BC8DC5B1E78758C00A7A3AD /* Assets.xcassets */; };
 		2BC8DC5F1E78758C00A7A3AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BC8DC5D1E78758C00A7A3AD /* LaunchScreen.storyboard */; };
+		2BC8DC671E7890F700A7A3AD /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC8DC661E7890F700A7A3AD /* SignUpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		2BC8DC5B1E78758C00A7A3AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2BC8DC5E1E78758C00A7A3AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2BC8DC601E78758C00A7A3AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2BC8DC661E7890F700A7A3AD /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				2BC8DC511E78758C00A7A3AD /* AppDelegate.swift */,
 				2BC8DC531E78758C00A7A3AD /* ViewController.swift */,
+				2BC8DC661E7890F700A7A3AD /* SignUpViewController.swift */,
 				2BC8DC551E78758C00A7A3AD /* Main.storyboard */,
 				2BC8DC5B1E78758C00A7A3AD /* Assets.xcassets */,
 				2BC8DC5D1E78758C00A7A3AD /* LaunchScreen.storyboard */,
@@ -142,6 +145,7 @@
 			files = (
 				2BC8DC5A1E78758C00A7A3AD /* PantryFi.xcdatamodeld in Sources */,
 				2BC8DC541E78758C00A7A3AD /* ViewController.swift in Sources */,
+				2BC8DC671E7890F700A7A3AD /* SignUpViewController.swift in Sources */,
 				2BC8DC521E78758C00A7A3AD /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -304,6 +308,7 @@
 				2BC8DC651E78758C00A7A3AD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
