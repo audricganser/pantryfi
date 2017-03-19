@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Home View Controller-->
+        <scene sceneID="CVA-ck-jh1">
+            <objects>
+                <viewController storyboardIdentifier="Home" id="rxJ-NB-cgo" customClass="HomeViewController" customModule="PantryFi" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="erU-RQ-e8G"/>
+                        <viewControllerLayoutGuide type="bottom" id="Gn9-7B-OXZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yn9-f0-xcq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.18039215689999999" green="0.80000000000000004" blue="0.4431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="AWa-uh-94y"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="74Y-vo-OWv" id="pPH-pH-A6L"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ioe-kr-1KC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="74Y-vo-OWv">
+                    <connections>
+                        <outlet property="delegate" destination="rxJ-NB-cgo" id="qFP-gA-CMh"/>
+                        <outlet property="searchContentsController" destination="rxJ-NB-cgo" id="kdS-W5-JfU"/>
+                        <outlet property="searchResultsDataSource" destination="rxJ-NB-cgo" id="lP2-Si-9Lh"/>
+                        <outlet property="searchResultsDelegate" destination="rxJ-NB-cgo" id="DfF-Wa-wjo"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="1060" y="44.527736131934034"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="yZw-CH-Wla">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZJ7-2H-6o9" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6OG-jS-5bE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="rxJ-NB-cgo" kind="relationship" relationship="rootViewController" id="fWW-h0-Al7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qul-cv-W7q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="120.8" y="44.527736131934034"/>
+        </scene>
+    </scenes>
+</document>

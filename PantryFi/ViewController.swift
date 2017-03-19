@@ -48,7 +48,10 @@ class ViewController: UIViewController {
                     if tmpPass! == p! {
                         // user matches
                         print("logged in")
-                        
+                        let storyBoard1:UIStoryboard = UIStoryboard(name: "Home", bundle:nil)
+                        let nextViewController = storyBoard1.instantiateViewController(withIdentifier: "Home")
+                        self.present(nextViewController, animated:true, completion:nil)
+
                     
                     }
                 }

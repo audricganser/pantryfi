@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		152A246C1E7F2B1F00C42EAA /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 152A246B1E7F2B1F00C42EAA /* Home.storyboard */; };
+		152A246E1E7F2BD300C42EAA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152A246D1E7F2BD300C42EAA /* HomeViewController.swift */; };
 		2BC8DC521E78758C00A7A3AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC8DC511E78758C00A7A3AD /* AppDelegate.swift */; };
 		2BC8DC541E78758C00A7A3AD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC8DC531E78758C00A7A3AD /* ViewController.swift */; };
 		2BC8DC571E78758C00A7A3AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BC8DC551E78758C00A7A3AD /* Main.storyboard */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		152A246B1E7F2B1F00C42EAA /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		152A246D1E7F2BD300C42EAA /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		2BC8DC4E1E78758C00A7A3AD /* PantryFi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PantryFi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BC8DC511E78758C00A7A3AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2BC8DC531E78758C00A7A3AD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -39,6 +43,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		152A24671E7F29DB00C42EAA /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				152A246A1E7F2AF700C42EAA /* Home Screen */,
+				152A24681E7F29F300C42EAA /* Login */,
+			);
+			name = Features;
+			sourceTree = "<group>";
+		};
+		152A24681E7F29F300C42EAA /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				2BC8DC531E78758C00A7A3AD /* ViewController.swift */,
+				2BC8DC661E7890F700A7A3AD /* SignUpViewController.swift */,
+				2BC8DC551E78758C00A7A3AD /* Main.storyboard */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		152A246A1E7F2AF700C42EAA /* Home Screen */ = {
+			isa = PBXGroup;
+			children = (
+				152A246B1E7F2B1F00C42EAA /* Home.storyboard */,
+				152A246D1E7F2BD300C42EAA /* HomeViewController.swift */,
+			);
+			name = "Home Screen";
+			sourceTree = "<group>";
+		};
 		2BC8DC451E78758C00A7A3AD = {
 			isa = PBXGroup;
 			children = (
@@ -59,11 +91,9 @@
 			isa = PBXGroup;
 			children = (
 				2BC8DC511E78758C00A7A3AD /* AppDelegate.swift */,
-				2BC8DC531E78758C00A7A3AD /* ViewController.swift */,
-				2BC8DC661E7890F700A7A3AD /* SignUpViewController.swift */,
-				2BC8DC551E78758C00A7A3AD /* Main.storyboard */,
-				2BC8DC5B1E78758C00A7A3AD /* Assets.xcassets */,
 				2BC8DC5D1E78758C00A7A3AD /* LaunchScreen.storyboard */,
+				152A24671E7F29DB00C42EAA /* Features */,
+				2BC8DC5B1E78758C00A7A3AD /* Assets.xcassets */,
 				2BC8DC601E78758C00A7A3AD /* Info.plist */,
 				2BC8DC581E78758C00A7A3AD /* PantryFi.xcdatamodeld */,
 			);
@@ -133,6 +163,7 @@
 				2BC8DC5F1E78758C00A7A3AD /* LaunchScreen.storyboard in Resources */,
 				2BC8DC5C1E78758C00A7A3AD /* Assets.xcassets in Resources */,
 				2BC8DC571E78758C00A7A3AD /* Main.storyboard in Resources */,
+				152A246C1E7F2B1F00C42EAA /* Home.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,6 +174,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				152A246E1E7F2BD300C42EAA /* HomeViewController.swift in Sources */,
 				2BC8DC5A1E78758C00A7A3AD /* PantryFi.xcdatamodeld in Sources */,
 				2BC8DC541E78758C00A7A3AD /* ViewController.swift in Sources */,
 				2BC8DC671E7890F700A7A3AD /* SignUpViewController.swift in Sources */,
