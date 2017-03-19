@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="jdi-RH-9mD">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -12,7 +12,7 @@
         <!--login-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="login" id="BYZ-38-t0r" customClass="ViewController" customModule="PantryFi" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Login" title="login" id="BYZ-38-t0r" customClass="ViewController" customModule="PantryFi" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -66,12 +66,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="325.60000000000002" y="626.53673163418296"/>
+            <point key="canvasLocation" x="1264.8" y="626.53673163418296"/>
         </scene>
         <!--Sign Up-->
         <scene sceneID="baV-j8-j2e">
             <objects>
-                <viewController title="Sign Up" id="Ahz-QG-Hba" customClass="SignUpViewController" customModule="PantryFi" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Signup" title="Sign Up" id="Ahz-QG-Hba" customClass="SignUpViewController" customModule="PantryFi" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="J7N-mp-Qbv"/>
                         <viewControllerLayoutGuide type="bottom" id="Jy9-er-oYu"/>
@@ -146,7 +146,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LUt-YM-euB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="326" y="1336"/>
+            <point key="canvasLocation" x="1265" y="1386"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="GJB-c4-1Yz">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jdi-RH-9mD" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="DAl-At-NEK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="VH0-VN-v7i"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OJF-ao-FQE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="325.60000000000002" y="626.53673163418296"/>
         </scene>
     </scenes>
     <resources>

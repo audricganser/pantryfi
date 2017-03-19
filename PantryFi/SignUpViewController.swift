@@ -47,6 +47,10 @@ class SignUpViewController: UIViewController {
             
             //hides keyboard once candidate is saved
             self.view.endEditing(true)
+            
+            let storyBoard1:UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            let nextViewController = storyBoard1.instantiateViewController(withIdentifier: "Login")
+            self.present(nextViewController, animated:true, completion:nil)
 
         }
     }
