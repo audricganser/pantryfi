@@ -13,7 +13,7 @@
         <!--PantryFi-->
         <scene sceneID="CVA-ck-jh1">
             <objects>
-                <viewController storyboardIdentifier="Home" id="rxJ-NB-cgo" customClass="HomeViewController" customModule="PantryFi" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Home" title="PantryFi" id="rxJ-NB-cgo" customClass="HomeViewController" customModule="PantryFi" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="erU-RQ-e8G"/>
                         <viewControllerLayoutGuide type="bottom" id="Gn9-7B-OXZ"/>
@@ -128,7 +128,7 @@
         <!--Navigation Controller-->
         <scene sceneID="yZw-CH-Wla">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZJ7-2H-6o9" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Navigation" automaticallyAdjustsScrollViewInsets="NO" id="ZJ7-2H-6o9" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="6OG-jS-5bE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

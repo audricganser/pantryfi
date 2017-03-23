@@ -18,7 +18,11 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.isNavigationBarHidden = true
+        email.attributedPlaceholder = NSAttributedString(string: "Email Address",
+                                                         attributes: [NSForegroundColorAttributeName: UIColor.black])
+        password.attributedPlaceholder = NSAttributedString(string: "Password",
+                                                         attributes: [NSForegroundColorAttributeName: UIColor.black])
         //loads users from core data
         loadData()
 
@@ -49,7 +53,7 @@ class ViewController: UIViewController {
                         // user matches
                         print("logged in")
                         let storyBoard1:UIStoryboard = UIStoryboard(name: "Home", bundle:nil)
-                        let nextViewController = storyBoard1.instantiateViewController(withIdentifier: "Home")
+                        let nextViewController = storyBoard1.instantiateViewController(withIdentifier: "Navigation")
                         self.present(nextViewController, animated:true, completion:nil)
 
                     

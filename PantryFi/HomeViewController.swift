@@ -93,7 +93,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             {
                 if let itemQuantity = alert.textFields?[1].text
                 {
-                    self.saveIngredient(name: title, quantity: itemQuantity)
+                    if(title == "" || itemQuantity == "")
+                    {
+            
+                    }
+                    else
+                    {
+                        self.saveIngredient(name: title, quantity: itemQuantity)
+                    }
                 }
             }
         }))
