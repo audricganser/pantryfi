@@ -21,9 +21,24 @@ class SignUpViewController: UIViewController {
 
     
     override func viewDidLoad() {
+        firstName.attributedPlaceholder = NSAttributedString(string: "First Name",
+                                                         attributes: [NSForegroundColorAttributeName: UIColor.black])
+        lastName.attributedPlaceholder = NSAttributedString(string: "Last Name",
+                                                            attributes: [NSForegroundColorAttributeName: UIColor.black])
+        email.attributedPlaceholder = NSAttributedString(string: "Email Address",
+                                                         attributes: [NSForegroundColorAttributeName: UIColor.black])
+        password.attributedPlaceholder = NSAttributedString(string: "Password",
+                                                            attributes: [NSForegroundColorAttributeName: UIColor.black])
+        confirmPass.attributedPlaceholder = NSAttributedString(string: "Confirm Password",
+                                                            attributes: [NSForegroundColorAttributeName: UIColor.black])
+        self.navigationItem.title = ""
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
     }
 
     override func didReceiveMemoryWarning() {

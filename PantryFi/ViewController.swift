@@ -17,6 +17,11 @@ class ViewController: UIViewController {
      var users = [NSManagedObject]()
 
     override func viewDidLoad() {
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
         email.attributedPlaceholder = NSAttributedString(string: "Email Address",
@@ -34,6 +39,10 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     @IBAction func loginButton(_ sender: Any) {
