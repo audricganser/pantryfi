@@ -53,14 +53,17 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if(indexPath.row == 0)
         {
             let addCell = tableView.dequeueReusableCell(withIdentifier: addCellIdentifier) as! AddIngredientTableViewCell
+            addCell.backgroundColor = UIColor.clear
+
             return addCell
         }
         else
         {
             let itemCell = tableView.dequeueReusableCell(withIdentifier: itemIdentifier) as! IngredientTableViewCell
+            itemCell.backgroundColor = UIColor.clear
             let row = indexPath.row
             let ingredient = ingredients[row-1]
-            itemCell.textLabel?.text = ingredient.value(forKey: "name") as? String
+            itemCell.titleLabel.text = ingredient.value(forKey: "name") as? String
             itemCell.quantityLabel.text = ingredient.value(forKey: "quantity") as? String
 
             return itemCell
@@ -80,7 +83,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-            return 60
+            return 80
     }
     
     func didTapAddItem()
