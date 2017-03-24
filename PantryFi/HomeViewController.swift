@@ -112,12 +112,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.present(alert, animated: true, completion: nil)
     }
     
-    // @IBAction func searchClicked(_ sender: Any) {
-    //     let storyBoard1:UIStoryboard = UIStoryboard(name: "PantrySearch", bundle:nil)
-    //     let nextViewController = storyBoard1.instantiateViewController(withIdentifier: "pantrySearchNav")
-    //     self.present(nextViewController, animated:true, completion:nil)
-    // }
-    
     fileprivate func saveIngredient(name: String, quantity: String) {
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
