@@ -9,6 +9,7 @@
 import Foundation
 
 
+
 //class Ingredient{
 //    var name:String?
 //    var quantity: String?
@@ -19,3 +20,4 @@ import Foundation
 //        self.quantity = quantity
 //    }
 //}
+
