@@ -11,14 +11,26 @@ import CoreData
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
     
      var users = [NSManagedObject]()
 
     override func viewDidLoad() {
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = true
+        email.attributedPlaceholder = NSAttributedString(string: "Email Address",
+                                                         attributes: [NSForegroundColorAttributeName: UIColor.black])
+        password.attributedPlaceholder = NSAttributedString(string: "Password",
+                                                         attributes: [NSForegroundColorAttributeName: UIColor.black])
         
+        self.errorLabel.text = ""
         //loads users from core data
         loadData()
 
@@ -32,10 +44,14 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    
     @IBAction func loginButton(_ sender: Any) {
         
         if (email.text?.isEmpty)! || (password.text?.isEmpty)! {
-            print("fields are empty")
+            self.errorLabel.text = "fields are empty"
         }
         else {
             let e = email.text
@@ -49,11 +65,14 @@ class ViewController: UIViewController {
                         // user matches
                         print("logged in")
                         let storyBoard1:UIStoryboard = UIStoryboard(name: "Home", bundle:nil)
-                        let nextViewController = storyBoard1.instantiateViewController(withIdentifier: "Home")
+                        let nextViewController = storyBoard1.instantiateViewController(withIdentifier: "Navigation")
                         self.present(nextViewController, animated:true, completion:nil)
 
                     
                     }
+                }
+                else {
+                    self.errorLabel.text = "wrong email and/or password"
                 }
             }
             
