@@ -86,6 +86,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             return 80
     }
     
+    
+    
     func didTapAddItem()
     {
         let alert = UIAlertController(title: "New Ingredient", message:"Insert name of item and quantity", preferredStyle: .alert)
