@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1518B9721E85B28E0046868C /* PantrySearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1518B9711E85B28E0046868C /* PantrySearch.storyboard */; };
 		1518B9741E85B3A70046868C /* PantrySearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1518B9731E85B3A70046868C /* PantrySearchViewController.swift */; };
 		1518B9761E85B4100046868C /* RecipeResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1518B9751E85B4100046868C /* RecipeResultTableViewCell.swift */; };
 		1518B9781E85B4D30046868C /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1518B9771E85B4D30046868C /* TableViewController.swift */; };
@@ -33,7 +32,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1518B9711E85B28E0046868C /* PantrySearch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PantrySearch.storyboard; sourceTree = "<group>"; };
 		1518B9731E85B3A70046868C /* PantrySearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PantrySearchViewController.swift; sourceTree = "<group>"; };
 		1518B9751E85B4100046868C /* RecipeResultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeResultTableViewCell.swift; sourceTree = "<group>"; };
 		1518B9771E85B4D30046868C /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
@@ -77,7 +75,6 @@
 				1518B9751E85B4100046868C /* RecipeResultTableViewCell.swift */,
 				1518B9771E85B4D30046868C /* TableViewController.swift */,
 				1518B9731E85B3A70046868C /* PantrySearchViewController.swift */,
-				1518B9711E85B28E0046868C /* PantrySearch.storyboard */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -232,7 +229,6 @@
 				2BC8DC571E78758C00A7A3AD /* Main.storyboard in Resources */,
 				152A246C1E7F2B1F00C42EAA /* Home.storyboard in Resources */,
 				75B241771E85A89900DD9C6D /* Search.storyboard in Resources */,
-				1518B9721E85B28E0046868C /* PantrySearch.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
