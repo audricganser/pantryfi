@@ -11,6 +11,7 @@ import CoreData
 
 class SignUpViewController: UIViewController {
 
+    @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var firstName: UITextField!
     @IBOutlet weak var lastName: UITextField!
     @IBOutlet weak var email: UITextField!
@@ -32,6 +33,8 @@ class SignUpViewController: UIViewController {
         confirmPass.attributedPlaceholder = NSAttributedString(string: "Confirm Password",
                                                             attributes: [NSForegroundColorAttributeName: UIColor.black])
         self.navigationItem.title = ""
+        self.errorLabel.text = ""
+        self.errorLabel.textColor = UIColor.red
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
@@ -47,14 +50,25 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func register(_ sender: Any) {
+        
+        //check if any fields are empty
         if (firstName.text?.isEmpty)! ||
             (lastName.text?.isEmpty)! ||
             (email.text?.isEmpty)!    ||
             (password.text?.isEmpty)! ||
             (confirmPass.text?.isEmpty)! {
             
-                print("something empty")
+            self.errorLabel.text = "Please fill out all fields"
         }
+        //check if email is valid
+        else if (!isValidEmail(email: email.text!)) {
+            self.errorLabel.text = "email is invalid"
+        }
+        //checks if confirm password and password match
+        else if (password.text != confirmPass.text){
+                self.errorLabel.text = "your password doesn't match"
+        }
+        //save the user on core data
         else {
             self.saveUser(firstName: firstName!.text!, lastName: lastName!.text!, email: email!.text!, password: password!.text!)
             
@@ -99,6 +113,15 @@ class SignUpViewController: UIViewController {
         
         // Add the new entity to our array of managed objects
         users.append(user)
+    }
+    
+    func isValidEmail(email:String) -> Bool {
+        // print("validate calendar: \(testStr)")
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        print("email is \(emailTest.evaluate(with: email))")
+        return emailTest.evaluate(with: email)
     }
     
     //when clicked outside of the keyboard it becomes hidden
