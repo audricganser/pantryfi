@@ -58,7 +58,7 @@
 		152A24671E7F29DB00C42EAA /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				75B241781E85B6C900DD9C6D /* Search */,
+				75B241781E85B6C900DD9C6D /* Search 2 */,
 				152A246A1E7F2AF700C42EAA /* Home Screen */,
 				152A24681E7F29F300C42EAA /* Login */,
 			);
@@ -116,14 +116,14 @@
 			path = PantryFi;
 			sourceTree = "<group>";
 		};
-		75B241781E85B6C900DD9C6D /* Search */ = {
+		75B241781E85B6C900DD9C6D /* Search 2 */ = {
 			isa = PBXGroup;
 			children = (
 				75B241741E85A77900DD9C6D /* Recipe.swift */,
 				75B241761E85A89900DD9C6D /* Search.storyboard */,
 				75B241791E85B70800DD9C6D /* SearchTableViewController.swift */,
 			);
-			name = Search;
+			name = "Search 2";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
