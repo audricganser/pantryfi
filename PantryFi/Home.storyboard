@@ -117,10 +117,6 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <searchBar contentMode="redraw" placeholder="Search Any Recipe" translatesAutoresizingMaskIntoConstraints="NO" id="QHR-Mz-wET">
-                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your Pantry" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="odU-yw-OAb">
                                 <rect key="frame" x="135" y="311" width="105" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -141,16 +137,31 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oVe-sQ-4pQ">
+                                <rect key="frame" x="5" y="68" width="365" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OWG-iT-2RX">
+                                <rect key="frame" x="16" y="72" width="354" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Search Any Recipe">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="searchClicked:" destination="rxJ-NB-cgo" eventType="touchUpInside" id="a6c-zU-urp"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.18039215689999999" green="0.80000000000000004" blue="0.4431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="1cx-vy-L6M" secondAttribute="trailing" id="8fG-Rp-ofP"/>
                             <constraint firstItem="1cx-vy-L6M" firstAttribute="leading" secondItem="yn9-f0-xcq" secondAttribute="leading" id="BSA-Aw-IHm"/>
-                            <constraint firstAttribute="trailing" secondItem="QHR-Mz-wET" secondAttribute="trailing" id="DDu-zM-fC7"/>
-                            <constraint firstItem="1cx-vy-L6M" firstAttribute="top" secondItem="QHR-Mz-wET" secondAttribute="bottom" constant="232" id="O8R-er-7iw"/>
+                            <constraint firstItem="1cx-vy-L6M" firstAttribute="top" secondItem="erU-RQ-e8G" secondAttribute="bottom" constant="276" id="T6d-ea-pTc"/>
                             <constraint firstItem="Gn9-7B-OXZ" firstAttribute="top" secondItem="1cx-vy-L6M" secondAttribute="bottom" id="V1u-cz-iT9"/>
-                            <constraint firstItem="QHR-Mz-wET" firstAttribute="leading" secondItem="yn9-f0-xcq" secondAttribute="leading" id="XfI-tr-Pbs"/>
-                            <constraint firstItem="QHR-Mz-wET" firstAttribute="top" secondItem="erU-RQ-e8G" secondAttribute="bottom" id="o5g-VY-eE4"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="PantryFi" id="AWa-uh-94y"/>

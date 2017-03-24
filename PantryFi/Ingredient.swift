@@ -9,7 +9,7 @@
 import Foundation
 
 
-class Ingredient{
+class Ingredient2{
     var name:String?
     var quantity: String?
     
@@ -19,3 +19,4 @@ class Ingredient{
         self.quantity = quantity
     }
 }
+

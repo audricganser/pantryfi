@@ -217,13 +217,6 @@
             </objects>
             <point key="canvasLocation" x="325.60000000000002" y="626.53673163418296"/>
         </scene>
-        <!--AV Player View Controller-->
-        <scene sceneID="nA3-r1-iaN">
-            <objects>
-                <avPlayerViewController videoGravity="AVLayerVideoGravityResizeAspect" id="ojo-Pe-WgH" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cc4-AV-FvV" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-        </scene>
     </scenes>
     <resources>
         <image name="background-home" width="6664" height="4623"/>
