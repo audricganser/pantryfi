@@ -9,7 +9,7 @@
 import UIKit
 
 class SearchTableViewController: UITableViewController {
-
+    /*
     var recipes = [Recipe]()
     var filteredRecipes = [Recipe]()
     let searchController = UISearchController(searchResultsController: nil)
@@ -152,4 +152,5 @@ extension SearchTableViewController: UISearchResultsUpdating {
         let scope = searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex]
         filterContentForSearchText(searchText: searchController.searchBar.text!, scope: scope)
     }
+ */
 }

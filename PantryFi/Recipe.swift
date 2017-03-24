@@ -7,8 +7,9 @@
 //
 
 import Foundation
-
+/*
 struct Recipe {
     let category : String
     let name : String
 }
+*/

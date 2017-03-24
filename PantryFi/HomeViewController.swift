@@ -113,10 +113,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     @IBAction func searchClicked(_ sender: Any) {
-        let storyBoard1:UIStoryboard = UIStoryboard(name: "Search", bundle:nil)
-        let nextViewController = storyBoard1.instantiateViewController(withIdentifier: "Navigation")
+        let storyBoard1:UIStoryboard = UIStoryboard(name: "PantrySearch", bundle:nil)
+        let nextViewController = storyBoard1.instantiateViewController(withIdentifier: "pantrySearchNav")
         self.present(nextViewController, animated:true, completion:nil)
     }
+    
     fileprivate func saveIngredient(name: String, quantity: String) {
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -174,14 +175,15 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
     }
-    */
+    
 
 }

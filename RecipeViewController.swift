@@ -15,10 +15,20 @@ class RecipeViewController: UIViewController {
     @IBOutlet weak var recipePrepTime: UILabel!
     @IBOutlet weak var recipeServes: UILabel!
     
+    var recipeImageSegue:String?
+    var recipeNameSegue:String?
+    var recipePrepTimeSegue:String?
+    var recipeServesSegue:String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.recipeImage.image = UIImage(named: self.recipeImageSegue!)
+        self.recipeName.text = self.recipeNameSegue!
+        self.recipePrepTime.text = self.recipePrepTimeSegue!
+        self.recipeServes.text = self.recipeServesSegue!
+        
     }
 
     override func didReceiveMemoryWarning() {
