@@ -11,6 +11,7 @@ import CoreData
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
     
@@ -28,6 +29,8 @@ class ViewController: UIViewController {
                                                          attributes: [NSForegroundColorAttributeName: UIColor.black])
         password.attributedPlaceholder = NSAttributedString(string: "Password",
                                                          attributes: [NSForegroundColorAttributeName: UIColor.black])
+        
+        self.errorLabel.text = ""
         //loads users from core data
         loadData()
 
@@ -48,7 +51,7 @@ class ViewController: UIViewController {
     @IBAction func loginButton(_ sender: Any) {
         
         if (email.text?.isEmpty)! || (password.text?.isEmpty)! {
-            print("fields are empty")
+            self.errorLabel.text = "fields are empty"
         }
         else {
             let e = email.text
@@ -67,6 +70,9 @@ class ViewController: UIViewController {
 
                     
                     }
+                }
+                else {
+                    self.errorLabel.text = "wrong email and/or password"
                 }
             }
             

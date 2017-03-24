@@ -34,7 +34,6 @@ class SignUpViewController: UIViewController {
                                                             attributes: [NSForegroundColorAttributeName: UIColor.black])
         self.navigationItem.title = ""
         self.errorLabel.text = ""
-        self.errorLabel.textColor = UIColor.red
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
