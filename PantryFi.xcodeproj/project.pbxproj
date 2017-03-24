@@ -52,8 +52,8 @@
 		152A24671E7F29DB00C42EAA /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				152A246A1E7F2AF700C42EAA /* Home Screen */,
 				152A24681E7F29F300C42EAA /* Login */,
+				152A246A1E7F2AF700C42EAA /* Home Screen */,
 			);
 			name = Features;
 			sourceTree = "<group>";
