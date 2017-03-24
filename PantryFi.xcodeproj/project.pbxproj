@@ -11,6 +11,7 @@
 		152A246E1E7F2BD300C42EAA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152A246D1E7F2BD300C42EAA /* HomeViewController.swift */; };
 		2B1AD5C21E84A4FB00FBEA48 /* Ingredient+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1AD5C01E84A4FB00FBEA48 /* Ingredient+CoreDataClass.swift */; };
 		2B1AD5C31E84A4FB00FBEA48 /* Ingredient+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1AD5C11E84A4FB00FBEA48 /* Ingredient+CoreDataProperties.swift */; };
+		2B1AD5C81E84BF7100FBEA48 /* Recipe.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B1AD5C71E84BF7100FBEA48 /* Recipe.storyboard */; };
 		2BC8DC521E78758C00A7A3AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC8DC511E78758C00A7A3AD /* AppDelegate.swift */; };
 		2BC8DC541E78758C00A7A3AD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC8DC531E78758C00A7A3AD /* ViewController.swift */; };
 		2BC8DC571E78758C00A7A3AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BC8DC551E78758C00A7A3AD /* Main.storyboard */; };
@@ -28,6 +29,7 @@
 		152A246D1E7F2BD300C42EAA /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		2B1AD5C01E84A4FB00FBEA48 /* Ingredient+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Ingredient+CoreDataClass.swift"; sourceTree = "<group>"; };
 		2B1AD5C11E84A4FB00FBEA48 /* Ingredient+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Ingredient+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2B1AD5C71E84BF7100FBEA48 /* Recipe.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Recipe.storyboard; sourceTree = "<group>"; };
 		2BC8DC4E1E78758C00A7A3AD /* PantryFi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PantryFi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BC8DC511E78758C00A7A3AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2BC8DC531E78758C00A7A3AD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 		152A24671E7F29DB00C42EAA /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				2B1AD5C41E84BEF200FBEA48 /* Recipe Screen */,
 				152A24681E7F29F300C42EAA /* Login */,
 				152A246A1E7F2AF700C42EAA /* Home Screen */,
 			);
@@ -82,6 +85,15 @@
 				75F0C9C81E833C45002E1458 /* Ingredient.swift */,
 			);
 			name = "Home Screen";
+			sourceTree = "<group>";
+		};
+		2B1AD5C41E84BEF200FBEA48 /* Recipe Screen */ = {
+			isa = PBXGroup;
+			children = (
+				2B1AD5C71E84BF7100FBEA48 /* Recipe.storyboard */,
+			);
+			name = "Recipe Screen";
+			path = ..;
 			sourceTree = "<group>";
 		};
 		2BC8DC451E78758C00A7A3AD = {
@@ -179,6 +191,7 @@
 				2BC8DC5C1E78758C00A7A3AD /* Assets.xcassets in Resources */,
 				2BC8DC571E78758C00A7A3AD /* Main.storyboard in Resources */,
 				152A246C1E7F2B1F00C42EAA /* Home.storyboard in Resources */,
+				2B1AD5C81E84BF7100FBEA48 /* Recipe.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
