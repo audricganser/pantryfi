@@ -20,16 +20,20 @@ Search View Controller
 2: Same Grade to for all members
 
 3: Differences
-* Login Screen/User Profiles
-	User Profiles has not been fully implemented yet. Currently we are using another view controller to show user profiles, but we will be using a pod to slide the user profile from the top of the home screen.
-* Items List
-	Added Pantry items are not colored correctly which will be done in Beta release.
-	Currently when a user adds a new item they get an alert. In Beta version, they will be able to just add a new cell and input the item within the cell.
-* Serving counter
-   * Ingredient list shows the servings of each item. In our Beta release, the user will be able to adjust this count after adding the item.
-* Finding Recipes with user's current items
-   * Currently the “Pantry Search” button brings up a static search not using the pantry items. The Beta release will fully implement this feature by querying an API to return dynamic search results of matching recipes. The search bar will also be activated for text input for additional search functionality.
+Login Screen/User Profiles:
+User Profiles has not been fully implemented yet. Currently we are using another view controller to show user profiles, but we will be using a pod to slide the user profile from the top of the home screen.
+
+Items List:
+Added Pantry items are not colored correctly which will be done in Beta release.
+Currently when a user adds a new item they get an alert. In Beta version, they will be able to just add a new cell and input the item within the cell.
+
+Serving counter:
+Ingredient list shows the servings of each item. In our Beta release, the user will be able to adjust this count after adding the item.
+
+Finding Recipes with user's current items:
+Currently the “Pantry Search” button brings up a static search not using the pantry items. The Beta release will fully implement this feature by querying an API to return dynamic search results of matching recipes. The search bar will also be activated for text input for additional search functionality.
+
 4: Special Instructions
-* Run app and press the ‘Create Account’ button. After registering, sign into your account. 
-* You will be able to add items to Pantry but you will get a static search results when clicking on the search button. All information throughout the app is static
-* The app is for iPhone 7 and 7 plus models only.
+Run app and press the ‘Create Account’ button. After registering, sign into your account. 
+You will be able to add items to Pantry but you will get a static search results when clicking on the search button. All information throughout the app is static
+The app is for iPhone 7 and 7 plus models only.
