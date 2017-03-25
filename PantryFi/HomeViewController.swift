@@ -15,6 +15,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     var ingredients = [NSManagedObject]()
 
+    @IBOutlet weak var pantrySearchButton: UIButton!
     @IBOutlet var tableView: UITableView!
     
     let addCellIdentifier = "addCell"
@@ -22,6 +23,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        pantrySearchButton.layer.borderColor = UIColor.white.cgColor
         self.navigationItem.title = "PantriFi"
         tableView.delegate = self
         tableView.dataSource = self
