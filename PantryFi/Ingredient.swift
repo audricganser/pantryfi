@@ -10,7 +10,7 @@ import Foundation
 
 
 
-//class Ingredient{
+//class Ingredient1{
 //    var name:String?
 //    var quantity: String?
 //    
