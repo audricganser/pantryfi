@@ -24,7 +24,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         pantrySearchButton.layer.borderColor = UIColor.white.cgColor
-        self.navigationItem.title = "PantriFi"
+        self.navigationItem.title = "PantryFi"
         tableView.delegate = self
         tableView.dataSource = self
         loadData()
