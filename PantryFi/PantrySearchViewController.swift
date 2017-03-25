@@ -73,7 +73,6 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
         return cell
     }
     
-    
     fileprivate func loadData() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
