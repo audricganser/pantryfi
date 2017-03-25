@@ -99,7 +99,6 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
         }
     }
 
-
     // Saving core data
     fileprivate func saveCandidate(imageName:String, prepTime:String, servings:String, summary:String, title:String) {
         
@@ -133,8 +132,6 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
         print("saved recipe")
     }
     
-
-    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -153,7 +150,6 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
         }
 
     }
-    
     
     // Keyboard functions
     func textFieldShouldReturn (_ textField: UITextField) -> Bool {

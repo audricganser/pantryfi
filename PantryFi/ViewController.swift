@@ -66,7 +66,7 @@ class ViewController: UIViewController {
                     let tmpPass = user.value(forKey: "password") as? String
                     if tmpPass! == p! {
                         // user matches
-                        print("logged in")
+                        //print("logged in")
                         let storyBoard1:UIStoryboard = UIStoryboard(name: "Home", bundle:nil)
                         let nextViewController = storyBoard1.instantiateViewController(withIdentifier: "Navigation")
                         self.present(nextViewController, animated:true, completion:nil)
@@ -103,7 +103,7 @@ class ViewController: UIViewController {
         
         if let results = fetchedResults {
             users = results
-            print("got the data")
+            //print("got the data")
         } else {
             print("Could not fetch")
         }

@@ -39,7 +39,7 @@ class RecipeViewController: UIViewController, UITableViewDataSource, UITableView
         self.recipePrepTime.text = self.recipePrepTimeSegue!
         self.recipeServes.text = self.recipeServesSegue!
         
-        print("adding to iList")
+        //print("adding to iList")
         iList.append(i1)
         iList.append(i2)
         iList.append(i3)
@@ -48,7 +48,6 @@ class RecipeViewController: UIViewController, UITableViewDataSource, UITableView
         
         tableView.delegate = self
         tableView.dataSource = self
-
     }
 
     override func didReceiveMemoryWarning() {

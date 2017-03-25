@@ -24,12 +24,8 @@
 		2BC8DC5F1E78758C00A7A3AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BC8DC5D1E78758C00A7A3AD /* LaunchScreen.storyboard */; };
 		2BC8DC671E7890F700A7A3AD /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC8DC661E7890F700A7A3AD /* SignUpViewController.swift */; };
 		752D17D01E85FD4300B58913 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752D17CF1E85FD4300B58913 /* SideMenuViewController.swift */; };
-		75B241751E85A77900DD9C6D /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B241741E85A77900DD9C6D /* Recipe.swift */; };
-		75B241771E85A89900DD9C6D /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75B241761E85A89900DD9C6D /* Search.storyboard */; };
-		75B2417A1E85B70800DD9C6D /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B241791E85B70800DD9C6D /* SearchTableViewController.swift */; };
 		75F0C9C51E830B29002E1458 /* AddIngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F0C9C41E830B29002E1458 /* AddIngredientTableViewCell.swift */; };
 		75F0C9C71E830B35002E1458 /* IngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F0C9C61E830B35002E1458 /* IngredientTableViewCell.swift */; };
-		75F0C9C91E833C45002E1458 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F0C9C81E833C45002E1458 /* Ingredient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,8 +34,8 @@
 		1518B9771E85B4D30046868C /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		152A246B1E7F2B1F00C42EAA /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		152A246D1E7F2BD300C42EAA /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		2B1AD5C01E84A4FB00FBEA48 /* Ingredient+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Ingredient+CoreDataClass.swift"; sourceTree = "<group>"; };
-		2B1AD5C11E84A4FB00FBEA48 /* Ingredient+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Ingredient+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2B1AD5C01E84A4FB00FBEA48 /* Ingredient+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Ingredient+CoreDataClass.swift"; path = "../Ingredient+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2B1AD5C11E84A4FB00FBEA48 /* Ingredient+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Ingredient+CoreDataProperties.swift"; path = "../Ingredient+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2B1AD5C91E85AEF700FBEA48 /* RecipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
 		2B1AD5CD1E85B9C100FBEA48 /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
 		2BC8DC4E1E78758C00A7A3AD /* PantryFi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PantryFi.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,12 +48,8 @@
 		2BC8DC601E78758C00A7A3AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2BC8DC661E7890F700A7A3AD /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		752D17CF1E85FD4300B58913 /* SideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
-		75B241741E85A77900DD9C6D /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
-		75B241761E85A89900DD9C6D /* Search.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
-		75B241791E85B70800DD9C6D /* SearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 		75F0C9C41E830B29002E1458 /* AddIngredientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddIngredientTableViewCell.swift; sourceTree = "<group>"; };
 		75F0C9C61E830B35002E1458 /* IngredientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientTableViewCell.swift; sourceTree = "<group>"; };
-		75F0C9C81E833C45002E1458 /* Ingredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +76,6 @@
 		152A24671E7F29DB00C42EAA /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				75B241781E85B6C900DD9C6D /* Search 2 */,
 				1518B9661E85A6320046868C /* Search */,
 				2B1AD5C41E84BEF200FBEA48 /* Recipe Screen */,
 				152A24681E7F29F300C42EAA /* Login */,
@@ -111,7 +102,8 @@
 				75F0C9C41E830B29002E1458 /* AddIngredientTableViewCell.swift */,
 				75F0C9C61E830B35002E1458 /* IngredientTableViewCell.swift */,
 				152A246D1E7F2BD300C42EAA /* HomeViewController.swift */,
-				75F0C9C81E833C45002E1458 /* Ingredient.swift */,
+				2B1AD5C11E84A4FB00FBEA48 /* Ingredient+CoreDataProperties.swift */,
+				2B1AD5C01E84A4FB00FBEA48 /* Ingredient+CoreDataClass.swift */,
 			);
 			name = "Home Screen";
 			sourceTree = "<group>";
@@ -129,8 +121,6 @@
 		2BC8DC451E78758C00A7A3AD = {
 			isa = PBXGroup;
 			children = (
-				2B1AD5C01E84A4FB00FBEA48 /* Ingredient+CoreDataClass.swift */,
-				2B1AD5C11E84A4FB00FBEA48 /* Ingredient+CoreDataProperties.swift */,
 				2BC8DC501E78758C00A7A3AD /* PantryFi */,
 				2BC8DC4F1E78758C00A7A3AD /* Products */,
 			);
@@ -155,16 +145,6 @@
 				2BC8DC581E78758C00A7A3AD /* PantryFi.xcdatamodeld */,
 			);
 			path = PantryFi;
-			sourceTree = "<group>";
-		};
-		75B241781E85B6C900DD9C6D /* Search 2 */ = {
-			isa = PBXGroup;
-			children = (
-				75B241741E85A77900DD9C6D /* Recipe.swift */,
-				75B241761E85A89900DD9C6D /* Search.storyboard */,
-				75B241791E85B70800DD9C6D /* SearchTableViewController.swift */,
-			);
-			name = "Search 2";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,7 +211,6 @@
 				2BC8DC5C1E78758C00A7A3AD /* Assets.xcassets in Resources */,
 				2BC8DC571E78758C00A7A3AD /* Main.storyboard in Resources */,
 				152A246C1E7F2B1F00C42EAA /* Home.storyboard in Resources */,
-				75B241771E85A89900DD9C6D /* Search.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,11 +231,8 @@
 				2B1AD5C31E84A4FB00FBEA48 /* Ingredient+CoreDataProperties.swift in Sources */,
 				2B1AD5CA1E85AEF700FBEA48 /* RecipeViewController.swift in Sources */,
 				2BC8DC541E78758C00A7A3AD /* ViewController.swift in Sources */,
-				75F0C9C91E833C45002E1458 /* Ingredient.swift in Sources */,
 				1518B9761E85B4100046868C /* RecipeResultTableViewCell.swift in Sources */,
 				2BC8DC671E7890F700A7A3AD /* SignUpViewController.swift in Sources */,
-				75B241751E85A77900DD9C6D /* Recipe.swift in Sources */,
-				75B2417A1E85B70800DD9C6D /* SearchTableViewController.swift in Sources */,
 				75F0C9C51E830B29002E1458 /* AddIngredientTableViewCell.swift in Sources */,
 				752D17D01E85FD4300B58913 /* SideMenuViewController.swift in Sources */,
 				2BC8DC521E78758C00A7A3AD /* AppDelegate.swift in Sources */,

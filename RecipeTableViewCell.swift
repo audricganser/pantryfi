@@ -9,6 +9,7 @@
 import UIKit
 
 class RecipeTableViewCell: UITableViewCell {
+    
     @IBOutlet weak var item: UILabel!
     @IBOutlet weak var quantity: UILabel!
     
@@ -16,7 +17,6 @@ class RecipeTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-    
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

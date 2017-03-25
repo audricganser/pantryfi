@@ -169,8 +169,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             print("Could not fetch")
         }
     }
-
-
     
     // MARK: - Navigation
 
