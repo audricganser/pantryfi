@@ -122,10 +122,17 @@ class SignUpViewController: UIViewController {
         return emailTest.evaluate(with: email)
     }
     
-    //when clicked outside of the keyboard it becomes hidden
-    override func touchesBegan (_ touches: Set<UITouch>, with event: UIEvent?) {
+    
+    // Keyboard functions
+    func textFieldShouldReturn (_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
+
 
 
     /*

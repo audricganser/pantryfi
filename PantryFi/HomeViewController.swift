@@ -15,6 +15,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     var ingredients = [NSManagedObject]()
 
+    @IBOutlet weak var pantrySearchButton: UIButton!
     @IBOutlet var tableView: UITableView!
     
     let addCellIdentifier = "addCell"
@@ -22,6 +23,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        pantrySearchButton.layer.borderColor = UIColor.white.cgColor
         self.navigationItem.title = "PantriFi"
         tableView.delegate = self
         tableView.dataSource = self
@@ -169,14 +171,15 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
     }
-    */
+    
 
 }

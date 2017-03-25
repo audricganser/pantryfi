@@ -53,6 +53,9 @@ class ViewController: UIViewController {
         if (email.text?.isEmpty)! || (password.text?.isEmpty)! {
             self.errorLabel.text = "fields are empty"
         }
+        else if users.count == 0 {
+            self.errorLabel.text = "Create New Account"
+        }
         else {
             let e = email.text
             let p = password.text
@@ -104,6 +107,16 @@ class ViewController: UIViewController {
         } else {
             print("Could not fetch")
         }
+    }
+
+    // Keyboard functions
+    func textFieldShouldReturn (_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 
 
