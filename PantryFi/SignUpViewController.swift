@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+//import FirebaseDatabase
 import CoreData
 
 class SignUpViewController: UIViewController {
@@ -69,9 +71,17 @@ class SignUpViewController: UIViewController {
         }
         //save the user on core data
         else {
-            self.saveUser(firstName: firstName!.text!, lastName: lastName!.text!, email: email!.text!, password: password!.text!)
+            FIRAuth.auth()?.createUser(withEmail: email.text!, password: password.text!) { (user, error) in
+                
+            }
+            guard let firstName = firstName.text, let lastName = lastName.text else {
+                print("Form is not valid")
+                return
+            }
             
-            //print("saved")
+            let values: [String : Any] = ["firstName": firstName, "lastName": lastName]
+            //var ref: FIRDatabaseReference!
+
             
             //hides keyboard once candidate is saved
             self.view.endEditing(true)
@@ -81,37 +91,6 @@ class SignUpViewController: UIViewController {
             self.present(nextViewController, animated:true, completion:nil)
 
         }
-    }
-    
-    fileprivate func saveUser(firstName: String, lastName: String, email: String, password: String) {
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
-        // Create the entity we want to save
-        let entity =  NSEntityDescription.entity(forEntityName: "User", in: managedContext)
-        
-        let user = NSManagedObject(entity: entity!, insertInto: managedContext)
-        
-        // Set the attribute values
-        user.setValue(firstName, forKey: "firstName")
-        user.setValue(lastName, forKey: "lastName")
-        user.setValue(email, forKey: "email")
-        user.setValue(password, forKey: "password")
-        
-        // Commit the changes.
-        do {
-            try managedContext.save()
-        } catch {
-            // what to do if an error occurs?
-            let nserror = error as NSError
-            print("Unresolved error \(nserror), \(nserror.userInfo)")
-            abort()
-        }
-        
-        // Add the new entity to our array of managed objects
-        users.append(user)
     }
     
     func isValidEmail(email:String) -> Bool {
