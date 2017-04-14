@@ -8,7 +8,7 @@
 
 import UIKit
 import Firebase
-//import FirebaseDatabase
+import FirebaseDatabase
 import CoreData
 
 class SignUpViewController: UIViewController {
@@ -79,7 +79,17 @@ class SignUpViewController: UIViewController {
                 return
             }
             
+            guard let uid = FIRAuth.auth()?.currentUser?.uid else {
+                return
+            }
+            
             let values: [String : Any] = ["firstName": firstName, "lastName": lastName]
+            
+            var ref: FIRDatabaseReference!
+            ref = FIRDatabase.database().reference(fromURL: "https://pantryfi-2e385.firebaseio.com/")
+            ref.child("users").child(uid).updateChildValues(values)
+            
+
             //var ref: FIRDatabaseReference!
 
             

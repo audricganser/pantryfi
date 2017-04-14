@@ -7,19 +7,29 @@
 //
 
 import UIKit
-import CoreData
+import FirebaseCore
+import FirebaseAuth
+import FirebaseDatabase
 
 class SideMenuViewController: UIViewController {
 
     @IBOutlet var profileName: UILabel!
-    var users = [NSManagedObject]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadData()
-        let firstName = users[0].value(forKey: "firstName") as! String?
-        let lastName = users[0].value(forKey: "lastName") as! String?
-        profileName.text = "\(firstName!) \(lastName!)"
+        if let user = FIRAuth.auth()?.currentUser {
+            let uid = user.uid
+            FIRDatabase.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: {(snapshot) in
+                
+                if let dictionary = snapshot.value as? [String: AnyObject] {
+                    let firstName = dictionary["firstName"] as? String
+                    let lastName = dictionary["lastName"] as? String
+                    
+                    self.profileName.text = "\(firstName!) \(lastName!)"
+
+                }
+            }, withCancel:nil)}
+
         // Do any additional setup after loading the view.
     }
 
@@ -36,30 +46,6 @@ class SideMenuViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    fileprivate func loadData() {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"User")
-        
-        var fetchedResults:[NSManagedObject]? = nil
-        
-        do {
-            try fetchedResults = managedContext.fetch(fetchRequest) as? [NSManagedObject]
-        } catch {
-            // what to do if an error occurs?
-            let nserror = error as NSError
-            NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
-            abort()
-        }
-        
-        if let results = fetchedResults {
-            users = results
-        } else {
-            print("Could not fetch")
-        }
-    }
     /*
     // MARK: - Navigation
 
