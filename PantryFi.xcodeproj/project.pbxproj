@@ -23,7 +23,8 @@
 		2BC8DC5C1E78758C00A7A3AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BC8DC5B1E78758C00A7A3AD /* Assets.xcassets */; };
 		2BC8DC5F1E78758C00A7A3AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BC8DC5D1E78758C00A7A3AD /* LaunchScreen.storyboard */; };
 		2BC8DC671E7890F700A7A3AD /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC8DC661E7890F700A7A3AD /* SignUpViewController.swift */; };
-		752D17D01E85FD4300B58913 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752D17CF1E85FD4300B58913 /* SideMenuViewController.swift */; };
+		75BE49D91EA19EC900BC9F4B /* SSASideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BE49D81EA19EC900BC9F4B /* SSASideMenu.swift */; };
+		75BE49DB1EA19F8E00BC9F4B /* RightMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BE49DA1EA19F8E00BC9F4B /* RightMenuViewController.swift */; };
 		75E65CDE1E9F684E003B9D87 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75E65CDD1E9F684E003B9D87 /* GoogleService-Info.plist */; };
 		75F0C9C51E830B29002E1458 /* AddIngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F0C9C41E830B29002E1458 /* AddIngredientTableViewCell.swift */; };
 		75F0C9C71E830B35002E1458 /* IngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F0C9C61E830B35002E1458 /* IngredientTableViewCell.swift */; };
@@ -50,7 +51,8 @@
 		2BC8DC5E1E78758C00A7A3AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2BC8DC601E78758C00A7A3AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2BC8DC661E7890F700A7A3AD /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		752D17CF1E85FD4300B58913 /* SideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
+		75BE49D81EA19EC900BC9F4B /* SSASideMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSASideMenu.swift; sourceTree = "<group>"; };
+		75BE49DA1EA19F8E00BC9F4B /* RightMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RightMenuViewController.swift; path = ../RightMenuViewController.swift; sourceTree = "<group>"; };
 		75E65CDD1E9F684E003B9D87 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		75F0C9C41E830B29002E1458 /* AddIngredientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddIngredientTableViewCell.swift; sourceTree = "<group>"; };
 		75F0C9C61E830B35002E1458 /* IngredientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientTableViewCell.swift; sourceTree = "<group>"; };
@@ -105,7 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				152A246B1E7F2B1F00C42EAA /* Home.storyboard */,
-				752D17CF1E85FD4300B58913 /* SideMenuViewController.swift */,
+				75BE49DA1EA19F8E00BC9F4B /* RightMenuViewController.swift */,
 				75F0C9C41E830B29002E1458 /* AddIngredientTableViewCell.swift */,
 				75F0C9C61E830B35002E1458 /* IngredientTableViewCell.swift */,
 				152A246D1E7F2BD300C42EAA /* HomeViewController.swift */,
@@ -169,6 +171,7 @@
 		6581A65EF92501419EF4399E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				75BE49D81EA19EC900BC9F4B /* SSASideMenu.swift */,
 				C6D4CBD7C083366B912A0D05 /* Pods_PantryFi.framework */,
 			);
 			name = Frameworks;
@@ -313,7 +316,8 @@
 				1518B9761E85B4100046868C /* RecipeResultTableViewCell.swift in Sources */,
 				2BC8DC671E7890F700A7A3AD /* SignUpViewController.swift in Sources */,
 				75F0C9C51E830B29002E1458 /* AddIngredientTableViewCell.swift in Sources */,
-				752D17D01E85FD4300B58913 /* SideMenuViewController.swift in Sources */,
+				75BE49DB1EA19F8E00BC9F4B /* RightMenuViewController.swift in Sources */,
+				75BE49D91EA19EC900BC9F4B /* SSASideMenu.swift in Sources */,
 				2BC8DC521E78758C00A7A3AD /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

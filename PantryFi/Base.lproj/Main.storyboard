@@ -308,7 +308,7 @@
         <!--Navigation Controller-->
         <scene sceneID="GJB-c4-1Yz">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jdi-RH-9mD" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Navigation" automaticallyAdjustsScrollViewInsets="NO" id="jdi-RH-9mD" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="DAl-At-NEK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

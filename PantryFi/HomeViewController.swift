@@ -23,10 +23,15 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Home"
+        
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Menu", style: .plain, target: self, action: #selector(SSASideMenu.presentRightMenuViewController))
+        
         pantrySearchButton.layer.borderColor = UIColor.white.cgColor
-        self.navigationItem.title = "PantryFi"
         tableView.delegate = self
         tableView.dataSource = self
+
         loadData()
     }
 
