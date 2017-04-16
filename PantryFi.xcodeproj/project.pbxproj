@@ -12,6 +12,7 @@
 		1518B9781E85B4D30046868C /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1518B9771E85B4D30046868C /* TableViewController.swift */; };
 		152A246C1E7F2B1F00C42EAA /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 152A246B1E7F2B1F00C42EAA /* Home.storyboard */; };
 		152A246E1E7F2BD300C42EAA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152A246D1E7F2BD300C42EAA /* HomeViewController.swift */; };
+		15D163801EA3F6AA0023A51A /* RecipeWithIngredients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D1637F1EA3F6AA0023A51A /* RecipeWithIngredients.swift */; };
 		2B1AD5CA1E85AEF700FBEA48 /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1AD5C91E85AEF700FBEA48 /* RecipeViewController.swift */; };
 		2B1AD5CE1E85B9C100FBEA48 /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1AD5CD1E85B9C100FBEA48 /* RecipeTableViewCell.swift */; };
 		2BC8DC521E78758C00A7A3AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC8DC511E78758C00A7A3AD /* AppDelegate.swift */; };
@@ -37,6 +38,7 @@
 		1518B9771E85B4D30046868C /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		152A246B1E7F2B1F00C42EAA /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		152A246D1E7F2BD300C42EAA /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		15D1637F1EA3F6AA0023A51A /* RecipeWithIngredients.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeWithIngredients.swift; sourceTree = "<group>"; };
 		2B1AD5C91E85AEF700FBEA48 /* RecipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
 		2B1AD5CD1E85B9C100FBEA48 /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
 		2BC8DC4E1E78758C00A7A3AD /* PantryFi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PantryFi.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				1518B9751E85B4100046868C /* RecipeResultTableViewCell.swift */,
+				15D1637F1EA3F6AA0023A51A /* RecipeWithIngredients.swift */,
 				1518B9771E85B4D30046868C /* TableViewController.swift */,
 				1518B9731E85B3A70046868C /* PantrySearchViewController.swift */,
 			);
@@ -306,6 +309,7 @@
 				2BC8DC5A1E78758C00A7A3AD /* PantryFi.xcdatamodeld in Sources */,
 				2B1AD5CE1E85B9C100FBEA48 /* RecipeTableViewCell.swift in Sources */,
 				75FEFE481EA34047008D1619 /* Ingredient.swift in Sources */,
+				15D163801EA3F6AA0023A51A /* RecipeWithIngredients.swift in Sources */,
 				75F0C9C71E830B35002E1458 /* IngredientTableViewCell.swift in Sources */,
 				2B1AD5CA1E85AEF700FBEA48 /* RecipeViewController.swift in Sources */,
 				2BC8DC541E78758C00A7A3AD /* ViewController.swift in Sources */,
