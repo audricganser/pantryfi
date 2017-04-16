@@ -150,13 +150,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.reloadData()
     }
     
-    @IBAction func delPantry(_ sender: Any) {
-        self.ingredients.removeAll()
-        //print(ingredients)
-        //ingredients.
-        tableView!.reloadData()
-    }
-    
     fileprivate func loadData() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
