@@ -69,7 +69,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let itemCell = tableView.dequeueReusableCell(withIdentifier: itemIdentifier) as! IngredientTableViewCell
             itemCell.backgroundColor = UIColor.clear
             let row = indexPath.row
-            let ingredient = ingredients[row-1]
+            let ingredient = ingredients[row - 1]
             itemCell.titleLabel.text = ingredient.value(forKey: "name") as? String
             itemCell.quantityLabel.text = ingredient.value(forKey: "quantity") as? String
 
@@ -148,6 +148,13 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Add the new entity to our array of managed objects
         ingredients.append(ingredient)
         tableView.reloadData()
+    }
+    
+    @IBAction func delPantry(_ sender: Any) {
+        self.ingredients.removeAll()
+        //print(ingredients)
+        //ingredients.
+        tableView!.reloadData()
     }
     
     fileprivate func loadData() {
