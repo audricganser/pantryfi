@@ -8,31 +8,70 @@
 
 import UIKit
 import CoreData
+import FirebaseAuth
+import FirebaseDatabase
 
 
-
-class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate  {
     
-    var ingredients = [NSManagedObject]()
+    var items = [Ingredient]()
 
     @IBOutlet weak var pantrySearchButton: UIButton!
     @IBOutlet var tableView: UITableView!
     
     let addCellIdentifier = "addCell"
     let itemIdentifier = "itemCell"
+    let ref = FIRDatabase.database().reference(withPath: "ingredients")
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        pantrySearchButton.layer.borderColor = UIColor.white.cgColor
-        self.navigationItem.title = "PantryFi"
+        title = "PantryFi"
+   
+        let button = UIButton.init(type: .custom)
+        button.setImage(#imageLiteral(resourceName: "menu-button"), for: UIControlState.normal)
+        button.addTarget(self, action:#selector(SSASideMenu.presentRightMenuViewController), for: UIControlEvents.touchUpInside)
+        button.frame = CGRect.init(x: 0, y: 0, width: 30, height: 30) //CGRectMake(0, 0, 30, 30)
+        let barButton = UIBarButtonItem.init(customView: button)
+        self.navigationItem.rightBarButtonItem = barButton
+        //pantrySearchButton.layer.borderColor = UIColor.white.cgColor
+        
+        
         tableView.delegate = self
         tableView.dataSource = self
-        loadData()
+        
+        // 1
+        ref.observe(.value, with: { snapshot in
+            // 2
+            var newItems: [Ingredient] = []
+            
+            // 3
+            for item in snapshot.children {
+                // 4
+                let groceryItem = Ingredient(snapshot: item as! FIRDataSnapshot)
+                newItems.append(groceryItem)
+            }
+            
+            // 5
+            self.items = newItems
+            self.tableView.reloadData()
+        })
+
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func createSearchBar()
+    {
+        let searchBar = UISearchBar()
+        searchBar.showsCancelButton = false
+        searchBar.placeholder = "Search for your recipe"
+        searchBar.delegate = self
+        
+        self.navigationItem.titleView = searchBar
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -41,13 +80,13 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if(ingredients.count == 0)
+        if(items.count == 0)
         {
             return 1
         }
         else
         {
-            return ingredients.count + 1
+            return items.count + 1
         }
     }
     
@@ -68,9 +107,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             //quantity label background color
             //itemCell.quantityLabel.backgroundColor = UIColor.black
             let row = indexPath.row
-            let ingredient = ingredients[row-1]
-            itemCell.titleLabel.text = ingredient.value(forKey: "name") as? String
-            itemCell.quantityLabel.text = ingredient.value(forKey: "quantity") as? String
+            let ingredient = items[row-1]
+            itemCell.titleLabel.text = ingredient.name
+            itemCell.quantityLabel.text = ingredient.quantity
 
             return itemCell
 
@@ -96,6 +135,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func didTapAddItem()
     {
+        
         let alert = UIAlertController(title: "New Ingredient", message:"Insert name of item and quantity", preferredStyle: .alert)
         alert.addTextField(configurationHandler: nil)
         alert.addTextField(configurationHandler: nil)
@@ -106,71 +146,38 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 {
                     if(title == "" || itemQuantity == "")
                     {
-            
+                        
                     }
                     else
                     {
-                        self.saveIngredient(name: title, quantity: itemQuantity)
+                        guard let textField = alert.textFields?.first,
+                            let text = textField.text else { return }
+                        
+                        // 2
+                        let ingredient = Ingredient(name:text, quantity:itemQuantity)
+                        // 3
+                        let ingredientItemRef = self.ref.child(text.lowercased())
+                        
+                        // 4
+                        ingredientItemRef.setValue(ingredient.toAnyObject())
+                        
+                        
                     }
                 }
             }
         }))
         self.present(alert, animated: true, completion: nil)
+
     }
     
-    fileprivate func saveIngredient(name: String, quantity: String) {
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
-        // Create the entity we want to save
-        let entity =  NSEntityDescription.entity(forEntityName: "Ingredient", in: managedContext)
-        
-        let ingredient = NSManagedObject(entity: entity!, insertInto: managedContext)
-        
-        // Set the attribute values
-        ingredient.setValue(name, forKey: "name")
-        ingredient.setValue(quantity, forKey: "quantity")
-        
-        
-        // Commit the changes.
-        do {
-            try managedContext.save()
-        } catch {
-            // what to do if an error occurs?
-            let nserror = error as NSError
-            print("Unresolved error \(nserror), \(nserror.userInfo)")
-            abort()
+     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if(indexPath.row == 0)
+        {
+            return
         }
-        
-        // Add the new entity to our array of managed objects
-        ingredients.append(ingredient)
-        tableView.reloadData()
-    }
-    
-    fileprivate func loadData() {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"Ingredient")
-        
-        var fetchedResults:[NSManagedObject]? = nil
-        
-        do {
-            try fetchedResults = managedContext.fetch(fetchRequest) as? [NSManagedObject]
-        } catch {
-            // what to do if an error occurs?
-            let nserror = error as NSError
-            NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
-            abort()
-        }
-        
-        if let results = fetchedResults {
-            ingredients = results
-        } else {
-            print("Could not fetch")
+        if editingStyle == .delete {
+            let ingredientItem = items[indexPath.row-1]
+            ingredientItem.ref?.removeValue()
         }
     }
     
@@ -194,3 +201,4 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
 }
+
