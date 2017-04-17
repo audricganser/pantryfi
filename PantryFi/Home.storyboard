@@ -57,7 +57,7 @@
                                                     <size key="shadowOffset" width="1" height="1"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xcK-md-xRl">
-                                                    <rect key="frame" x="335" y="28.5" width="15" height="28"/>
+                                                    <rect key="frame" x="335" y="29" width="15" height="28"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="+">
                                                             <attributes>
@@ -190,8 +190,8 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mkq-WE-127">
-                                <rect key="frame" x="0.0" y="65" width="375" height="44"/>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mkq-WE-127">
+                                <rect key="frame" x="0.0" y="64" width="375" height="45"/>
                                 <color key="backgroundColor" red="0.29956591129302979" green="0.82510238885879517" blue="0.51939511299133301" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
                                 <state key="normal">
@@ -215,13 +215,12 @@
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Mkq-WE-127" firstAttribute="leading" secondItem="DXx-fu-FUG" secondAttribute="leading" id="0KU-rD-7jg"/>
                             <constraint firstItem="VhU-lm-fcM" firstAttribute="top" secondItem="OWG-iT-2RX" secondAttribute="bottom" constant="165" id="0kh-n9-2BC"/>
                             <constraint firstItem="DXx-fu-FUG" firstAttribute="trailing" secondItem="1cx-vy-L6M" secondAttribute="trailing" id="1rb-ve-S4I"/>
                             <constraint firstItem="odU-yw-OAb" firstAttribute="top" secondItem="DXx-fu-FUG" secondAttribute="bottom" constant="8" symbolic="YES" id="5vR-kZ-It4"/>
                             <constraint firstItem="DXx-fu-FUG" firstAttribute="centerX" secondItem="OWG-iT-2RX" secondAttribute="centerX" id="6RV-Hg-FKH"/>
                             <constraint firstAttribute="trailing" secondItem="1cx-vy-L6M" secondAttribute="trailing" id="8fG-Rp-ofP"/>
-                            <constraint firstItem="Mkq-WE-127" firstAttribute="centerX" secondItem="yn9-f0-xcq" secondAttribute="centerX" id="8gk-EZ-vWg"/>
-                            <constraint firstItem="Mkq-WE-127" firstAttribute="width" secondItem="yn9-f0-xcq" secondAttribute="width" id="9u6-dJ-LMK"/>
                             <constraint firstItem="1cx-vy-L6M" firstAttribute="leading" secondItem="yn9-f0-xcq" secondAttribute="leading" id="BSA-Aw-IHm"/>
                             <constraint firstItem="DXx-fu-FUG" firstAttribute="leading" secondItem="b5V-tX-z17" secondAttribute="leading" id="FX8-qW-cOW"/>
                             <constraint firstItem="rgF-ql-kkL" firstAttribute="trailing" secondItem="1cx-vy-L6M" secondAttribute="trailing" id="G24-UF-WHE"/>
@@ -232,21 +231,21 @@
                             <constraint firstItem="Gn9-7B-OXZ" firstAttribute="top" secondItem="1cx-vy-L6M" secondAttribute="bottom" id="V1u-cz-iT9"/>
                             <constraint firstItem="rgF-ql-kkL" firstAttribute="leading" secondItem="1cx-vy-L6M" secondAttribute="leading" id="WO7-N1-eJO"/>
                             <constraint firstItem="b5V-tX-z17" firstAttribute="trailing" secondItem="1cx-vy-L6M" secondAttribute="trailing" id="X28-7N-KDY"/>
+                            <constraint firstItem="Mkq-WE-127" firstAttribute="trailing" secondItem="DXx-fu-FUG" secondAttribute="trailing" id="Z6m-DO-Dur"/>
                             <constraint firstItem="OWG-iT-2RX" firstAttribute="leading" secondItem="yn9-f0-xcq" secondAttribute="leadingMargin" id="e2S-gA-hTA"/>
                             <constraint firstItem="1cx-vy-L6M" firstAttribute="top" secondItem="odU-yw-OAb" secondAttribute="bottom" constant="8" symbolic="YES" id="ftv-uo-s43"/>
                             <constraint firstItem="b5V-tX-z17" firstAttribute="top" secondItem="OWG-iT-2RX" secondAttribute="bottom" constant="6" id="gAD-yi-TlO"/>
+                            <constraint firstItem="Mkq-WE-127" firstAttribute="top" secondItem="erU-RQ-e8G" secondAttribute="bottom" id="hjd-e8-6R4"/>
                             <constraint firstItem="VhU-lm-fcM" firstAttribute="leading" secondItem="OWG-iT-2RX" secondAttribute="leading" id="hqN-RT-gOw"/>
                             <constraint firstItem="DXx-fu-FUG" firstAttribute="top" secondItem="b5V-tX-z17" secondAttribute="top" id="iRm-KN-cmM"/>
+                            <constraint firstItem="Mkq-WE-127" firstAttribute="centerY" secondItem="OWG-iT-2RX" secondAttribute="centerY" id="kqX-Ra-i5G"/>
                             <constraint firstItem="rgF-ql-kkL" firstAttribute="top" secondItem="VhU-lm-fcM" secondAttribute="bottom" constant="-178" id="mPW-rV-MJW"/>
                             <constraint firstItem="DXx-fu-FUG" firstAttribute="centerX" secondItem="odU-yw-OAb" secondAttribute="centerX" id="mzG-VO-JHu"/>
-                            <constraint firstItem="Mkq-WE-127" firstAttribute="top" secondItem="erU-RQ-e8G" secondAttribute="bottom" constant="1" id="nZf-uF-gDJ"/>
                             <constraint firstItem="OWG-iT-2RX" firstAttribute="top" secondItem="erU-RQ-e8G" secondAttribute="bottom" constant="8" symbolic="YES" id="neF-ox-t8Q"/>
                             <constraint firstItem="DXx-fu-FUG" firstAttribute="leading" secondItem="1cx-vy-L6M" secondAttribute="leading" id="tzh-cI-JZT"/>
-                            <constraint firstItem="Mkq-WE-127" firstAttribute="centerY" secondItem="OWG-iT-2RX" secondAttribute="centerY" id="v4A-lP-e17"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="PantryFi" id="AWa-uh-94y"/>
-
                     <connections>
                         <outlet property="pantrySearchButton" destination="OWG-iT-2RX" id="dsI-u8-c6T"/>
                         <outlet property="searchDisplayController" destination="DDt-hX-tJ1" id="D0E-T0-ukH"/>

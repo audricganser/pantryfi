@@ -15,6 +15,14 @@ import FirebaseDatabase
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate  {
     
     var items = [Ingredient]()
+//    let colorArray = [
+//        UIColor.red,
+//        UIColor.orange,
+//        UIColor.yellow,
+//        UIColor.green,
+//        UIColor.blue
+//    ]
+//    var colorPick = 0
 
     @IBOutlet weak var pantrySearchButton: UIButton!
     @IBOutlet var tableView: UITableView!
@@ -103,15 +111,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         {
             let itemCell = tableView.dequeueReusableCell(withIdentifier: itemIdentifier) as! IngredientTableViewCell
             itemCell.backgroundColor = UIColor.clear
-            
-            //quantity label background color
-            //itemCell.quantityLabel.backgroundColor = UIColor.black
             let row = indexPath.row
-            let ingredient = ingredients[row - 1]
-            itemCell.titleLabel.text = ingredient.value(forKey: "name") as? String
-            itemCell.quantityLabel.text = ingredient.value(forKey: "quantity") as? String
+            let ingredient = items[row-1]
+            itemCell.titleLabel.text = ingredient.name
+            itemCell.quantityLabel.text = ingredient.quantity
+            
             return itemCell
-
         }
     }
     
