@@ -91,6 +91,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         if(indexPath.row == 0)
         {
             let addCell = tableView.dequeueReusableCell(withIdentifier: addCellIdentifier) as! AddIngredientTableViewCell
@@ -102,6 +103,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         {
             let itemCell = tableView.dequeueReusableCell(withIdentifier: itemIdentifier) as! IngredientTableViewCell
             itemCell.backgroundColor = UIColor.clear
+            
+            //quantity label background color
+            //itemCell.quantityLabel.backgroundColor = UIColor.black
             let row = indexPath.row
             let ingredient = items[row-1]
             itemCell.titleLabel.text = ingredient.name

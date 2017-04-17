@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 import CoreData
 import Firebase
 
@@ -27,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ]
         
         navigationAppearance.titleTextAttributes = attrs
+
         FIRApp.configure()
         return true
     }
