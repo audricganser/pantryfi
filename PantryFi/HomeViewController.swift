@@ -35,6 +35,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "PantryFi"
+        print("hitting view did load in homeViewContoller")
    
         let button = UIButton.init(type: .custom)
         button.setImage(#imageLiteral(resourceName: "menu-button"), for: UIControlState.normal)

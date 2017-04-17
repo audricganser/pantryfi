@@ -52,7 +52,7 @@ extension RightMenuViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 4
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -63,7 +63,7 @@ extension RightMenuViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) 
         
-        let titles: [String] = ["Home", "Food Restrictions", "Reviews", "Options", "Logout"]
+        let titles: [String] = ["Home", "Food Restrictions", "Profile", "Logout"]
 
         cell.backgroundColor = UIColor.clear
         cell.textLabel?.font = UIFont(name: "HelveticaNeue", size: 21)
@@ -80,26 +80,28 @@ extension RightMenuViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch indexPath.row {
         case 0:
+            
             animateText(tableView, didSelectRowAt: indexPath)
             sideMenuViewController?.hideMenuViewController()
+            
             break
         case 1:
             
-           // sideMenuViewController?.contentViewController = UINavigationController(rootViewController: SecondViewController())
+            let vc = (storyboard?.instantiateViewController(withIdentifier: "allergies"))! as UIViewController
+            present(vc, animated: true)
+            
             animateText(tableView, didSelectRowAt: indexPath)
+            
             break
         case 2:
             
-            // sideMenuViewController?.contentViewController = UINavigationController(rootViewController: SecondViewController())
-            animateText(tableView, didSelectRowAt: indexPath)
-            break
-        case 3:
-            
-            // sideMenuViewController?.contentViewController = UINavigationController(rootViewController: SecondViewController())
-            animateText(tableView, didSelectRowAt: indexPath)
-            break
+            let vc = (storyboard?.instantiateViewController(withIdentifier: "profile"))! as UIViewController
+            present(vc, animated: true, completion: nil)
 
-        case 4:
+            animateText(tableView, didSelectRowAt: indexPath)
+            break
+        
+        case 3:
             do{
                 animateText(tableView, didSelectRowAt: indexPath)
                 try FIRAuth.auth()?.signOut()
