@@ -15,6 +15,14 @@ import FirebaseDatabase
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate  {
     
     var items = [Ingredient]()
+//    let colorArray = [
+//        UIColor.red,
+//        UIColor.orange,
+//        UIColor.yellow,
+//        UIColor.green,
+//        UIColor.blue
+//    ]
+//    var colorPick = 0
 
     @IBOutlet weak var pantrySearchButton: UIButton!
     @IBOutlet var tableView: UITableView!
