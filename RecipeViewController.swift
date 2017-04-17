@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Foundation
+import Alamofire
 
 class RecipeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -19,6 +21,7 @@ class RecipeViewController: UIViewController, UITableViewDataSource, UITableView
     var recipeNameSegue:String?
     var recipePrepTimeSegue:String?
     var recipeServesSegue:String?
+    var recipeIdSegue:String?
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -32,12 +35,27 @@ class RecipeViewController: UIViewController, UITableViewDataSource, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Loading image from url
+        Alamofire.request(self.recipeImageSegue!).response { response in
+            if let data = response.data {
+                let image = UIImage(data: data)
+                self.recipeImage.image = image
+            } else {
+                print("Data is nil. I don't know what to do :(")
+            }
+        }
 
         // Do any additional setup after loading the view.
-        self.recipeImage.image = UIImage(named: self.recipeImageSegue!)
         self.recipeName.text = self.recipeNameSegue!
         self.recipePrepTime.text = self.recipePrepTimeSegue!
         self.recipeServes.text = self.recipeServesSegue!
+        
+        
+        // new request!
+        // get Analyzed Recipe Instructions
+        getRecipeInstructions(id:recipeIdSegue!)
+        getRecipeInfo(id:recipeIdSegue!)
         
         //print("adding to iList")
         iList.append(i1)
@@ -85,5 +103,43 @@ class RecipeViewController: UIViewController, UITableViewDataSource, UITableView
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func getRecipeInstructions (id: String) {
+        let baseUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + "\(id)" + "/analyzedInstructions"
+        let headers: HTTPHeaders = ["X-Mashape-Key": "oWragx4kwsmshOw6ZL8IH8RP81DUp1L0QFVjsn0JaX9pEIPpUg"]
+        
+        Alamofire.request(baseUrl, headers: headers).responseJSON { response in
+            //            print(response.request)  // original URL request
+            //            print(response.response) // HTTP URL response
+            //            print(response.data)     // server data
+            print(response.result)   // result of response serialization
+            
+            if let JSON = response.result.value {
+                //let json = JSON as! Dictionary<String, Any>
+                print("instructions: \(JSON)")
+                
+            }
+        }
+
+    }
+    
+    func getRecipeInfo (id: String) {
+        let baseUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + "\(id)" + "/information"
+        let headers: HTTPHeaders = ["X-Mashape-Key": "oWragx4kwsmshOw6ZL8IH8RP81DUp1L0QFVjsn0JaX9pEIPpUg"]
+        
+        Alamofire.request(baseUrl, headers: headers).responseJSON { response in
+            //            print(response.request)  // original URL request
+            //            print(response.response) // HTTP URL response
+            //            print(response.data)     // server data
+            print(response.result)   // result of response serialization
+            
+            if let JSON = response.result.value {
+                //let json = JSON as! Dictionary<String, Any>
+                print("info: \(JSON)")
+                
+            }
+        }
+        
+    }
 
 }
