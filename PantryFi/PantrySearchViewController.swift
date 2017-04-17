@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import Foundation
+import Alamofire
 
 class PantrySearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -20,28 +21,11 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        search_recipes()
-//        loadData()
-//        print(recipeList.count)
-//        if recipeList.count < 1 {
-//            saveCandidate(imageName:"salmon-dish", prepTime:"30 min", servings:"3", summary:"Perfect pan-seared salmon should have crisp skin, moist and tender flesh, and fat that has been fully rendered.", title:"Pan Seared Salmon")
-//            saveCandidate(imageName:"pasta", prepTime:"15 min", servings:"4", summary:"Well-rounded seafood and pasta dish. Good with any pasta; angel hair is less filling.", title:"Pasta")
-//            saveCandidate(imageName:"salad", prepTime:"5 min", servings:"1", summary:"This recipe tastes best when paired with olive oil and avocado!", title:"Salad")
-//            saveCandidate(imageName:"egg_curry", prepTime:"10 min", servings:"2", summary:"If you have leftover eggs from devil eggs served for a party, you still can make curry with leftovers and enjoy", title:"Egg Curry")
-//            saveCandidate(imageName:"african_recipes", prepTime:"16 min", servings:"3", summary:"This Caribbean-inspired beef features jerk seasoning blend on chicken", title:"Jerk Chicken")
-//            loadData()
-//        }
-//        
-//        print("left api message")
-        print(recipeList1.count)
-                
+        // API call for recipes
+        searchRecipes()
         // Do any additional setup after loading the view.
-        
-        //print("loaded from core data")
         tableView.delegate = self
         tableView.dataSource = self
-
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,77 +50,91 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
         print("building a new cell")
         // Configure the cell...
         let recipe = recipeList1[indexPath.row]
+        
+        // Getting summary
+        recipeSummary(id: recipe.id, cell: cell)
+        
         let title = recipe.title
-        let descript = recipe.id
-        //let imageName = recipe.image
+        //let descript = recipe.id
+        let imageUrl = recipe.image
         
         // Configure the cell...
         cell.recipeDescript.textColor = UIColor.gray
         cell.recipeTitle.text = title
-        cell.recipeDescript.text = descript
-        cell.recipeImage.image = #imageLiteral(resourceName: "salad")
+        //cell.recipeDescript.text = descript
+        
+        // Loading image from url
+        Alamofire.request(imageUrl).response { response in
+            if let data = response.data {
+                let image = UIImage(data: data)
+                cell.recipeImage.image = image
+            } else {
+                print("Data is nil. I don't know what to do :(")
+            }
+        }
         
         return cell
     }
     
-    fileprivate func loadData() {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    // API Search Function
+    func searchRecipes () {
+        let baseUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients"
+        let headers: HTTPHeaders = ["X-Mashape-Key": "oWragx4kwsmshOw6ZL8IH8RP81DUp1L0QFVjsn0JaX9pEIPpUg"]
+        let parameters: Parameters = ["fillIngredients": "false", "limitLicense":"true", "number": 10, "ranking": 1, "ingredients": "apples,flour,sugar,chicken,rice,broccoli"]
         
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"Recipe")
-        
-        var fetchedResults:[NSManagedObject]? = nil
-        
-        do {
-            try fetchedResults = managedContext.fetch(fetchRequest) as? [NSManagedObject]
-        } catch {
-            // what to do if an error occurs?
-            let nserror = error as NSError
-            NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
-            abort()
+        Alamofire.request(baseUrl, parameters: parameters, headers: headers).responseJSON { response in
+            //            print(response.request)  // original URL request
+            //            print(response.response) // HTTP URL response
+            //            print(response.data)     // server data
+            print(response.result)   // result of response serialization
+            
+            if let JSON = response.result.value {
+                let jsonArray = JSON as! NSArray
+                
+                for recipe in jsonArray {
+                    let recipeObj = recipe as! Dictionary<String, Any>
+                    let recipeId = recipeObj["id"]!
+                    let recipeTitle = recipeObj["title"]!
+                    let uic = recipeObj["usedIngredientCount"]!
+                    let mic = recipeObj["missedIngredientCount"]!
+                    let likes = recipeObj["likes"]!
+                    let img = recipeObj["image"]!
+                    
+                    let newRecipe = RecipeWithIngredients.init(id: "\(recipeId)", title: "\(recipeTitle)", image: "\(img)", usedIngredientCount: uic as! Int, missedIngredientCount: mic as! Int, likes: likes as! Int)
+                    
+                    self.recipeList1.append(newRecipe)
+                    print("appending recipe")
+                    print(newRecipe.id)
+                    print(newRecipe.title)
+                }
+                self.tableView.reloadData()
+                
+            }
         }
-        
-        if let results = fetchedResults {
-            recipeList = results
-        } else {
-            print("Could not fetch")
+    }
+    
+    // Get Recipe Summary
+    func recipeSummary (id: String, cell: RecipeResultTableViewCell) {
+        let baseUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + "\(id)" + "/summary"
+        let headers: HTTPHeaders = ["X-Mashape-Key": "oWragx4kwsmshOw6ZL8IH8RP81DUp1L0QFVjsn0JaX9pEIPpUg"]
+        var summary = ""
+        Alamofire.request(baseUrl, headers: headers).responseJSON { response in
+            //            print(response.request)  // original URL request
+            //            print(response.response) // HTTP URL response
+            //            print(response.data)     // server data
+            print(response.result)   // result of response serialization
+            
+            if let JSON = response.result.value {
+                let json = JSON as! Dictionary<String, Any>
+                let sum = json["summary"]!
+                summary = "\(sum)"
+                cell.recipeDescript.text = summary
+                //print("JSON: \(summary)")
+                
+            }
         }
     }
 
-    // Saving core data
-    fileprivate func saveCandidate(imageName:String, prepTime:String, servings:String, summary:String, title:String) {
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
-        // Create the entity we want to save
-        let entity =  NSEntityDescription.entity(forEntityName: "Recipe", in: managedContext)
-        
-        let recipe = NSManagedObject(entity: entity!, insertInto: managedContext)
-        
-        // Set the attribute values
-        recipe.setValue(imageName, forKey: "imageName")
-        recipe.setValue(prepTime, forKey: "prepTime")
-        recipe.setValue(servings, forKey: "servings")
-        recipe.setValue(summary, forKey: "summary")
-        recipe.setValue(title, forKey: "title")
-        
-        // Commit the changes.
-        do {
-            try managedContext.save()
-        } catch {
-            // what to do if an error occurs?
-            let nserror = error as NSError
-            print("Unresolved error \(nserror), \(nserror.userInfo)")
-            abort()
-        }
-        
-        // Add the new entity to our array of managed objects
-        print("saved recipe")
-    }
-    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -147,91 +145,14 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
         if (segue.identifier == "recipeSegue") {
             let destinationVC = segue.destination as! RecipeViewController
             let indexPath = tableView.indexPathForSelectedRow
-            let recipe = recipeList[indexPath!.row]
-            destinationVC.recipeImageSegue = "\(recipe.value(forKey: "imageName")!)"
-            destinationVC.recipeNameSegue = "\(recipe.value(forKey: "title")!)"
-            destinationVC.recipePrepTimeSegue = "\(recipe.value(forKey: "prepTime")!)"
-            destinationVC.recipeServesSegue = "\(recipe.value(forKey: "servings")!)"
+            let recipe = recipeList1[indexPath!.row]
+            destinationVC.recipeImageSegue = recipe.image
+            destinationVC.recipeNameSegue = recipe.title
+            destinationVC.recipePrepTimeSegue = "10 mins"
+            destinationVC.recipeServesSegue = "2 servings"
+            destinationVC.recipeIdSegue = recipe.id
         }
 
-    }
-    
-    func search_recipes() {
-        let baseUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients"
-        let config = URLSessionConfiguration.default // Session Configuration
-        let session = URLSession(configuration: config) // Load configuration into Session
-        let url = URL(string: baseUrl + "?fillIngredients=false&ingredients=apples%2Cflour%2Csugar%2Cchicken%2Crice%2Cbroccoli&limitLicense=true&number=5&ranking=1")!
-        
-        var request = URLRequest(url: url)
-        request.addValue("oWragx4kwsmshOw6ZL8IH8RP81DUp1L0QFVjsn0JaX9pEIPpUg", forHTTPHeaderField: "X-Mashape-Key")
-        
-        print("about to send request")
-        let task = session.dataTask(with: request, completionHandler: {
-            (data, response, error) in
-            
-            if error != nil {
-                
-                print(error!.localizedDescription)
-                print("error")
-                
-            } else {
-                
-                do {
-                    self.listData = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [[String: AnyObject]]
-                    OperationQueue.main.addOperation {
-                        print("in queue")
-                        print(self.listData[0])
-                        
-                        for recipeObj in self.listData {
-                            let recipeId = recipeObj["id"]!
-                            let id:String = "\(recipeId)"
-                            let recipeTitle = recipeObj["title"]!
-                            let title:String = "\(recipeTitle)"
-                            let uic = recipeObj["usedIngredientCount"]!
-                            //let usedIngredientCount = "\(uic)"
-                            let mic = recipeObj["missedIngredientCount"]!
-                            //let missedIngredientCount = "\(mic)"
-                            let lik = recipeObj["likes"]!
-                            //let likes = "\(lik)"
-                            let img = recipeObj["image"]!
-                            let image = "\(img)"
-                            
-                            let newRecipe = RecipeWithIngredients.init(id: id, title: title, image: image, usedIngredientCount: uic as! Int, missedIngredientCount: mic as! Int, likes: lik as! Int)
-                            self.recipeList1.append(newRecipe)
-                            print("appending recipe")
-                            print(newRecipe.id)
-                            print(newRecipe.image)
-                            
-                        }
-                        self.tableView.reloadData()
-                    }
-                    
-//                    if let usableData = data {
-//                        print("in data")
-//                        print(usableData[0]) //JSONSerialization
-//                    }
-//                    if let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: Any]
-//                    {
-//                        
-//                        //Implement your logic
-//                        print("print json!\n")
-//                        print(json)
-//                        
-//                    }
-                    
-                } catch {
-                    
-                    print("error in JSONSerialization")
-                    
-                }
-                
-                
-            }
-            
-        })
-        task.resume()
-        
-        
     }
     
     // Keyboard functions
