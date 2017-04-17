@@ -103,15 +103,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         {
             let itemCell = tableView.dequeueReusableCell(withIdentifier: itemIdentifier) as! IngredientTableViewCell
             itemCell.backgroundColor = UIColor.clear
-            
-            //quantity label background color
-            //itemCell.quantityLabel.backgroundColor = UIColor.black
             let row = indexPath.row
-            let ingredient = ingredients[row - 1]
-            itemCell.titleLabel.text = ingredient.value(forKey: "name") as? String
-            itemCell.quantityLabel.text = ingredient.value(forKey: "quantity") as? String
+            let ingredient = items[row-1]
+            itemCell.titleLabel.text = ingredient.name
+            itemCell.quantityLabel.text = ingredient.quantity
+            
             return itemCell
-
         }
     }
     
