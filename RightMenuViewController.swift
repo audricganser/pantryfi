@@ -14,7 +14,7 @@ class RightMenuViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
-        tableView.frame = CGRect(x: 180, y: (self.view.frame.size.height - 54 * 2) / 2.0, width: self.view.frame.size.width, height: 54 * 2)
+        tableView.frame = CGRect(x: 150, y: (self.view.frame.size.height - 54 * 5) / 2.0, width: self.view.frame.size.width, height: 54 * 5)
         tableView.autoresizingMask = [.flexibleTopMargin, .flexibleBottomMargin, .flexibleWidth]
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.isOpaque = false
@@ -22,7 +22,7 @@ class RightMenuViewController: UIViewController {
         tableView.backgroundView = nil
         tableView.bounces = false
         return tableView
-        }()
+    }()
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -32,7 +32,7 @@ class RightMenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.clear
+        view.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.9)
         view.addSubview(tableView)
         
     }
@@ -52,7 +52,7 @@ extension RightMenuViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 5
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -63,15 +63,13 @@ extension RightMenuViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) 
         
-        let titles: [String] = ["Home", "Logout"]
+        let titles: [String] = ["Home", "Food Restrictions", "Reviews", "Options", "Logout"]
 
         cell.backgroundColor = UIColor.clear
         cell.textLabel?.font = UIFont(name: "HelveticaNeue", size: 21)
         cell.textLabel?.textColor = UIColor.white
         cell.textLabel?.text  = titles[indexPath.row]
         cell.selectionStyle = .none
-       
-        
         
         return cell
     }
@@ -82,17 +80,28 @@ extension RightMenuViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch indexPath.row {
         case 0:
-            
-           // sideMenuViewController?.contentViewController = UINavigationController(rootViewController: FirstViewController())
+            animateText(tableView, didSelectRowAt: indexPath)
             sideMenuViewController?.hideMenuViewController()
             break
-//        case 1:
-//            
-//           // sideMenuViewController?.contentViewController = UINavigationController(rootViewController: SecondViewController())
-//            sideMenuViewController?.hideMenuViewController()
-//            break
         case 1:
+            
+           // sideMenuViewController?.contentViewController = UINavigationController(rootViewController: SecondViewController())
+            animateText(tableView, didSelectRowAt: indexPath)
+            break
+        case 2:
+            
+            // sideMenuViewController?.contentViewController = UINavigationController(rootViewController: SecondViewController())
+            animateText(tableView, didSelectRowAt: indexPath)
+            break
+        case 3:
+            
+            // sideMenuViewController?.contentViewController = UINavigationController(rootViewController: SecondViewController())
+            animateText(tableView, didSelectRowAt: indexPath)
+            break
+
+        case 4:
             do{
+                animateText(tableView, didSelectRowAt: indexPath)
                 try FIRAuth.auth()?.signOut()
             }
             catch{
@@ -112,5 +121,17 @@ extension RightMenuViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
     
-}
+    func animateText(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //fade text out
+        UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
+            tableView.cellForRow(at: indexPath)?.textLabel?.alpha = 0.0
+        }, completion: nil)
+        
+        //fade text in
+        UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
+            tableView.cellForRow(at: indexPath)?.textLabel?.alpha = 1.0
+        }, completion: nil)
+    }
     
+}
+

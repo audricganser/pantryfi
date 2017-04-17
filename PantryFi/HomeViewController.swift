@@ -107,10 +107,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             //quantity label background color
             //itemCell.quantityLabel.backgroundColor = UIColor.black
             let row = indexPath.row
-            let ingredient = items[row-1]
-            itemCell.titleLabel.text = ingredient.name
-            itemCell.quantityLabel.text = ingredient.quantity
-
+            let ingredient = ingredients[row - 1]
+            itemCell.titleLabel.text = ingredient.value(forKey: "name") as? String
+            itemCell.quantityLabel.text = ingredient.value(forKey: "quantity") as? String
             return itemCell
 
         }
