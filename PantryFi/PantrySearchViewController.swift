@@ -61,6 +61,7 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
         // Configure the cell...
         cell.recipeDescript.textColor = UIColor.gray
         cell.recipeTitle.text = title
+        cell.recipeDescript.text = "Loading..."
         //cell.recipeDescript.text = descript
         
         // Loading image from url
