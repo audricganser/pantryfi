@@ -10,13 +10,16 @@ import UIKit
 import CoreData
 import Foundation
 import Alamofire
+import FirebaseDatabase
 
 class PantrySearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    private var recipeList = [NSManagedObject]()
+    //private var recipeList = [NSManagedObject]()
+    var ingredientsString = ""
+    
     @IBOutlet weak var tableView: UITableView!
     var listData = [[String: AnyObject]]()
-    
+    let ref = FIRDatabase.database().reference(withPath: "ingredients")
     var recipeList1 = [RecipeWithIngredients]()
     
     override func viewDidLoad() {
@@ -77,16 +80,34 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
         return cell
     }
     
+    func getIngredients () -> [Ingredient] {
+        var items:[Ingredient] = []
+        // 1
+        ref.observe(.value, with: { snapshot in
+            // 2
+            
+            // 3
+            for item in snapshot.children {
+                // 4
+                let groceryItem = Ingredient(snapshot: item as! FIRDataSnapshot)
+                items.append(groceryItem)
+            }
+          
+        })
+        return items
+    }
+    
     // API Search Function
     func searchRecipes () {
+        print ("ingredients are: \(self.ingredientsString) ")
         let baseUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients"
         let headers: HTTPHeaders = ["X-Mashape-Key": "oWragx4kwsmshOw6ZL8IH8RP81DUp1L0QFVjsn0JaX9pEIPpUg"]
-        let parameters: Parameters = ["fillIngredients": "false", "limitLicense":"true", "number": 10, "ranking": 1, "ingredients": "apples,flour,sugar,chicken,rice,broccoli"]
+        let parameters: Parameters = ["fillIngredients": "false", "limitLicense":"true", "number": 10, "ranking": 1, "ingredients": self.ingredientsString]
         
         Alamofire.request(baseUrl, parameters: parameters, headers: headers).responseJSON { response in
-            //            print(response.request)  // original URL request
-            //            print(response.response) // HTTP URL response
-            //            print(response.data)     // server data
+            print(response.request)  // original URL request
+            print(response.response) // HTTP URL response
+            print(response.data)     // server data
             print(response.result)   // result of response serialization
             
             if let JSON = response.result.value {
@@ -129,11 +150,25 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
                 let json = JSON as! Dictionary<String, Any>
                 let sum = json["summary"]!
                 summary = "\(sum)"
-                cell.recipeDescript.text = summary
+                cell.recipeDescript.attributedText = self.stringFromHtml(string: summary)
                 //print("JSON: \(summary)")
                 
             }
         }
+    }
+    
+    private func stringFromHtml(string: String) -> NSAttributedString? {
+        do {
+            let data = string.data(using: String.Encoding.utf8, allowLossyConversion: true)
+            if let d = data {
+                let str = try NSAttributedString(data: d,
+                                                 options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
+                                                 documentAttributes: nil)
+                return str
+            }
+        } catch {
+        }
+        return nil
     }
 
     // MARK: - Navigation

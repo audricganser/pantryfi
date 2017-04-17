@@ -25,13 +25,16 @@ class RecipeViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBOutlet weak var tableView: UITableView!
     
-    private var iList = [Dictionary<String,String>]()
+    var ingredientsList = [Ingredient]()
+    var prepStepsList = [Steps]()
     
-    private var i1:Dictionary<String,String> = ["title":"Salmon","serving":"1 lbs"]
-    private var i2:Dictionary<String,String> = ["title":"Lemon","serving":"1"]
-    private var i3:Dictionary<String,String> = ["title":"Spinach","serving":"0.5 lbs"]
-    private var i4:Dictionary<String,String> = ["title":"Rice","serving":"2 lbs"]
-    private var i5:Dictionary<String,String> = ["title":"Pasta","serving":"0.75 lbs"]
+    //private var iList = [Dictionary<String,String>]()
+    
+//    private var i1:Dictionary<String,String> = ["title":"Salmon","serving":"1 lbs"]
+//    private var i2:Dictionary<String,String> = ["title":"Lemon","serving":"1"]
+//    private var i3:Dictionary<String,String> = ["title":"Spinach","serving":"0.5 lbs"]
+//    private var i4:Dictionary<String,String> = ["title":"Rice","serving":"2 lbs"]
+//    private var i5:Dictionary<String,String> = ["title":"Pasta","serving":"0.75 lbs"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,22 +51,13 @@ class RecipeViewController: UIViewController, UITableViewDataSource, UITableView
 
         // Do any additional setup after loading the view.
         self.recipeName.text = self.recipeNameSegue!
-        self.recipePrepTime.text = self.recipePrepTimeSegue!
-        self.recipeServes.text = self.recipeServesSegue!
+//        self.recipePrepTime.text = self.recipePrepTimeSegue!
+//        self.recipeServes.text = self.recipeServesSegue!
         
         
         // new request!
         // get Analyzed Recipe Instructions
-        getRecipeInstructions(id:recipeIdSegue!)
         getRecipeInfo(id:recipeIdSegue!)
-        
-        //print("adding to iList")
-        iList.append(i1)
-        iList.append(i2)
-        iList.append(i3)
-        iList.append(i4)
-        iList.append(i5)
-        
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -82,15 +76,15 @@ class RecipeViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return iList.count
+        return self.ingredientsList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ingredientCell", for: indexPath)
         
         // Configure the cell...
-        cell.textLabel?.text = iList[indexPath.row]["title"]
-        cell.detailTextLabel?.text = iList[indexPath.row]["serving"]
+        cell.textLabel?.text = self.ingredientsList[indexPath.row].name
+        cell.detailTextLabel?.text = self.ingredientsList[indexPath.row].quantity
         return cell
     }
 
@@ -104,25 +98,6 @@ class RecipeViewController: UIViewController, UITableViewDataSource, UITableView
     }
     */
     
-    func getRecipeInstructions (id: String) {
-        let baseUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + "\(id)" + "/analyzedInstructions"
-        let headers: HTTPHeaders = ["X-Mashape-Key": "oWragx4kwsmshOw6ZL8IH8RP81DUp1L0QFVjsn0JaX9pEIPpUg"]
-        
-        Alamofire.request(baseUrl, headers: headers).responseJSON { response in
-            //            print(response.request)  // original URL request
-            //            print(response.response) // HTTP URL response
-            //            print(response.data)     // server data
-            print(response.result)   // result of response serialization
-            
-            if let JSON = response.result.value {
-                //let json = JSON as! Dictionary<String, Any>
-                print("instructions: \(JSON)")
-                
-            }
-        }
-
-    }
-    
     func getRecipeInfo (id: String) {
         let baseUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + "\(id)" + "/information"
         let headers: HTTPHeaders = ["X-Mashape-Key": "oWragx4kwsmshOw6ZL8IH8RP81DUp1L0QFVjsn0JaX9pEIPpUg"]
@@ -134,10 +109,54 @@ class RecipeViewController: UIViewController, UITableViewDataSource, UITableView
             print(response.result)   // result of response serialization
             
             if let JSON = response.result.value {
-                //let json = JSON as! Dictionary<String, Any>
-                print("info: \(JSON)")
+                let json = JSON as! Dictionary<String, Any>
+                //print("info: \(JSON)")
+                let servings = json["servings"]!
+                let prepTime = json["readyInMinutes"]!
+                self.recipeServes.text = "\(servings)"
+                self.recipePrepTime.text = "\(prepTime)"
                 
+                let ingredients = json["extendedIngredients"] as! NSArray
+                for i in ingredients {
+                    let ingredient = i as! Dictionary<String, Any>
+                    let id = ingredient["id"]!
+                    let name = ingredient["name"]!
+                    let quantity = ingredient["amount"]!
+                    self.ingredientsList.append(Ingredient.init(name: "\(name)", quantity: "\(quantity)", key: "\(id)"))
+                    
+                    /*
+                     "id": 5006,
+                     "aisle": "Meat",
+                     "image": "https://spoonacular.com/cdn/ingredients_100x100/whole-chicken.jpg",
+                     "name": "chicken",
+                     "amount": 1,
+                     "unit": "serving",
+                     "unitShort": "serving",
+                     "unitLong": "serving",
+                     "originalString": "to taste cooked, sliced chicken, cooked onions, red peppers, chop",
+                     "metaInformation": [
+                     "red",
+                     "cooked",
+                     "sliced",
+                     "to taste"
+                     ]
+                     */
+                }
+                self.tableView.reloadData()
+                
+                let instruct = json["analyzedInstructions"] as! NSArray
+                let instruct1 = instruct[0] as! Dictionary<String, Any>
+                let steps = instruct1["steps"] as! NSArray
+                
+                for step in steps {
+                    let step1 = step as! Dictionary<String, Any>
+                    let stepString = step1["step"]!
+                    self.prepStepsList.append(Steps.init(number: step1["number"]! as! Int, step: "\(stepString)"))
+                }
+                //self.tableView.reloadData()
             }
+ 
+ 
         }
         
     }
