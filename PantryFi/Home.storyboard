@@ -345,9 +345,9 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="261"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SCr-6V-QYa">
-                                                    <rect key="frame" x="8" y="277" width="196" height="21"/>
+                                                    <rect key="frame" x="8" y="276" width="256" height="22"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="RnV-Up-GvU"/>
+                                                        <constraint firstAttribute="height" constant="22" id="RnV-Up-GvU"/>
                                                     </constraints>
                                                     <attributedString key="attributedText">
                                                         <fragment content="&lt;Recipe Title&gt;">
@@ -381,7 +381,7 @@
                                             <constraints>
                                                 <constraint firstItem="Vs0-wM-AYS" firstAttribute="trailing" secondItem="nuV-5f-wRE" secondAttribute="trailingMargin" id="1rL-5q-ITg"/>
                                                 <constraint firstItem="SCr-6V-QYa" firstAttribute="centerY" secondItem="Vs0-wM-AYS" secondAttribute="centerY" id="7gW-yU-1oy"/>
-                                                <constraint firstItem="SCr-6V-QYa" firstAttribute="top" secondItem="NPF-ng-0gQ" secondAttribute="bottom" constant="16" id="8a9-m3-HkH"/>
+                                                <constraint firstItem="SCr-6V-QYa" firstAttribute="top" secondItem="NPF-ng-0gQ" secondAttribute="bottom" constant="15" id="8a9-m3-HkH"/>
                                                 <constraint firstItem="SCr-6V-QYa" firstAttribute="leading" secondItem="evZ-OL-fLx" secondAttribute="leading" id="IcV-Ay-DsC"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="Vs0-wM-AYS" secondAttribute="bottom" constant="63" id="Oy0-yV-UKP"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="evZ-OL-fLx" secondAttribute="trailing" constant="95" id="cwq-Qw-Ubw"/>
@@ -389,7 +389,7 @@
                                                 <constraint firstItem="evZ-OL-fLx" firstAttribute="top" secondItem="SCr-6V-QYa" secondAttribute="bottom" id="jc9-lm-hUt"/>
                                                 <constraint firstAttribute="trailing" secondItem="NPF-ng-0gQ" secondAttribute="trailing" id="pq6-18-3Eo"/>
                                                 <constraint firstItem="NPF-ng-0gQ" firstAttribute="leading" secondItem="nuV-5f-wRE" secondAttribute="leading" id="rCE-l2-SzD"/>
-                                                <constraint firstItem="Vs0-wM-AYS" firstAttribute="leading" secondItem="SCr-6V-QYa" secondAttribute="trailing" constant="55" id="t0q-xm-9bG"/>
+                                                <constraint firstItem="Vs0-wM-AYS" firstAttribute="leading" secondItem="SCr-6V-QYa" secondAttribute="trailing" constant="-5" id="t0q-xm-9bG"/>
                                                 <constraint firstItem="evZ-OL-fLx" firstAttribute="bottom" secondItem="nuV-5f-wRE" secondAttribute="bottomMargin" id="tHr-B2-nHC"/>
                                                 <constraint firstItem="SCr-6V-QYa" firstAttribute="leading" secondItem="nuV-5f-wRE" secondAttribute="leadingMargin" id="z3I-oh-Px5"/>
                                                 <constraint firstItem="Vs0-wM-AYS" firstAttribute="top" secondItem="NPF-ng-0gQ" secondAttribute="bottom" constant="8" symbolic="YES" id="zyS-7h-8TW"/>
