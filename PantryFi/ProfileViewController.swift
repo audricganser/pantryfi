@@ -21,6 +21,13 @@ class ProfileViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func backHome(_ sender: Any) {
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Home", bundle:nil)
+        
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SideMenu")
+        self.present(nextViewController, animated:true, completion:nil)
+
+    }
 
     /*
     // MARK: - Navigation

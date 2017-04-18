@@ -40,11 +40,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let button = UIButton.init(type: .custom)
         button.setImage(#imageLiteral(resourceName: "menu-button"), for: UIControlState.normal)
         button.addTarget(self, action:#selector(SSASideMenu.presentRightMenuViewController), for: UIControlEvents.touchUpInside)
+        print("add target")
         button.frame = CGRect.init(x: 0, y: 0, width: 30, height: 30) //CGRectMake(0, 0, 30, 30)
         let barButton = UIBarButtonItem.init(customView: button)
         self.navigationItem.rightBarButtonItem = barButton
-        //pantrySearchButton.layer.borderColor = UIColor.white.cgColor
-        
+        pantrySearchButton.layer.borderColor = UIColor.white.cgColor
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -189,11 +189,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        // Get the new view controller using segue.destinationViewController.
+//        // Pass the selected object to the new view controller.
+//        
+//    }
     
     // Keyboard functions
     func textFieldShouldReturn (_ textField: UITextField) -> Bool {

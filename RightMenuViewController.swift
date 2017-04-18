@@ -86,9 +86,8 @@ extension RightMenuViewController: UITableViewDelegate, UITableViewDataSource {
             
             break
         case 1:
-            
             let vc = (storyboard?.instantiateViewController(withIdentifier: "allergies"))! as UIViewController
-            present(vc, animated: true)
+            present(vc, animated: true, completion: nil)
             
             animateText(tableView, didSelectRowAt: indexPath)
             
@@ -133,6 +132,11 @@ extension RightMenuViewController: UITableViewDelegate, UITableViewDataSource {
         UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
             tableView.cellForRow(at: indexPath)?.textLabel?.alpha = 1.0
         }, completion: nil)
+    }
+    
+    func prepareAllergies(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
     }
     
 }
