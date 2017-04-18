@@ -8,32 +8,39 @@
 
 import UIKit
 import CoreData
+import FirebaseAuth
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
     
      var users = [NSManagedObject]()
 
     override func viewDidLoad() {
+        
+        if FIRAuth.auth()?.currentUser != nil {
+            loginSegue()
+        }
+        
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.navigationBar.tintColor = UIColor.white
-
+        
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
         email.attributedPlaceholder = NSAttributedString(string: "Email Address",
                                                          attributes: [NSForegroundColorAttributeName: UIColor.black])
         password.attributedPlaceholder = NSAttributedString(string: "Password",
-                                                         attributes: [NSForegroundColorAttributeName: UIColor.black])
+                                                            attributes: [NSForegroundColorAttributeName: UIColor.black])
         
-        self.errorLabel.text = ""
-        //loads users from core data
-        loadData()
-
+        if FIRAuth.auth()?.currentUser != nil
+        {
+            //user is signed in
+            self.loginSegue()
+        }
+        
         // Do any additional setup after loading the view, typically from a nib.
         //changed content for initial commit
 
@@ -50,65 +57,53 @@ class ViewController: UIViewController {
     
     @IBAction func loginButton(_ sender: Any) {
         
-        if (email.text?.isEmpty)! || (password.text?.isEmpty)! {
-            self.errorLabel.text = "fields are empty"
+        guard let email = email.text, let password = password.text
+            
+        else
+        {
+            print("Missing elements")
+            return
         }
-        else if users.count == 0 {
-            self.errorLabel.text = "Create New Account"
+        if (email.isEmpty == true || password.isEmpty == true)
+        {
+            let alertController = UIAlertController(title: "Alert", message: "Please enter username and password", preferredStyle: .alert)
+            let oKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(oKAction)
+            
+            self.present(alertController, animated: true, completion: nil)
+            
+            return
         }
-        else {
-            let e = email.text
-            let p = password.text
-            for i in 0...users.count-1 {
-                let user = users[i]
-                let tmpEmail = user.value(forKey: "email") as? String
-                if tmpEmail! == e! {
-                    let tmpPass = user.value(forKey: "password") as? String
-                    if tmpPass! == p! {
-                        // user matches
-                        //print("logged in")
-                        let storyBoard1:UIStoryboard = UIStoryboard(name: "Home", bundle:nil)
-                        let nextViewController = storyBoard1.instantiateViewController(withIdentifier: "Navigation")
-                        self.present(nextViewController, animated:true, completion:nil)
-
-                    
-                    }
-                }
-                else {
-                    self.errorLabel.text = "wrong email and/or password"
-                }
+        FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user: FIRUser?, error) in
+            
+            
+            if error != nil {
+                print(error!)
+                
+                let alertController = UIAlertController(title: "Login Failed", message: "Incorrect Username or Password", preferredStyle: .alert)
+                let oKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alertController.addAction(oKAction)
+                self.present(alertController, animated: true, completion: nil)
+                
+                return
             }
             
-        }
+            // successfully logged in the user
+            print("user logged in successfully")
+            self.loginSegue()
+            
+        })
+    }
+    
+    func loginSegue ()
+    {
+        let storyBoard1:UIStoryboard = UIStoryboard(name: "Home", bundle:nil)
+        let nextViewController = storyBoard1.instantiateViewController(withIdentifier: "SideMenu")
+        self.present(nextViewController, animated:true, completion:nil)
 
     }
     
-    fileprivate func loadData() {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"User")
-        
-        var fetchedResults:[NSManagedObject]? = nil
-        
-        do {
-            try fetchedResults = managedContext.fetch(fetchRequest) as? [NSManagedObject]
-        } catch {
-            // what to do if an error occurs?
-            let nserror = error as NSError
-            NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
-            abort()
-        }
-        
-        if let results = fetchedResults {
-            users = results
-            //print("got the data")
-        } else {
-            print("Could not fetch")
-        }
-    }
-
+    
     // Keyboard functions
     func textFieldShouldReturn (_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
