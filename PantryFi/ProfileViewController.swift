@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseAuth
 import FirebaseDatabase
 
 class ProfileViewController: UIViewController {
@@ -21,17 +21,23 @@ class ProfileViewController: UIViewController {
         nameLabel.text = ""
         emailLabel.text = ""
         
-        let user = FIRAuth.auth()?.currentUser
-        if let user = user {
-            
-            let email = user.email
-            
-            nameLabel.text = ""
-            emailLabel.text = email
-            // ...
+        if let user = FIRAuth.auth()?.currentUser {
+            let uid = user.uid
+            FIRDatabase.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                if let dictionary = snapshot.value as? [String: AnyObject] {
+                    
+                    print("Hello")
+                    let firstName = dictionary["firstName"] as? String
+                    let lastName = dictionary["lastName"] as? String
+                    self.nameLabel.text = "\(firstName!) \(lastName!)"
+                    self.emailLabel.text = user.email
+                    
+                }
+            }, withCancel: nil)
         }
 
-        // Do any additional setup after loading the view.
+        
+    // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
