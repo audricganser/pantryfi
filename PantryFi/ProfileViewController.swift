@@ -7,11 +7,29 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
 
 class ProfileViewController: UIViewController {
 
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        nameLabel.text = ""
+        emailLabel.text = ""
+        
+        let user = FIRAuth.auth()?.currentUser
+        if let user = user {
+            
+            let email = user.email
+            
+            nameLabel.text = ""
+            emailLabel.text = email
+            // ...
+        }
 
         // Do any additional setup after loading the view.
     }
@@ -20,7 +38,7 @@ class ProfileViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+        
     @IBAction func backHome(_ sender: Any) {
         let storyBoard : UIStoryboard = UIStoryboard(name: "Home", bundle:nil)
         
