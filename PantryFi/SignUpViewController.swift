@@ -72,27 +72,26 @@ class SignUpViewController: UIViewController {
         //save the user on core data
         else {
             FIRAuth.auth()?.createUser(withEmail: email.text!, password: password.text!) { (user, error) in
+                guard let firstName = self.firstName.text, let lastName = self.lastName.text else {
+                    print("Form is not valid")
+                    return
+                }
+                
+                let uid = user!.uid
+                print("saving user2: \(uid)" )
+                let values: [String : Any] = ["firstName": firstName, "lastName": lastName]
+                
+                var ref: FIRDatabaseReference!
+                ref = FIRDatabase.database().reference(fromURL: "https://pantryfi-2e385.firebaseio.com/")
+                ref.child("users").child(uid).updateChildValues(values)
                 
             }
-            guard let firstName = firstName.text, let lastName = lastName.text else {
-                print("Form is not valid")
-                return
-            }
-            
-            guard let uid = FIRAuth.auth()?.currentUser?.uid else {
-                return
-            }
-            
-            let values: [String : Any] = ["firstName": firstName, "lastName": lastName]
-            
-            var ref: FIRDatabaseReference!
-            ref = FIRDatabase.database().reference(fromURL: "https://pantryfi-2e385.firebaseio.com/")
-            ref.child("users").child(uid).updateChildValues(values)
+            print("saving user1")
             
 
             //var ref: FIRDatabaseReference!
 
-            
+            print("saving user3")
             //hides keyboard once candidate is saved
             self.view.endEditing(true)
             
