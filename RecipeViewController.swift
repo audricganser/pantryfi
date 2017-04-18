@@ -16,12 +16,15 @@ class RecipeViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var recipeName: UILabel!
     @IBOutlet weak var recipePrepTime: UILabel!
     @IBOutlet weak var recipeServes: UILabel!
+    @IBOutlet weak var missingIngredients: UILabel!
     
     var recipeImageSegue:String?
     var recipeNameSegue:String?
     var recipePrepTimeSegue:String?
     var recipeServesSegue:String?
     var recipeIdSegue:String?
+    var missingIngrSegue:Int?
+    var containsIngSegue:Int?
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -51,6 +54,14 @@ class RecipeViewController: UIViewController, UITableViewDataSource, UITableView
 
         // Do any additional setup after loading the view.
         self.recipeName.text = self.recipeNameSegue!
+        
+        if missingIngrSegue! > 0 {
+            self.missingIngredients.text = "Pantry contains " + "\(self.containsIngSegue!)"
+        }
+        else {
+            self.missingIngredients.text = "Pantry contains all"
+        }
+        //self.missingIngredients.text = "
 //        self.recipePrepTime.text = self.recipePrepTimeSegue!
 //        self.recipeServes.text = self.recipeServesSegue!
         
@@ -121,7 +132,9 @@ class RecipeViewController: UIViewController, UITableViewDataSource, UITableView
                     let ingredient = i as! Dictionary<String, Any>
                     let id = ingredient["id"]!
                     let name = ingredient["name"]!
-                    let quantity = ingredient["amount"]!
+                    let amount = ingredient["amount"]!
+                    let unit = ingredient["unit"]!
+                    let quantity = "\(amount)" + " " + "\(unit)"
                     self.ingredientsList.append(Ingredient.init(name: "\(name)", quantity: "\(quantity)", key: "\(id)"))
                     
                     /*

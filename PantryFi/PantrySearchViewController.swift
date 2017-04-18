@@ -12,29 +12,46 @@ import Foundation
 import Alamofire
 import FirebaseDatabase
 
-class PantrySearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class PantrySearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
     //private var recipeList = [NSManagedObject]()
     var ingredientsString = ""
     
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     var listData = [[String: AnyObject]]()
     let ref = FIRDatabase.database().reference(withPath: "ingredients")
     var recipeList1 = [RecipeWithIngredients]()
     
+     //var searchActive : Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // API call for recipes
-        searchRecipes()
+        searchPantryRecipes()
         // Do any additional setup after loading the view.
         tableView.delegate = self
         tableView.dataSource = self
+        searchBar.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        print("editing")
+    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print("clicked")
+        print(searchBar.text!)
+        let query = "\(searchBar.text!)"
+        searchStringRecipe(query: query)
+        
+        
+    }
+    
     
     // MARK: - Table view data source
     
@@ -98,21 +115,22 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     // API Search Function
-    func searchRecipes () {
+    func searchPantryRecipes () {
         print ("ingredients are: \(self.ingredientsString) ")
         let baseUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients"
         let headers: HTTPHeaders = ["X-Mashape-Key": "oWragx4kwsmshOw6ZL8IH8RP81DUp1L0QFVjsn0JaX9pEIPpUg"]
         let parameters: Parameters = ["fillIngredients": "false", "limitLicense":"true", "number": 10, "ranking": 1, "ingredients": self.ingredientsString]
         
         Alamofire.request(baseUrl, parameters: parameters, headers: headers).responseJSON { response in
-            print(response.request)  // original URL request
-            print(response.response) // HTTP URL response
-            print(response.data)     // server data
-            print(response.result)   // result of response serialization
+//            print(response.request)  // original URL request
+//            print(response.response) // HTTP URL response
+//            print(response.data)     // server data
+//            print(response.result)   // result of response serialization
             
             if let JSON = response.result.value {
                 let jsonArray = JSON as! NSArray
                 
+                self.recipeList1 = []
                 for recipe in jsonArray {
                     let recipeObj = recipe as! Dictionary<String, Any>
                     let recipeId = recipeObj["id"]!
@@ -135,16 +153,57 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
         }
     }
     
+    func searchStringRecipe (query:String) {
+        let baseUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search"
+        let headers: HTTPHeaders = ["X-Mashape-Key": "oWragx4kwsmshOw6ZL8IH8RP81DUp1L0QFVjsn0JaX9pEIPpUg"]
+        let parameters: Parameters = ["instructionsRequired": "false", "limitLicense":"true", "number": 10, "offset": 0, "query": query]
+        
+        Alamofire.request(baseUrl, parameters: parameters, headers: headers).responseJSON { response in
+            //            print(response.request)  // original URL request
+            //            print(response.response) // HTTP URL response
+            //            print(response.data)     // server data
+            //            print(response.result)   // result of response serialization
+            
+            if let JSON = response.result.value {
+                let jsonDict = JSON as! Dictionary<String, Any>
+                let results = jsonDict["results"] as! NSArray
+                
+                self.recipeList1 = []
+                for recipe in results {
+                    let recipeObj = recipe as! Dictionary<String, Any>
+                    let recipeId = recipeObj["id"]!
+                    let recipeTitle = recipeObj["title"]!
+                    let uic = 0
+                    let mic = 1
+                    let likes = 0
+                    let img = recipeObj["image"]!
+                    let image = "https://spoonacular.com/recipeImages/" + "\(img)"
+ 
+                    let newRecipe = RecipeWithIngredients.init(id: "\(recipeId)", title: "\(recipeTitle)", image: image, usedIngredientCount: uic , missedIngredientCount: mic , likes: likes)
+                    
+                    self.recipeList1.append(newRecipe)
+                    print("appending recipe")
+                    print(newRecipe.id)
+                    print(newRecipe.title)
+                }
+                self.tableView.reloadData()
+                
+            }
+        }
+    
+    }
+    
+    
     // Get Recipe Summary
     func recipeSummary (id: String, cell: RecipeResultTableViewCell) {
         let baseUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + "\(id)" + "/summary"
         let headers: HTTPHeaders = ["X-Mashape-Key": "oWragx4kwsmshOw6ZL8IH8RP81DUp1L0QFVjsn0JaX9pEIPpUg"]
         var summary = ""
         Alamofire.request(baseUrl, headers: headers).responseJSON { response in
-            //            print(response.request)  // original URL request
-            //            print(response.response) // HTTP URL response
-            //            print(response.data)     // server data
-            print(response.result)   // result of response serialization
+            // print(response.request)  // original URL request
+            // print(response.response) // HTTP URL response
+            // print(response.data)     // server data
+            // print(response.result)   // result of response serialization
             
             if let JSON = response.result.value {
                 let json = JSON as! Dictionary<String, Any>
@@ -170,6 +229,8 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
         }
         return nil
     }
+    
+    
 
     // MARK: - Navigation
 
@@ -187,10 +248,12 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
             destinationVC.recipePrepTimeSegue = "10 mins"
             destinationVC.recipeServesSegue = "2 servings"
             destinationVC.recipeIdSegue = recipe.id
+            destinationVC.missingIngrSegue = recipe.missedIngredientCount
+            destinationVC.containsIngSegue = recipe.usedIngredientCount
         }
 
     }
-    
+
     // Keyboard functions
     func textFieldShouldReturn (_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
