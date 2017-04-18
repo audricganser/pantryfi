@@ -50,7 +50,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.dataSource = self
         
         // 1
-        ref.observe(.value, with: { snapshot in
+        if let user = FIRAuth.auth()?.currentUser
+        {
+        let uid = user.uid
+        ref.child(uid).observe(.value, with: { snapshot in
             // 2
             var newItems: [Ingredient] = []
             
@@ -65,6 +68,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.items = newItems
             self.tableView.reloadData()
         })
+        }
 
     }
 
@@ -158,14 +162,19 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         guard let textField = alert.textFields?.first,
                             let text = textField.text else { return }
                         
+                        if let user = FIRAuth.auth()?.currentUser
+                        {
+                            let uid = user.uid
+
+                        
                         // 2
                         let ingredient = Ingredient(name:text, quantity:itemQuantity)
                         // 3
-                        let ingredientItemRef = self.ref.child(text.lowercased())
+                        let ingredientItemRef = self.ref.child(uid).child(text.lowercased())
                         
                         // 4
                         ingredientItemRef.setValue(ingredient.toAnyObject())
-                        
+                        }
                         
                     }
                 }
