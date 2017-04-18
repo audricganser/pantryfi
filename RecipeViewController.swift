@@ -125,7 +125,7 @@ class RecipeViewController: UIViewController, UITableViewDataSource, UITableView
                 let servings = json["servings"]!
                 let prepTime = json["readyInMinutes"]!
                 self.recipeServes.text = "\(servings)"
-                self.recipePrepTime.text = "\(prepTime)"
+                self.recipePrepTime.text = "\(prepTime)" + " minutes"
                 
                 let ingredients = json["extendedIngredients"] as! NSArray
                 for i in ingredients {
