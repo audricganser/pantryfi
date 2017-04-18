@@ -14,8 +14,20 @@ class AllergiesViewController: UIViewController, UITableViewDataSource, UITableV
     
     var allergies = ["Milk", "Eggs", "Fish", "Crustacean shellfish", "Tree Nuts", "Peanuts", "Wheat", "Soybeans"]
     
+    var diets = ["Vegan", "Vegetarian", "Gluten Free", "Ketogenic", "Whole 30"]
+    
+    var tableCellList = [String]()
+    var listSegue = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if listSegue {
+            self.tableCellList = self.allergies
+        }
+        else {
+            self.tableCellList = self.diets
+        }
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -51,7 +63,7 @@ class AllergiesViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 8
+        return self.tableCellList.count
     }
     
     
@@ -59,8 +71,8 @@ class AllergiesViewController: UIViewController, UITableViewDataSource, UITableV
         
         let allerginCell = tableView.dequeueReusableCell(withIdentifier: "allerginCell", for: indexPath) as!
         AllergieTableViewCell
-
-        allerginCell.allerginLabel.text = allergies[indexPath[1]]
+        
+        allerginCell.allerginLabel.text = self.tableCellList[indexPath.row]
         
         return allerginCell
     }

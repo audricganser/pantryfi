@@ -189,11 +189,23 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        // Get the new view controller using segue.destinationViewController.
-//        // Pass the selected object to the new view controller.
-//        
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        if (segue.identifier == "pantrySearchSegue") {
+            let destinationVC = segue.destination as! PantrySearchViewController
+            var ingredientsString = ""
+            for i in items {
+                ingredientsString += i.name + ","
+            }
+            destinationVC.ingredientsString = ingredientsString
+            
+        }
+
+        
+        
+    }
+
     
     // Keyboard functions
     func textFieldShouldReturn (_ textField: UITextField) -> Bool {

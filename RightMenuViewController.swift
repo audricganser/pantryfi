@@ -52,7 +52,7 @@ extension RightMenuViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 5
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -63,7 +63,7 @@ extension RightMenuViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) 
         
-        let titles: [String] = ["Home", "Food Restrictions", "Profile", "Logout"]
+        let titles: [String] = ["Home", "Food Allergies", "Dietary Ristrictions", "Profile", "Logout"]
 
         cell.backgroundColor = UIColor.clear
         cell.textLabel?.font = UIFont(name: "HelveticaNeue", size: 21)
@@ -86,13 +86,23 @@ extension RightMenuViewController: UITableViewDelegate, UITableViewDataSource {
             
             break
         case 1:
-            let vc = (storyboard?.instantiateViewController(withIdentifier: "allergies"))! as UIViewController
+            let vc = (storyboard?.instantiateViewController(withIdentifier: "allergies"))! as! AllergiesViewController
             present(vc, animated: true, completion: nil)
             
             animateText(tableView, didSelectRowAt: indexPath)
             
             break
+            
         case 2:
+            let vc = (storyboard?.instantiateViewController(withIdentifier: "allergies"))! as! AllergiesViewController
+            vc.listSegue = false
+            present(vc, animated: true, completion: nil)
+            
+            animateText(tableView, didSelectRowAt: indexPath)
+            
+            break
+        
+        case 3:
             
             let vc = (storyboard?.instantiateViewController(withIdentifier: "profile"))! as UIViewController
             present(vc, animated: true, completion: nil)
@@ -100,7 +110,7 @@ extension RightMenuViewController: UITableViewDelegate, UITableViewDataSource {
             animateText(tableView, didSelectRowAt: indexPath)
             break
         
-        case 3:
+        case 4:
             do{
                 animateText(tableView, didSelectRowAt: indexPath)
                 try FIRAuth.auth()?.signOut()
