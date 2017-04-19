@@ -88,7 +88,6 @@ extension RightMenuViewController: UITableViewDelegate, UITableViewDataSource {
         case 1:
             let vc = (storyboard?.instantiateViewController(withIdentifier: "allergies"))! as! AllergiesViewController
             present(vc, animated: true, completion: nil)
-            
             animateText(tableView, didSelectRowAt: indexPath)
             
             break
