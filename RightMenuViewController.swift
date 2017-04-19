@@ -118,7 +118,7 @@ extension RightMenuViewController: UITableViewDelegate, UITableViewDataSource {
                 print("Error while signing out!")
             }
             let storyBoard1:UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            let nextViewController = storyBoard1.instantiateViewController(withIdentifier: "Login")
+            let nextViewController = storyBoard1.instantiateViewController(withIdentifier: "Navigation")
             self.present(nextViewController, animated:true, completion:nil)
 
             sideMenuViewController?.hideMenuViewController()
