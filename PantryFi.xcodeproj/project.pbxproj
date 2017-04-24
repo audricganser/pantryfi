@@ -116,14 +116,14 @@
 			isa = PBXGroup;
 			children = (
 				152A246B1E7F2B1F00C42EAA /* Home.storyboard */,
+				152A246D1E7F2BD300C42EAA /* HomeViewController.swift */,
+				75F0C9C41E830B29002E1458 /* AddIngredientTableViewCell.swift */,
+				75F0C9C61E830B35002E1458 /* IngredientTableViewCell.swift */,
+				75FEFE471EA34047008D1619 /* Ingredient.swift */,
 				75BE49DA1EA19F8E00BC9F4B /* RightMenuViewController.swift */,
 				2B67AE001EA546BD0029205F /* ProfileViewController.swift */,
 				2B67ADFE1EA53CEF0029205F /* AllergiesViewController.swift */,
 				2B67AE021EA59E2A0029205F /* AllergieTableViewCell.swift */,
-				75F0C9C41E830B29002E1458 /* AddIngredientTableViewCell.swift */,
-				75F0C9C61E830B35002E1458 /* IngredientTableViewCell.swift */,
-				152A246D1E7F2BD300C42EAA /* HomeViewController.swift */,
-				75FEFE471EA34047008D1619 /* Ingredient.swift */,
 			);
 			name = "Home Screen";
 			sourceTree = "<group>";

@@ -35,10 +35,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
+        //pushed view controller up when keyboard is shown
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
+        //top right button for settings
         title = "PantryFi"
         let button = UIButton.init(type: .custom)
         button.setImage(#imageLiteral(resourceName: "menu-button"), for: UIControlState.normal)
@@ -47,8 +49,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         button.frame = CGRect.init(x: 0, y: 0, width: 30, height: 30) //CGRectMake(0, 0, 30, 30)
         let barButton = UIBarButtonItem.init(customView: button)
         self.navigationItem.rightBarButtonItem = barButton
+        
+        //Pantry search button set up
         pantrySearchButton.layer.borderColor = UIColor.white.cgColor
         
+        //tableView set up
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
@@ -82,32 +87,24 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("clicked")
-        print(searchBar.text!)
         let query = "\(searchBar.text!)"
-        //search.searchBarSearchButtonClicked(searchBar)
-        //let storyBoard : UIStoryboard = UIStoryboard(name: "Home", bundle:nil)
         
-        //switch
+        //set up other view controller
         let vc = (storyboard?.instantiateViewController(withIdentifier: "pantrySearch"))! as! PantrySearchViewController
+        
         vc.queryFromHome = query
         vc.searchFromHome = true
-       // present(vc, animated: true, completion: nil)
+        
+        //hide keyboard
         view.endEditing(true)
+        
+        //reset search input
         self.searchBar.text = nil
+        
+        //go to other view controller
         self.navigationController?.pushViewController(vc, animated:true)
         
         
-    }
-    
-    func createSearchBar()
-    {
-        let searchBar = UISearchBar()
-        searchBar.showsCancelButton = false
-        searchBar.placeholder = "Search for your recipe"
-        searchBar.delegate = self
-        
-        self.navigationItem.titleView = searchBar
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -171,6 +168,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let alert = UIAlertController(title: "New Ingredient", message:"Insert name of item and quantity", preferredStyle: .alert)
         alert.addTextField(configurationHandler: nil)
         alert.addTextField(configurationHandler: nil)
+        alert.textFields?[0].placeholder = "Item"
+        alert.textFields?[1].placeholder = "Quantity"
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
             if let title = alert.textFields?[0].text
             {
@@ -218,26 +217,20 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         if (segue.identifier == "pantrySearchSegue") {
             let destinationVC = segue.destination as! PantrySearchViewController
             var ingredientsString = ""
+            
             for i in items {
                 ingredientsString += i.name + ","
             }
             destinationVC.ingredientsString = ingredientsString
-            
         }
-
-        
         
     }
-
     
     // Keyboard functions
     func textFieldShouldReturn (_ textField: UITextField) -> Bool {

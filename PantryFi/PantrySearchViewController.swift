@@ -89,7 +89,7 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
         // Configure the cell...
         cell.recipeDescript.textColor = UIColor.gray
         cell.recipeTitle.text = title
-        cell.recipeTitle.textColor = UIColor.white
+        //cell.recipeTitle.textColor = UIColor.white
         //cell.recipeTitle.backgroundColor = UIColor(red: 76.0, green: 210.0, blue: 132.0, alpha: 0.0)
         cell.recipeDescript.text = "Loading..."
         //cell.recipeDescript.text = descript
