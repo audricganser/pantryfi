@@ -93,6 +93,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         vc.queryFromHome = query
         vc.searchFromHome = true
        // present(vc, animated: true, completion: nil)
+        view.endEditing(true)
         self.navigationController?.pushViewController(vc, animated:true)
         
         
