@@ -12,7 +12,7 @@ import FirebaseAuth
 import FirebaseDatabase
 
 
-class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate  {
+class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
     var items = [Ingredient]()
 //    let colorArray = [
@@ -28,7 +28,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet var tableView: UITableView!
     
-    let addCellIdentifier = "addCell"
+    let avarellIdentifier = "addCell"
     let itemIdentifier = "itemCell"
     let ref = FIRDatabase.database().reference(withPath: "ingredients")
 
@@ -82,11 +82,18 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        let search = PantrySearchViewController()
         print("clicked")
         print(searchBar.text!)
         let query = "\(searchBar.text!)"
-        search.searchStringRecipe(query: query)
+        //search.searchBarSearchButtonClicked(searchBar)
+        //let storyBoard : UIStoryboard = UIStoryboard(name: "Home", bundle:nil)
+        
+        //switch
+        let vc = (storyboard?.instantiateViewController(withIdentifier: "pantrySearch"))! as! PantrySearchViewController
+        vc.queryFromHome = query
+        vc.searchFromHome = true
+       // present(vc, animated: true, completion: nil)
+        self.navigationController?.pushViewController(vc, animated:true)
         
         
     }
@@ -121,7 +128,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         if(indexPath.row == 0)
         {
-            let addCell = tableView.dequeueReusableCell(withIdentifier: addCellIdentifier) as! AddIngredientTableViewCell
+            let addCell = tableView.dequeueReusableCell(withIdentifier: avarellIdentifier) as! AddIngredientTableViewCell
             addCell.backgroundColor = UIColor.clear
 
             return addCell

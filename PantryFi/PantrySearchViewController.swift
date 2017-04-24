@@ -14,14 +14,17 @@ import FirebaseDatabase
 
 class PantrySearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
-    //private var recipeList = [NSManagedObject]()
     var ingredientsString = ""
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    
     var listData = [[String: AnyObject]]()
     let ref = FIRDatabase.database().reference(withPath: "ingredients")
     var recipeList1 = [RecipeWithIngredients]()
+    
+    var searchFromHome = false
+    var queryFromHome = ""
     
      //var searchActive : Bool = false
     
@@ -29,6 +32,11 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
         super.viewDidLoad()
         // API call for recipes
         searchPantryRecipes()
+        
+        //search from the home VC
+        if searchFromHome {
+            searchStringRecipe(query: queryFromHome)
+        }
         
         
         tableView.delegate = self
@@ -50,7 +58,6 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
         print(searchBar.text!)
         let query = "\(searchBar.text!)"
         searchStringRecipe(query: query)
-        
         
     }
     
