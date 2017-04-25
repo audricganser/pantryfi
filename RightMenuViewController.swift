@@ -88,7 +88,6 @@ extension RightMenuViewController: UITableViewDelegate, UITableViewDataSource {
         case 1:
             let storyBoard1:UIStoryboard = UIStoryboard(name: "foodRestrictions", bundle:nil)
             let vc = storyBoard1.instantiateViewController(withIdentifier: "allergies") as! AllergiesViewController
-            //self.navigationController?.pushViewController(vc, animated:true)
             present(vc, animated: true, completion: nil)
             animateText(tableView, didSelectRowAt: indexPath)
             
@@ -100,7 +99,6 @@ extension RightMenuViewController: UITableViewDelegate, UITableViewDataSource {
             //let vc = (storyboard?.instantiateViewController(withIdentifier: "allergies"))! as! AllergiesViewController
             vc.listSegue = false
             present(vc, animated: true, completion: nil)
-//            self.navigationController?.pushViewController(vc, animated:true)
             animateText(tableView, didSelectRowAt: indexPath)
             
             break
@@ -108,12 +106,9 @@ extension RightMenuViewController: UITableViewDelegate, UITableViewDataSource {
         case 3:
             let storyBoard1:UIStoryboard = UIStoryboard(name: "userProfiles", bundle:nil)
             let vc = storyBoard1.instantiateViewController(withIdentifier: "profile") as! ProfileViewController
-
-//            let vc = (storyboard?.instantiateViewController(withIdentifier: "profile"))! as UIViewController
             present(vc, animated: true, completion: nil)
 
             animateText(tableView, didSelectRowAt: indexPath)
-            //self.navigationController?.pushViewController(vc, animated:true)
             break
         
         case 4:
