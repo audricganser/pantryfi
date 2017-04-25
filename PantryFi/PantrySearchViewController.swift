@@ -107,6 +107,26 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
         return cell
     }
     
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyBoard1:UIStoryboard = UIStoryboard(name: "recipeScreen", bundle:nil)
+        let vc = storyBoard1.instantiateViewController(withIdentifier: "recipeScreen") as! RecipeViewController
+        
+        let indexPath = tableView.indexPathForSelectedRow
+        let recipe = recipeList1[indexPath!.row]
+        vc.recipeImageSegue = recipe.image
+        vc.recipeNameSegue = recipe.title
+        vc.recipePrepTimeSegue = "10 mins"
+        vc.recipeServesSegue = "2 servings"
+        vc.recipeIdSegue = recipe.id
+        vc.missingIngrSegue = recipe.missedIngredientCount
+        vc.containsIngSegue = recipe.usedIngredientCount
+
+        //go to other view controller
+        self.navigationController?.pushViewController(vc, animated:true)
+
+    }
+
+
     func getIngredients () -> [Ingredient] {
         var items:[Ingredient] = []
         // 1

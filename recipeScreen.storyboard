@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--PantryFi-->
+        <scene sceneID="hIv-5d-eyd">
+            <objects>
+                <viewController storyboardIdentifier="recipeScreen" id="dUe-jb-S4p" customClass="RecipeViewController" customModule="PantryFi" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="W39-xl-Rpd"/>
+                        <viewControllerLayoutGuide type="bottom" id="9Kv-L0-DC9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dO8-2a-vGk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bO4-g5-qLy">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LB2-sN-8qq">
+                                        <rect key="frame" x="0.0" y="66" width="375" height="601"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N3l-iR-dfQ">
+                                                <rect key="frame" x="8" y="269" width="83" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="83" id="kCB-as-IYa"/>
+                                                </constraints>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="Prep Time:">
+                                                        <attributes>
+                                                            <font key="NSFont" metaFont="system" size="17"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yu9-RP-qZ6">
+                                                <rect key="frame" x="99" y="269" width="268" height="21"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="&lt;Prep Time&gt;">
+                                                        <attributes>
+                                                            <font key="NSFont" metaFont="system" size="17"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ejT-q8-h7p">
+                                                <rect key="frame" x="8" y="297" width="57" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="57" id="52I-L1-OPt"/>
+                                                </constraints>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="Serves:">
+                                                        <attributes>
+                                                            <font key="NSFont" metaFont="system" size="17"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qYQ-1W-1TA">
+                                                <rect key="frame" x="8" y="326" width="86" height="21"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="Ingredients">
+                                                        <attributes>
+                                                            <font key="NSFont" metaFont="system" size="17"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rating" translatesAutoresizingMaskIntoConstraints="NO" id="l5Y-7t-W7R">
+                                                <rect key="frame" x="259" y="269" width="108" height="37"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="108" id="hNj-6Y-3PJ"/>
+                                                    <constraint firstAttribute="height" constant="37" id="rvn-8e-cMn"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fF7-wv-LFI">
+                                                <rect key="frame" x="233" y="319" width="134" height="35"/>
+                                                <color key="backgroundColor" red="0.29803921570000003" green="0.82352941180000006" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="134" id="UQ5-c6-eff"/>
+                                                </constraints>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="Pantry contains all">
+                                                        <attributes>
+                                                            <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <font key="NSFont" metaFont="system" size="15"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dxh-QR-ZyJ">
+                                                <rect key="frame" x="73" y="298" width="294" height="21"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="&lt;Serves&gt;">
+                                                        <attributes>
+                                                            <font key="NSFont" metaFont="system" size="17"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bDp-jM-uaS">
+                                                <rect key="frame" x="8" y="372" width="359" height="229"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="229" id="8Cc-k0-PoJ"/>
+                                                </constraints>
+                                                <prototypes>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ingredientCell" textLabel="Xs0-sS-Y1l" detailTextLabel="Faj-Js-wLZ" style="IBUITableViewCellStyleValue1" id="8bk-Tr-MbU" customClass="RecipeTableViewCell" customModule="PantryFi" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="28" width="359" height="44"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8bk-Tr-MbU" id="qef-wF-cpM">
+                                                            <rect key="frame" x="0.0" y="0.0" width="359" height="43.5"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Xs0-sS-Y1l">
+                                                                    <rect key="frame" x="15" y="12" width="33.5" height="20.5"/>
+                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Faj-Js-wLZ">
+                                                                    <rect key="frame" x="300" y="12" width="44" height="20.5"/>
+                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </tableViewCellContentView>
+                                                        <connections>
+                                                            <outlet property="item" destination="Xs0-sS-Y1l" id="gvO-oq-y41"/>
+                                                            <outlet property="quantity" destination="Faj-Js-wLZ" id="UxA-1I-wmi"/>
+                                                        </connections>
+                                                    </tableViewCell>
+                                                </prototypes>
+                                            </tableView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="bDp-jM-uaS" firstAttribute="top" secondItem="fF7-wv-LFI" secondAttribute="bottom" constant="18" id="44h-zh-F67"/>
+                                            <constraint firstItem="yu9-RP-qZ6" firstAttribute="leading" secondItem="N3l-iR-dfQ" secondAttribute="trailing" constant="8" id="HLy-eB-GXL"/>
+                                            <constraint firstItem="l5Y-7t-W7R" firstAttribute="trailing" secondItem="fF7-wv-LFI" secondAttribute="trailing" id="I22-sl-6CK"/>
+                                            <constraint firstItem="ejT-q8-h7p" firstAttribute="leading" secondItem="qYQ-1W-1TA" secondAttribute="leading" id="K7q-T6-pEx"/>
+                                            <constraint firstItem="bDp-jM-uaS" firstAttribute="top" secondItem="qYQ-1W-1TA" secondAttribute="bottom" constant="25" id="Kz3-le-n1q"/>
+                                            <constraint firstAttribute="bottom" secondItem="bDp-jM-uaS" secondAttribute="bottom" id="N2F-np-vzA"/>
+                                            <constraint firstItem="dxh-QR-ZyJ" firstAttribute="leading" secondItem="ejT-q8-h7p" secondAttribute="trailing" constant="8" id="PIl-1R-FpC"/>
+                                            <constraint firstItem="N3l-iR-dfQ" firstAttribute="leading" secondItem="ejT-q8-h7p" secondAttribute="leading" id="QGo-vV-OsV"/>
+                                            <constraint firstItem="qYQ-1W-1TA" firstAttribute="centerY" secondItem="fF7-wv-LFI" secondAttribute="centerY" id="UHN-46-d7a"/>
+                                            <constraint firstItem="fF7-wv-LFI" firstAttribute="top" secondItem="l5Y-7t-W7R" secondAttribute="bottom" constant="13" id="V5M-09-4SD"/>
+                                            <constraint firstItem="bDp-jM-uaS" firstAttribute="leading" secondItem="qYQ-1W-1TA" secondAttribute="leading" id="aWg-Cf-d26"/>
+                                            <constraint firstItem="qYQ-1W-1TA" firstAttribute="leading" secondItem="LB2-sN-8qq" secondAttribute="leadingMargin" id="cpu-Pe-NJE"/>
+                                            <constraint firstItem="N3l-iR-dfQ" firstAttribute="baseline" secondItem="yu9-RP-qZ6" secondAttribute="baseline" id="j77-qu-81P"/>
+                                            <constraint firstAttribute="trailing" secondItem="yu9-RP-qZ6" secondAttribute="trailing" constant="8" id="k5J-Pg-FiE"/>
+                                            <constraint firstItem="dxh-QR-ZyJ" firstAttribute="top" secondItem="N3l-iR-dfQ" secondAttribute="bottom" constant="8" symbolic="YES" id="mp9-gv-KLx"/>
+                                            <constraint firstItem="yu9-RP-qZ6" firstAttribute="trailing" secondItem="dxh-QR-ZyJ" secondAttribute="trailing" id="nko-We-268"/>
+                                            <constraint firstItem="l5Y-7t-W7R" firstAttribute="trailing" secondItem="LB2-sN-8qq" secondAttribute="trailingMargin" id="sql-9H-I8D"/>
+                                            <constraint firstItem="qYQ-1W-1TA" firstAttribute="top" secondItem="ejT-q8-h7p" secondAttribute="bottom" constant="8" symbolic="YES" id="vxI-uq-C9a"/>
+                                            <constraint firstItem="bDp-jM-uaS" firstAttribute="trailing" secondItem="fF7-wv-LFI" secondAttribute="trailing" id="wg2-aA-bu3"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.18039215689999999" green="0.80000000000000004" blue="0.4431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="LB2-sN-8qq" firstAttribute="top" secondItem="bO4-g5-qLy" secondAttribute="top" constant="66" id="IvL-tT-Tqa"/>
+                                    <constraint firstAttribute="bottom" secondItem="LB2-sN-8qq" secondAttribute="bottom" id="MQh-GZ-zeG"/>
+                                    <constraint firstAttribute="trailing" secondItem="LB2-sN-8qq" secondAttribute="trailing" id="Q19-Wm-hQg"/>
+                                    <constraint firstItem="LB2-sN-8qq" firstAttribute="leading" secondItem="bO4-g5-qLy" secondAttribute="leading" id="k7r-IN-dBq"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vyI-Yq-zTL">
+                                <rect key="frame" x="0.0" y="64" width="375" height="261"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YsR-NE-7en">
+                                <rect key="frame" x="0.0" y="284" width="375" height="41"/>
+                                <color key="backgroundColor" red="0.29803921570000003" green="0.82352941180000006" blue="0.51764705879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="41" id="9x4-WK-Zf6"/>
+                                    <constraint firstAttribute="width" constant="375" id="Qhf-Vs-tK2"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment content="&lt;Recipe Name&gt;">
+                                        <attributes>
+                                            <font key="NSFont" size="20" name=".AppleSystemUIFont"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" firstLineHeadIndent="10" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="9Kv-L0-DC9" firstAttribute="top" secondItem="vyI-Yq-zTL" secondAttribute="bottom" constant="342" id="NNf-T9-J1C"/>
+                            <constraint firstItem="N3l-iR-dfQ" firstAttribute="top" secondItem="YsR-NE-7en" secondAttribute="bottom" constant="10" id="Q2d-0e-5cg"/>
+                            <constraint firstItem="bO4-g5-qLy" firstAttribute="top" secondItem="dO8-2a-vGk" secondAttribute="top" id="XmR-3P-GuT"/>
+                            <constraint firstItem="bO4-g5-qLy" firstAttribute="leading" secondItem="dO8-2a-vGk" secondAttribute="leading" id="eoE-a9-x3E"/>
+                            <constraint firstItem="vyI-Yq-zTL" firstAttribute="top" secondItem="W39-xl-Rpd" secondAttribute="bottom" id="hyZ-Yn-RTg"/>
+                            <constraint firstAttribute="trailing" secondItem="bO4-g5-qLy" secondAttribute="trailing" id="rBE-8c-yT8"/>
+                            <constraint firstItem="bO4-g5-qLy" firstAttribute="bottom" secondItem="9Kv-L0-DC9" secondAttribute="top" id="ue7-ZG-Rvx"/>
+                            <constraint firstItem="bO4-g5-qLy" firstAttribute="leading" secondItem="vyI-Yq-zTL" secondAttribute="leading" id="vG9-Q2-YMZ"/>
+                            <constraint firstItem="bO4-g5-qLy" firstAttribute="trailing" secondItem="vyI-Yq-zTL" secondAttribute="trailing" id="vg3-BP-Sjd"/>
+                            <constraint firstItem="YsR-NE-7en" firstAttribute="bottom" secondItem="l5Y-7t-W7R" secondAttribute="bottom" constant="-47" id="xho-BZ-103"/>
+                            <constraint firstItem="YsR-NE-7en" firstAttribute="leading" secondItem="N3l-iR-dfQ" secondAttribute="leading" constant="-8" id="yVL-No-zTg"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="PantryFi" id="SJA-4b-6jk"/>
+                    <connections>
+                        <outlet property="missingIngredients" destination="fF7-wv-LFI" id="Qn0-F1-USs"/>
+                        <outlet property="recipeImage" destination="vyI-Yq-zTL" id="g6B-03-P5T"/>
+                        <outlet property="recipeName" destination="YsR-NE-7en" id="s5Q-cL-Mf3"/>
+                        <outlet property="recipePrepTime" destination="yu9-RP-qZ6" id="u48-sj-lhr"/>
+                        <outlet property="recipeServes" destination="dxh-QR-ZyJ" id="1Ga-C4-k0O"/>
+                        <outlet property="tableView" destination="bDp-jM-uaS" id="qS0-xt-zNa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VJ6-N3-wgP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3479.1999999999998" y="44.527736131934034"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="A4w-14-FLU">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ff7-Vg-IDS" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="KDR-2D-ego">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="dUe-jb-S4p" kind="relationship" relationship="rootViewController" id="hqb-8Y-ZTV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8fg-Lj-J6T" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2540" y="44.527736131934034"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="rating" width="660" height="300"/>
+    </resources>
+</document>
