@@ -11,7 +11,7 @@ import UIKit
 class AllergiesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate  {
 
     @IBOutlet weak var tableView: UITableView!
-    
+    @IBOutlet weak var topNavigation:UINavigationItem!
     var allergies = ["Milk", "Eggs", "Fish", "Crustacean shellfish", "Tree Nuts", "Peanuts", "Wheat", "Soybeans"]
     
     var diets = ["Vegan", "Vegetarian", "Gluten Free", "Ketogenic", "Whole 30"]
@@ -24,10 +24,14 @@ class AllergiesViewController: UIViewController, UITableViewDataSource, UITableV
         
         if listSegue {
             self.tableCellList = self.allergies
+            self.topNavigation.title = "Food Allergies"
+
         }
         else {
             self.tableCellList = self.diets
+            self.topNavigation.title = "Dietary Restrictions"
         }
+        
         
         tableView.delegate = self
         tableView.dataSource = self

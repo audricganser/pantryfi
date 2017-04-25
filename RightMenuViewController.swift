@@ -86,25 +86,26 @@ extension RightMenuViewController: UITableViewDelegate, UITableViewDataSource {
             
             break
         case 1:
-            let vc = (storyboard?.instantiateViewController(withIdentifier: "allergies"))! as! AllergiesViewController
+            let storyBoard1:UIStoryboard = UIStoryboard(name: "foodRestrictions", bundle:nil)
+            let vc = storyBoard1.instantiateViewController(withIdentifier: "allergies") as! AllergiesViewController
             present(vc, animated: true, completion: nil)
-            
             animateText(tableView, didSelectRowAt: indexPath)
             
             break
             
         case 2:
-            let vc = (storyboard?.instantiateViewController(withIdentifier: "allergies"))! as! AllergiesViewController
+            let storyBoard1:UIStoryboard = UIStoryboard(name: "foodRestrictions", bundle:nil)
+            let vc = storyBoard1.instantiateViewController(withIdentifier: "allergies") as! AllergiesViewController
+            //let vc = (storyboard?.instantiateViewController(withIdentifier: "allergies"))! as! AllergiesViewController
             vc.listSegue = false
             present(vc, animated: true, completion: nil)
-            
             animateText(tableView, didSelectRowAt: indexPath)
             
             break
         
         case 3:
-            
-            let vc = (storyboard?.instantiateViewController(withIdentifier: "profile"))! as UIViewController
+            let storyBoard1:UIStoryboard = UIStoryboard(name: "userProfiles", bundle:nil)
+            let vc = storyBoard1.instantiateViewController(withIdentifier: "profile") as! ProfileViewController
             present(vc, animated: true, completion: nil)
 
             animateText(tableView, didSelectRowAt: indexPath)
@@ -119,7 +120,7 @@ extension RightMenuViewController: UITableViewDelegate, UITableViewDataSource {
                 print("Error while signing out!")
             }
             let storyBoard1:UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            let nextViewController = storyBoard1.instantiateViewController(withIdentifier: "Login")
+            let nextViewController = storyBoard1.instantiateViewController(withIdentifier: "Navigation")
             self.present(nextViewController, animated:true, completion:nil)
 
             sideMenuViewController?.hideMenuViewController()

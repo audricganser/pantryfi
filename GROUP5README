@@ -2,38 +2,51 @@
 
 Audric Ganser - ag46372
 Contributed: 33%
-Recipe View Controller
-Login View Controller
-Search View Controller
+Side Menu implementation
+Storyboard implementation for profile, allergies, diet restrictions
+UI updates
 
 David Ares -da27577
 Contributed: 33%
-Recipe View Controller
-Login View Controller
-Search View Controller
+API Calls to Spoonacular for recipe data
+Search with Pantry Items
+Search for any recipes
 	
 Hassaan Raza - hr7233
 Contributed: 33%
-Home View Controller
-Search View Controller
+Firebase integration/authentication
+Menu View Controller
+User Profiles
 	
 2: Same Grade to for all members
 
 3: Differences
-Login Screen/User Profiles:
-User Profiles has not been fully implemented yet. Currently we are using another view controller to show user profiles, but we will be using a pod to slide the user profile from the top of the home screen.
+Finding recipes with user’s current items:
+When a user clicks the ‘Search Pantry’ button on the home screen, a search query will be performed using their ingredients listed in their pantry. 
+If no items have been added to the list, the result cells will be empty 
 
-Items List:
-Added Pantry items are not colored correctly which will be done in Beta release.
-Currently when a user adds a new item they get an alert. In Beta version, they will be able to just add a new cell and input the item within the cell.
+Search recipes:
+Once a user is on the search results screen. They can click the search bar and enter a value. On pressing return, a search for that value will be performed and displayed
+For example: a user can enter ‘chicken salad’ and they will see chicken salad recipes 
 
-Serving counter:
-Ingredient list shows the servings of each item. In our Beta release, the user will be able to adjust this count after adding the item.
+Favorites Recipes:
+Users do not have the ability to select a favorite recipe yet. Will be done on final release
 
-Finding Recipes with user's current items:
-Currently the “Pantry Search” button brings up a static search not using the pantry items. The Beta release will fully implement this feature by querying an API to return dynamic search results of matching recipes. The search bar will also be activated for text input for additional search functionality.
+Food Label Scanner:
+Food Label Scanner feature has not been implemented yet. This will be done in final version.
+
+Expanding User Profiles:
+User profiles can be reached by pressing the menu button on the home screen. 
+The Menu has five options (Home, Profile, Food Allergies, Diet Restrictions, Logout)
+Home: returns you to the home screen
+Profile: opens a view that displays the user’s email. (More information about the user will be added in final version)
+Food Allergies: displays a table view of toggle options for each kind of major food allergy. (This toggle options do not currently persist. In final it will be saved in the database and used in queries.)
+Diet Restrictions: displays a table view of toggle options for each kind of major dietary restriction like vegan or dairy free. (This toggle options do not currently persist. In final it will be saved in the database and used in queries.)
+Logout: this button logs the user out.
 
 4: Special Instructions
+Please run the file called PantryFi.xcworkspace (the white logo file)
 Run app and press the ‘Create Account’ button. After registering, sign into your account. 
-You will be able to add items to Pantry but you will get a static search results when clicking on the search button. All information throughout the app is static
+You will be able to add items to Pantry and you will get dynamic search results when clicking on the ‘Search Pantry’ button. 
 The app is for iPhone 7 and 7 plus models only.
+

@@ -12,7 +12,7 @@ import FirebaseAuth
 import FirebaseDatabase
 
 
-class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate  {
+class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
     var items = [Ingredient]()
 //    let colorArray = [
@@ -25,18 +25,23 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //    var colorPick = 0
 
     @IBOutlet weak var pantrySearchButton: UIButton!
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet var tableView: UITableView!
     
-    let addCellIdentifier = "addCell"
+    let avarellIdentifier = "addCell"
     let itemIdentifier = "itemCell"
     let ref = FIRDatabase.database().reference(withPath: "ingredients")
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //pushed view controller up when keyboard is shown
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        //top right button for settings
         title = "PantryFi"
-        print("hitting view did load in homeViewContoller")
-   
         let button = UIButton.init(type: .custom)
         button.setImage(#imageLiteral(resourceName: "menu-button"), for: UIControlState.normal)
         button.addTarget(self, action:#selector(SSASideMenu.presentRightMenuViewController), for: UIControlEvents.touchUpInside)
@@ -44,10 +49,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         button.frame = CGRect.init(x: 0, y: 0, width: 30, height: 30) //CGRectMake(0, 0, 30, 30)
         let barButton = UIBarButtonItem.init(customView: button)
         self.navigationItem.rightBarButtonItem = barButton
+        
+        //Pantry search button set up
         pantrySearchButton.layer.borderColor = UIColor.white.cgColor
         
+        //tableView set up
         tableView.delegate = self
         tableView.dataSource = self
+        searchBar.delegate = self
         
         // 1
         if let user = FIRAuth.auth()?.currentUser
@@ -77,14 +86,25 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Dispose of any resources that can be recreated.
     }
     
-    func createSearchBar()
-    {
-        let searchBar = UISearchBar()
-        searchBar.showsCancelButton = false
-        searchBar.placeholder = "Search for your recipe"
-        searchBar.delegate = self
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let query = "\(searchBar.text!)"
         
-        self.navigationItem.titleView = searchBar
+        //set up other view controller
+        let vc = (storyboard?.instantiateViewController(withIdentifier: "pantrySearch"))! as! PantrySearchViewController
+        
+        vc.queryFromHome = query
+        vc.searchFromHome = true
+        
+        //hide keyboard
+        view.endEditing(true)
+        
+        //reset search input
+        self.searchBar.text = nil
+        
+        //go to other view controller
+        self.navigationController?.pushViewController(vc, animated:true)
+        
+        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -107,7 +127,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         if(indexPath.row == 0)
         {
-            let addCell = tableView.dequeueReusableCell(withIdentifier: addCellIdentifier) as! AddIngredientTableViewCell
+            let addCell = tableView.dequeueReusableCell(withIdentifier: avarellIdentifier) as! AddIngredientTableViewCell
             addCell.backgroundColor = UIColor.clear
 
             return addCell
@@ -148,6 +168,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let alert = UIAlertController(title: "New Ingredient", message:"Insert name of item and quantity", preferredStyle: .alert)
         alert.addTextField(configurationHandler: nil)
         alert.addTextField(configurationHandler: nil)
+        alert.textFields?[0].placeholder = "Item"
+        alert.textFields?[1].placeholder = "Quantity"
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
             if let title = alert.textFields?[0].text
             {
@@ -195,31 +217,57 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
-    // MARK: - Navigation
+    @IBAction func searchPantry(_ sender: Any) {
+        let storyBoard1:UIStoryboard = UIStoryboard(name: "searchResults", bundle:nil)
+        let vc = storyBoard1.instantiateViewController(withIdentifier: "pantrySearch") as! PantrySearchViewController
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        if (segue.identifier == "pantrySearchSegue") {
-            let destinationVC = segue.destination as! PantrySearchViewController
-            var ingredientsString = ""
-            for i in items {
-                ingredientsString += i.name + ","
-            }
-            destinationVC.ingredientsString = ingredientsString
-            
+        var ingredientsString = ""
+        
+        for i in items {
+            ingredientsString += i.name + ","
         }
-
+        vc.ingredientsString = ingredientsString
+        vc.searchFromHome = false
         
-        
+        //go to other view controller
+        self.navigationController?.pushViewController(vc, animated:true)
     }
-
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        // Get the new view controller using segue.destinationViewController.
+//        // Pass the selected object to the new view controller.
+//        if (segue.identifier == "pantrySearchSegue") {
+//            let destinationVC = segue.destination as! PantrySearchViewController
+//            var ingredientsString = ""
+//            
+//            for i in items {
+//                ingredientsString += i.name + ","
+//            }
+//            destinationVC.ingredientsString = ingredientsString
+//        }
+//        
+//    }
     
     // Keyboard functions
     func textFieldShouldReturn (_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0{
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y != 0{
+                self.view.frame.origin.y += keyboardSize.height
+            }
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

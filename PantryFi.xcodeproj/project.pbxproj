@@ -13,6 +13,10 @@
 		152A246C1E7F2B1F00C42EAA /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 152A246B1E7F2B1F00C42EAA /* Home.storyboard */; };
 		152A246E1E7F2BD300C42EAA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152A246D1E7F2BD300C42EAA /* HomeViewController.swift */; };
 		159E58A61EA5462100BEE0C8 /* Steps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E58A51EA5462100BEE0C8 /* Steps.swift */; };
+		159E59FD1EAEBF7000BEE0C8 /* searchResults.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 159E59FC1EAEBF7000BEE0C8 /* searchResults.storyboard */; };
+		159E59FF1EAEBFD700BEE0C8 /* recipeScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 159E59FE1EAEBFD700BEE0C8 /* recipeScreen.storyboard */; };
+		159E5A021EAEC05300BEE0C8 /* foodRestrictions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 159E5A011EAEC05300BEE0C8 /* foodRestrictions.storyboard */; };
+		159E5A041EAEC08D00BEE0C8 /* userProfiles.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 159E5A031EAEC08D00BEE0C8 /* userProfiles.storyboard */; };
 		15D163801EA3F6AA0023A51A /* RecipeWithIngredients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D1637F1EA3F6AA0023A51A /* RecipeWithIngredients.swift */; };
 		2B1AD5CA1E85AEF700FBEA48 /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1AD5C91E85AEF700FBEA48 /* RecipeViewController.swift */; };
 		2B1AD5CE1E85B9C100FBEA48 /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1AD5CD1E85B9C100FBEA48 /* RecipeTableViewCell.swift */; };
@@ -43,6 +47,10 @@
 		152A246B1E7F2B1F00C42EAA /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		152A246D1E7F2BD300C42EAA /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		159E58A51EA5462100BEE0C8 /* Steps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Steps.swift; sourceTree = "<group>"; };
+		159E59FC1EAEBF7000BEE0C8 /* searchResults.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = searchResults.storyboard; sourceTree = "<group>"; };
+		159E59FE1EAEBFD700BEE0C8 /* recipeScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = recipeScreen.storyboard; sourceTree = "<group>"; };
+		159E5A011EAEC05300BEE0C8 /* foodRestrictions.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = foodRestrictions.storyboard; sourceTree = "<group>"; };
+		159E5A031EAEC08D00BEE0C8 /* userProfiles.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = userProfiles.storyboard; sourceTree = "<group>"; };
 		15D1637F1EA3F6AA0023A51A /* RecipeWithIngredients.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeWithIngredients.swift; sourceTree = "<group>"; };
 		2B1AD5C91E85AEF700FBEA48 /* RecipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
 		2B1AD5CD1E85B9C100FBEA48 /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
@@ -87,6 +95,7 @@
 				15D1637F1EA3F6AA0023A51A /* RecipeWithIngredients.swift */,
 				1518B9771E85B4D30046868C /* TableViewController.swift */,
 				1518B9731E85B3A70046868C /* PantrySearchViewController.swift */,
+				159E59FC1EAEBF7000BEE0C8 /* searchResults.storyboard */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -94,6 +103,7 @@
 		152A24671E7F29DB00C42EAA /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				159E5A001EAEC01100BEE0C8 /* Menu Items */,
 				1518B9661E85A6320046868C /* Search */,
 				2B1AD5C41E84BEF200FBEA48 /* Recipe Screen */,
 				152A24681E7F29F300C42EAA /* Login */,
@@ -116,16 +126,25 @@
 			isa = PBXGroup;
 			children = (
 				152A246B1E7F2B1F00C42EAA /* Home.storyboard */,
+				152A246D1E7F2BD300C42EAA /* HomeViewController.swift */,
+				75F0C9C41E830B29002E1458 /* AddIngredientTableViewCell.swift */,
+				75F0C9C61E830B35002E1458 /* IngredientTableViewCell.swift */,
+				75FEFE471EA34047008D1619 /* Ingredient.swift */,
+			);
+			name = "Home Screen";
+			sourceTree = "<group>";
+		};
+		159E5A001EAEC01100BEE0C8 /* Menu Items */ = {
+			isa = PBXGroup;
+			children = (
 				75BE49DA1EA19F8E00BC9F4B /* RightMenuViewController.swift */,
 				2B67AE001EA546BD0029205F /* ProfileViewController.swift */,
 				2B67ADFE1EA53CEF0029205F /* AllergiesViewController.swift */,
 				2B67AE021EA59E2A0029205F /* AllergieTableViewCell.swift */,
-				75F0C9C41E830B29002E1458 /* AddIngredientTableViewCell.swift */,
-				75F0C9C61E830B35002E1458 /* IngredientTableViewCell.swift */,
-				152A246D1E7F2BD300C42EAA /* HomeViewController.swift */,
-				75FEFE471EA34047008D1619 /* Ingredient.swift */,
+				159E5A011EAEC05300BEE0C8 /* foodRestrictions.storyboard */,
+				159E5A031EAEC08D00BEE0C8 /* userProfiles.storyboard */,
 			);
-			name = "Home Screen";
+			name = "Menu Items";
 			sourceTree = "<group>";
 		};
 		2B1AD5C41E84BEF200FBEA48 /* Recipe Screen */ = {
@@ -134,6 +153,7 @@
 				2B1AD5CD1E85B9C100FBEA48 /* RecipeTableViewCell.swift */,
 				2B1AD5C91E85AEF700FBEA48 /* RecipeViewController.swift */,
 				159E58A51EA5462100BEE0C8 /* Steps.swift */,
+				159E59FE1EAEBFD700BEE0C8 /* recipeScreen.storyboard */,
 			);
 			name = "Recipe Screen";
 			path = ..;
@@ -252,11 +272,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				159E59FF1EAEBFD700BEE0C8 /* recipeScreen.storyboard in Resources */,
 				2BC8DC5F1E78758C00A7A3AD /* LaunchScreen.storyboard in Resources */,
 				2BC8DC5C1E78758C00A7A3AD /* Assets.xcassets in Resources */,
+				159E5A021EAEC05300BEE0C8 /* foodRestrictions.storyboard in Resources */,
 				75E65CDE1E9F684E003B9D87 /* GoogleService-Info.plist in Resources */,
 				2BC8DC571E78758C00A7A3AD /* Main.storyboard in Resources */,
 				152A246C1E7F2B1F00C42EAA /* Home.storyboard in Resources */,
+				159E5A041EAEC08D00BEE0C8 /* userProfiles.storyboard in Resources */,
+				159E59FD1EAEBF7000BEE0C8 /* searchResults.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

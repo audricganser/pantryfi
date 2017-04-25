@@ -14,14 +14,17 @@ import FirebaseDatabase
 
 class PantrySearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
-    //private var recipeList = [NSManagedObject]()
     var ingredientsString = ""
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    
     var listData = [[String: AnyObject]]()
     let ref = FIRDatabase.database().reference(withPath: "ingredients")
     var recipeList1 = [RecipeWithIngredients]()
+    
+    var searchFromHome = false
+    var queryFromHome = ""
     
      //var searchActive : Bool = false
     
@@ -29,7 +32,13 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
         super.viewDidLoad()
         // API call for recipes
         searchPantryRecipes()
-        // Do any additional setup after loading the view.
+        
+        //search from the home VC
+        if searchFromHome {
+            searchStringRecipe(query: queryFromHome)
+        }
+        
+        
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
@@ -43,15 +52,14 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         print("editing")
     }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print("clicked")
         print(searchBar.text!)
         let query = "\(searchBar.text!)"
         searchStringRecipe(query: query)
         
-        
     }
-    
     
     // MARK: - Table view data source
     
@@ -81,6 +89,8 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
         // Configure the cell...
         cell.recipeDescript.textColor = UIColor.gray
         cell.recipeTitle.text = title
+        //cell.recipeTitle.textColor = UIColor.white
+        //cell.recipeTitle.backgroundColor = UIColor(red: 76.0, green: 210.0, blue: 132.0, alpha: 0.0)
         cell.recipeDescript.text = "Loading..."
         //cell.recipeDescript.text = descript
         
@@ -97,6 +107,26 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
         return cell
     }
     
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyBoard1:UIStoryboard = UIStoryboard(name: "recipeScreen", bundle:nil)
+        let vc = storyBoard1.instantiateViewController(withIdentifier: "recipeScreen") as! RecipeViewController
+        
+        let indexPath = tableView.indexPathForSelectedRow
+        let recipe = recipeList1[indexPath!.row]
+        vc.recipeImageSegue = recipe.image
+        vc.recipeNameSegue = recipe.title
+        vc.recipePrepTimeSegue = "10 mins"
+        vc.recipeServesSegue = "2 servings"
+        vc.recipeIdSegue = recipe.id
+        vc.missingIngrSegue = recipe.missedIngredientCount
+        vc.containsIngSegue = recipe.usedIngredientCount
+
+        //go to other view controller
+        self.navigationController?.pushViewController(vc, animated:true)
+
+    }
+
+
     func getIngredients () -> [Ingredient] {
         var items:[Ingredient] = []
         // 1
