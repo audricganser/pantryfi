@@ -30,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navigationAppearance.titleTextAttributes = attrs
 
         FIRApp.configure()
+        
         return true
     }
 

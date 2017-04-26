@@ -41,14 +41,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         //top right button for settings
-        title = "PantryFi"
-        let button = UIButton.init(type: .custom)
-        button.setImage(#imageLiteral(resourceName: "menu-button"), for: UIControlState.normal)
-        button.addTarget(self, action:#selector(SSASideMenu.presentRightMenuViewController), for: UIControlEvents.touchUpInside)
-        print("add target")
-        button.frame = CGRect.init(x: 0, y: 0, width: 30, height: 30) //CGRectMake(0, 0, 30, 30)
-        let barButton = UIBarButtonItem.init(customView: button)
-        self.navigationItem.rightBarButtonItem = barButton
         
         //Pantry search button set up
         pantrySearchButton.layer.borderColor = UIColor.white.cgColor

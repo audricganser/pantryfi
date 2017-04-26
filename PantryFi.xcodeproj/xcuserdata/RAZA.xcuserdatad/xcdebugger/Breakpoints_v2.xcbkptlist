@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PantryFi/HomeViewController.swift"
-            timestampString = "514182666.499555"
+            timestampString = "514860717.120207"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
-            landmarkName = "tableView(_:numberOfRowsInSection:)"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "searchBarSearchButtonClicked(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PantryFi/HomeViewController.swift"
-            timestampString = "514182666.499555"
+            timestampString = "514860717.120207"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
-            landmarkName = "tableView(_:numberOfRowsInSection:)"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "searchBarSearchButtonClicked(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
