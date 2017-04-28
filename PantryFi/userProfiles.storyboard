@@ -178,7 +178,7 @@
                             <outlet property="delegate" destination="m7e-ro-UCH" id="CjJ-54-KjI"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="" image="005-user-outline" selectedImage="005-user-outline" id="in8-aB-AVB"/>
+                    <tabBarItem key="tabBarItem" title="" image="001-line" selectedImage="001-line" id="in8-aB-AVB"/>
                     <navigationItem key="navigationItem" id="QOZ-Gh-g8H"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
@@ -224,6 +224,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="001-line" width="24" height="24"/>
         <image name="005-user-outline" width="24" height="24"/>
     </resources>
 </document>

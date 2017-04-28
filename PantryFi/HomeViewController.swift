@@ -214,6 +214,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         {
             let addCell = tableView.dequeueReusableCell(withIdentifier: avarellIdentifier) as! AddIngredientTableViewCell
             addCell.backgroundColor = UIColor.clear
+            addCell.cellRect.layer.backgroundColor = UIColor(hex: "0x2ECC71").cgColor
             addCell.cellRect.layer.cornerRadius = 5
             addCell.cellRect.layer.borderWidth = 1.25
             addCell.cellRect.layer.borderColor = UIColor(hex: "0x2ECC71").cgColor
