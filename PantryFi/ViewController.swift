@@ -98,7 +98,7 @@ class ViewController: UIViewController {
     func loginSegue ()
     {
         let storyBoard1:UIStoryboard = UIStoryboard(name: "Home", bundle:nil)
-        let nextViewController = storyBoard1.instantiateViewController(withIdentifier: "SideMenu")
+        let nextViewController = storyBoard1.instantiateViewController(withIdentifier: "TabController")
         self.present(nextViewController, animated:true, completion:nil)
 
     }

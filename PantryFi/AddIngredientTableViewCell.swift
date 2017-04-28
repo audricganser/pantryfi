@@ -10,6 +10,7 @@ import UIKit
 
 class AddIngredientTableViewCell: UITableViewCell {
 
+    @IBOutlet var cellRect: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
