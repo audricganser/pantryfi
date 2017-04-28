@@ -10,6 +10,7 @@ import UIKit
 
 class IngredientTableViewCell: UITableViewCell {
 
+    @IBOutlet var cellRect: UILabel!
     @IBOutlet var quantityLabel: UILabel!
     @IBOutlet var titleLabel: UILabel!
     

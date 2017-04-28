@@ -50,13 +50,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         //top right button for settings
         
-        //Pantry search button set up
-        pantrySearchButton.layer.borderColor = UIColor.white.cgColor
+        //table set up
+        self.tableView.separatorColor = UIColor.clear
         
         //tableView set up
         tableView.delegate = self
         tableView.dataSource = self
-        searchBar.delegate = self
         
         // 1
         if let user = FIRAuth.auth()?.currentUser
@@ -215,13 +214,18 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         {
             let addCell = tableView.dequeueReusableCell(withIdentifier: avarellIdentifier) as! AddIngredientTableViewCell
             addCell.backgroundColor = UIColor.clear
-
+            addCell.cellRect.layer.cornerRadius = 5
+            addCell.cellRect.layer.borderWidth = 1.25
+            addCell.cellRect.layer.borderColor = UIColor(hex: "0x2ECC71").cgColor
             return addCell
         }
         else
         {
             let itemCell = tableView.dequeueReusableCell(withIdentifier: itemIdentifier) as! IngredientTableViewCell
             itemCell.backgroundColor = UIColor.clear
+            itemCell.cellRect.layer.cornerRadius = 5
+            itemCell.cellRect.layer.borderWidth = 1.25
+            itemCell.cellRect.layer.borderColor = UIColor(hex: "0x2ECC71").cgColor
             let row = indexPath.row
             let ingredient = items[row-1]
             itemCell.titleLabel.text = ingredient.name
@@ -251,44 +255,45 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func didTapAddItem()
     {
         
-        let alert = UIAlertController(title: "New Ingredient", message:"Insert name of item and quantity", preferredStyle: .alert)
-        alert.addTextField(configurationHandler: nil)
-        alert.addTextField(configurationHandler: nil)
-        alert.textFields?[0].placeholder = "Item"
-        alert.textFields?[1].placeholder = "Quantity"
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
-            if let title = alert.textFields?[0].text
-            {
-                if let itemQuantity = alert.textFields?[1].text
-                {
-                    if(title == "" || itemQuantity == "")
-                    {
-                        
-                    }
-                    else
-                    {
-                        guard let textField = alert.textFields?.first,
-                            let text = textField.text else { return }
-                        
-                        if let user = FIRAuth.auth()?.currentUser
-                        {
-                            let uid = user.uid
-
-                        
-                        // 2
-                        let ingredient = Ingredient(name:text, quantity:itemQuantity)
-                        // 3
-                        let ingredientItemRef = self.ref.child(uid).child(text.lowercased())
-                        
-                        // 4
-                        ingredientItemRef.setValue(ingredient.toAnyObject())
-                        }
-                        
-                    }
-                }
-            }
-        }))
-        self.present(alert, animated: true, completion: nil)
+        self.performSegue(withIdentifier: "addIngredient", sender: self)
+//        let alert = UIAlertController(title: "New Ingredient", message:"Insert name of item and quantity", preferredStyle: .alert)
+//        alert.addTextField(configurationHandler: nil)
+//        alert.addTextField(configurationHandler: nil)
+//        alert.textFields?[0].placeholder = "Item"
+//        alert.textFields?[1].placeholder = "Quantity"
+//        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+//            if let title = alert.textFields?[0].text
+//            {
+//                if let itemQuantity = alert.textFields?[1].text
+//                {
+//                    if(title == "" || itemQuantity == "")
+//                    {
+//                        
+//                    }
+//                    else
+//                    {
+//                        guard let textField = alert.textFields?.first,
+//                            let text = textField.text else { return }
+//                        
+//                        if let user = FIRAuth.auth()?.currentUser
+//                        {
+//                            let uid = user.uid
+//
+//                        
+//                        // 2
+//                        let ingredient = Ingredient(name:text, quantity:itemQuantity)
+//                        // 3
+//                        let ingredientItemRef = self.ref.child(uid).child(text.lowercased())
+//                        
+//                        // 4
+//                        ingredientItemRef.setValue(ingredient.toAnyObject())
+//                        }
+//                        
+//                    }
+//                }
+//            }
+//        }))
+//        self.present(alert, animated: true, completion: nil)
 
     }
     
@@ -397,4 +402,6 @@ extension UIView {
     }
 
 }
+
+
 

@@ -148,7 +148,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="002-search-symbol-in-black-circular-button" width="32" height="32"/>
+        <image name="002-search-symbol-in-black-circular-button" width="64" height="64"/>
         <image name="rating" width="660" height="300"/>
     </resources>
 </document>

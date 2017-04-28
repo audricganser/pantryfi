@@ -20,10 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         let navigationAppearance = UINavigationBar.appearance()
-        navigationAppearance.tintColor = UIColor(hex: "0xffffff")
-        navigationAppearance.barTintColor = UIColor(hex: "0x2ECC71")
+        navigationAppearance.tintColor = UIColor(hex: "0x2ECC71")
+        navigationAppearance.barTintColor = UIColor(hex: "0xffffff")
         let attrs = [
-            NSForegroundColorAttributeName: UIColor.white,
+            NSForegroundColorAttributeName: UIColor(hex: "0x2ECC71"),
             NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 20)!
         ]
         
