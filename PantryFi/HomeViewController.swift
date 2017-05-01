@@ -257,45 +257,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     {
         
         self.performSegue(withIdentifier: "addIngredient", sender: self)
-//        let alert = UIAlertController(title: "New Ingredient", message:"Insert name of item and quantity", preferredStyle: .alert)
-//        alert.addTextField(configurationHandler: nil)
-//        alert.addTextField(configurationHandler: nil)
-//        alert.textFields?[0].placeholder = "Item"
-//        alert.textFields?[1].placeholder = "Quantity"
-//        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
-//            if let title = alert.textFields?[0].text
-//            {
-//                if let itemQuantity = alert.textFields?[1].text
-//                {
-//                    if(title == "" || itemQuantity == "")
-//                    {
-//                        
-//                    }
-//                    else
-//                    {
-//                        guard let textField = alert.textFields?.first,
-//                            let text = textField.text else { return }
-//                        
-//                        if let user = FIRAuth.auth()?.currentUser
-//                        {
-//                            let uid = user.uid
-//
-//                        
-//                        // 2
-//                        let ingredient = Ingredient(name:text, quantity:itemQuantity)
-//                        // 3
-//                        let ingredientItemRef = self.ref.child(uid).child(text.lowercased())
-//                        
-//                        // 4
-//                        ingredientItemRef.setValue(ingredient.toAnyObject())
-//                        }
-//                        
-//                    }
-//                }
-//            }
-//        }))
-//        self.present(alert, animated: true, completion: nil)
-
     }
     
      func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -308,6 +269,15 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             ingredientItem.ref?.removeValue()
         }
     }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if (indexPath.row == 0)
+        {
+            return false
+        }
+        return true
+    }
+
     
     @IBAction func searchPantry(_ sender: Any) {
         let storyBoard1:UIStoryboard = UIStoryboard(name: "searchResults", bundle:nil)
