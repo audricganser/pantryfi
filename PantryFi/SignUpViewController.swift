@@ -79,7 +79,7 @@ class SignUpViewController: UIViewController {
                 
                 let uid = user!.uid
                 print("saving user2: \(uid)" )
-                let values: [String : Any] = ["firstName": firstName, "lastName": lastName]
+                let values: [String : Any] = ["name": "\(firstName) \(lastName)"]
                 
                 var ref: FIRDatabaseReference!
                 ref = FIRDatabase.database().reference(fromURL: "https://pantryfi-2e385.firebaseio.com/")
