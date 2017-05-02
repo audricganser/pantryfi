@@ -20,6 +20,7 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
+    
     var listData = [[String: AnyObject]]()
     let ref = FIRDatabase.database().reference(withPath: "ingredients")
     var items = [String]()
@@ -86,23 +87,16 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
         // Configure the cell...
         let recipe = recipeList1[indexPath.row]
         
-        // Getting summary
-        //recipeSummary(id: "\(recipe.id)", cell: cell)
-        
-        let title = recipe.title
-        //let descript = recipe.id
-        let imageUrl = recipe.image
-        
         // Configure the cell...
-        cell.recipeDescript.textColor = UIColor.gray
-        cell.recipeTitle.text = title
+        cell.recipeTitle.text = recipe.title
         //cell.recipeTitle.textColor = UIColor.white
         //cell.recipeTitle.backgroundColor = UIColor(red: 76.0, green: 210.0, blue: 132.0, alpha: 0.0)
-        cell.recipeDescript.text = "Loading..."
+        cell.prepTimeLabel.text = "\(recipe.readyInMinutes)"
+        cell.ratingLabel.text = "\(recipe.spoonacularScore)"
         //cell.recipeDescript.text = descript
         
         // Loading image from url
-        Alamofire.request(imageUrl).response { response in
+        Alamofire.request(recipe.image).response { response in
             if let data = response.data {
                 let image = UIImage(data: data)
                 cell.recipeImage.image = image
@@ -120,13 +114,7 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
         
         let indexPath = tableView.indexPathForSelectedRow
         let recipe = recipeList1[indexPath!.row]
-        vc.recipeImageSegue = recipe.image
-        vc.recipeNameSegue = recipe.title
-        vc.recipePrepTimeSegue = "10 mins"
-        vc.recipeServesSegue = "2 servings"
-        vc.recipeIdSegue = "\(recipe.id)"
-        vc.missingIngrSegue = recipe.missedIngredientCount
-        vc.containsIngSegue = recipe.usedIngredientCount
+        vc.recipe = recipe
 
         //go to other view controller
         self.navigationController?.pushViewController(vc, animated:true)
@@ -158,117 +146,9 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
                 self.complexSearch(includeIngredients: self.ingredientsString )
             })
         }
-        
-        
-//        // API call for recipes
-//        searchPantryRecipes()
-//        
-//        //search from the home VC
-//        if searchFromHome {
-//            searchStringRecipe(query: queryFromHome)
-//        }
-//
     }
     
-    // API Search Function
-//    func searchPantryRecipes () {
-//        self.ingredientsString = self.items.joined(separator: ",")
-//        print ("ingredients are: \(self.ingredientsString) ")
-//        
-//        let baseUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients"
-//        let headers: HTTPHeaders = ["X-Mashape-Key": "oWragx4kwsmshOw6ZL8IH8RP81DUp1L0QFVjsn0JaX9pEIPpUg"]
-//        let parameters: Parameters = ["fillIngredients": "false", "limitLicense":"true", "number": 10, "ranking": 1, "ingredients": self.ingredientsString]
-//        
-//        Alamofire.request(baseUrl, parameters: parameters, headers: headers).responseJSON { response in
-////            print(response.request)  // original URL request
-////            print(response.response) // HTTP URL response
-////            print(response.data)     // server data
-////            print(response.result)   // result of response serialization
-//            
-//            if let JSON = response.result.value {
-//                let jsonArray = JSON as! NSArray
-//                
-//                self.recipeList1 = []
-//                for recipe in jsonArray {
-//                    let recipeObj = recipe as! Dictionary<String, Any>
-//                    let recipeId = recipeObj["id"]!
-//                    let recipeTitle = recipeObj["title"]!
-//                    let uic = recipeObj["usedIngredientCount"]!
-//                    let mic = recipeObj["missedIngredientCount"]!
-//                    let likes = recipeObj["likes"]!
-//                    let img = recipeObj["image"]!
-//                    
-//                    let newRecipe = RecipeWithIngredients.init(id: "\(recipeId)", title: "\(recipeTitle)", image: "\(img)", usedIngredientCount: uic as! Int, missedIngredientCount: mic as! Int, likes: likes as! Int)
-//                    
-//                    self.recipeList1.append(newRecipe)
-//                    print("appending recipe")
-//                    print(newRecipe.id)
-//                    print(newRecipe.title)
-//                }
-//                self.tableView.reloadData()
-//                
-//            }
-//        }
-//    }
-    
-//    func searchStringRecipe (query:String) {
-//        let baseUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search"
-//        let headers: HTTPHeaders = ["X-Mashape-Key": "oWragx4kwsmshOw6ZL8IH8RP81DUp1L0QFVjsn0JaX9pEIPpUg"]
-//        let parameters: Parameters = ["instructionsRequired": "false", "limitLicense":"true", "number": 10, "offset": 0, "query": query]
-//        
-//        Alamofire.request(baseUrl, parameters: parameters, headers: headers).responseJSON { response in
-//            //            print(response.request)  // original URL request
-//            //            print(response.response) // HTTP URL response
-//            //            print(response.data)     // server data
-//            //            print(response.result)   // result of response serialization
-//            
-//            if let JSON = response.result.value {
-//                let jsonDict = JSON as! Dictionary<String, Any>
-//                let results = jsonDict["results"] as! NSArray
-//                
-//                self.recipeList1 = []
-//                for recipe in results {
-//                    let recipeObj = recipe as! Dictionary<String, Any>
-//                    let recipeId = recipeObj["id"]!
-//                    let recipeTitle = recipeObj["title"]!
-//                    let uic = 0
-//                    let mic = 1
-//                    let likes = 0
-//                    let img = recipeObj["image"]!
-//                    let image = "https://spoonacular.com/recipeImages/" + "\(img)"
-// 
-//                    let newRecipe = RecipeWithIngredients.init(id: "\(recipeId)", title: "\(recipeTitle)", image: image, usedIngredientCount: uic , missedIngredientCount: mic , likes: likes)
-//                    
-//                    self.recipeList1.append(newRecipe)
-//                    print("appending recipe")
-//                    print(newRecipe.id)
-//                    print(newRecipe.title)
-//                }
-//                self.tableView.reloadData()
-//                
-//            }
-//        }
-//    
-//    }
-    
-    /*
-     curl --get --include 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/searchComplex?
-     addRecipeInformation=true& cuisine=american& diet=pescetarian& excludeIngredients=coconut%2C+mango& fillIngredients=true& 
-     includeIngredients=onions%2C+lettuce%2C+tomato& 
-     instructionsRequired=false& 
-     intolerances=peanut%2C+shellfish&
-     limitLicense=true&
-     number=10&
-     offset=0&
-     query=burger&
-     ranking=1&
-     type=main+course' \
-     -H 'X-Mashape-Key: oWragx4kwsmshOw6ZL8IH8RP81DUp1L0QFVjsn0JaX9pEIPpUg' \
-     -H 'Accept: application/json'
- */
-    
-    
-    
+    // API Complex Recipe Search Function
     func complexSearch (query:String = "", includeIngredients: String = "", excludeIngredients: String = "", intolerances: String = "", number: Int = 10, offset: Int = 0, type: String = "") {
         
         let baseUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/searchComplex"
@@ -302,7 +182,6 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
                 
             }
         }
-        
     }
     
     func getRecipe(recipe: Dictionary<String, Any>) -> RecipeWithIngredients {
@@ -326,7 +205,7 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
             usedIngredients.append(makeIngredient(ingredient: i as! Dictionary<String, Any>))
         }
 
-        var ai = recipe["analyzedInstructions"]! as! NSArray
+        let ai = recipe["analyzedInstructions"]! as! NSArray
         let analyzedInstructions:AnalyzedInstructions = makeAnalyzedInstructions(analyzedInstructions: ai[0] as! Dictionary<String, Any>)
         
         let recipe_ret = RecipeWithIngredients.init(id: id, title: "\(title)", image: "\(image)", usedIngredientCount: usedIngredientCount, missedIngredientCount: missedIngredientCount, likes: likes, healthScore: healthScore, spoonacularScore: spoonacularScore, servings: servings, readyInMinutes: readyInMinutes, missedIngredients: missedIngredients, usedIngredients: usedIngredients, analyzedInstructions: analyzedInstructions)
@@ -372,7 +251,7 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
                 let json = JSON as! Dictionary<String, Any>
                 let sum = json["summary"]!
                 summary = "\(sum)"
-                cell.recipeDescript.attributedText = self.stringFromHtml(string: summary)
+                //cell.recipeDescript.attributedText = self.stringFromHtml(string: summary)
                 //print("JSON: \(summary)")
                 
             }
@@ -406,13 +285,7 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
             let destinationVC = segue.destination as! RecipeViewController
             let indexPath = tableView.indexPathForSelectedRow
             let recipe = recipeList1[indexPath!.row]
-            destinationVC.recipeImageSegue = recipe.image
-            destinationVC.recipeNameSegue = recipe.title
-            destinationVC.recipePrepTimeSegue = "10 mins"
-            destinationVC.recipeServesSegue = "2 servings"
-            destinationVC.recipeIdSegue = "\(recipe.id)"
-            destinationVC.missingIngrSegue = recipe.missedIngredientCount
-            destinationVC.containsIngSegue = recipe.usedIngredientCount
+            destinationVC.recipe = recipe
         }
 
     }

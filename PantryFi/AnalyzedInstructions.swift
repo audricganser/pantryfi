@@ -12,7 +12,7 @@ class AnalyzedInstructions  {
     var name:String
     var steps:[Steps]
     
-    init(name:String, steps:[Steps]) {
+    init(name:String = "", steps:[Steps] = []) {
         self.name = name
         self.steps = steps
     }

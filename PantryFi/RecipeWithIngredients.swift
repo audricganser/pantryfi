@@ -25,7 +25,7 @@ class RecipeWithIngredients {
     
     
     
-    init(id:Int, title:String, image:String, usedIngredientCount:Int, missedIngredientCount:Int, likes:Int, healthScore:Int, spoonacularScore:Int, servings:Int, readyInMinutes:Int, missedIngredients:[Ingredient], usedIngredients:[Ingredient], analyzedInstructions:AnalyzedInstructions) {
+    init(id:Int = 0, title:String = "", image:String = "", usedIngredientCount:Int = 0, missedIngredientCount:Int = 0, likes:Int = 0, healthScore:Int = 0, spoonacularScore:Int = 0, servings:Int = 0, readyInMinutes:Int = 0, missedIngredients:[Ingredient] = [], usedIngredients:[Ingredient] = [], analyzedInstructions:AnalyzedInstructions = AnalyzedInstructions.init()) {
         self.id = id
         self.title = title
         self.image = image
