@@ -23,14 +23,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var items = [Ingredient]()
     var spotlightItems = [spotlightItem]()
     var spotlightPosition = 0
-//    let colorArray = [
-//        UIColor.red,
-//        UIColor.orange,
-//        UIColor.yellow,
-//        UIColor.green,
-//        UIColor.blue
-//    ]
-//    var colorPick = 0
 
     @IBOutlet weak var pantrySearchButton: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -44,11 +36,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //pushed view controller up when keyboard is shown
+        //pushed view controller up when keyboard is shown NOT USED
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        
-        //top right button for settings
         
         //table set up
         self.tableView.separatorColor = UIColor.clear
@@ -164,26 +154,26 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         prevSpotlightItem()
     }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        let query = "\(searchBar.text!)"
-        
-        //set up other view controller
-        let vc = (storyboard?.instantiateViewController(withIdentifier: "pantrySearch"))! as! PantrySearchViewController
-        
-        vc.queryFromHome = query
-        vc.searchFromHome = true
-        
-        //hide keyboard
-        view.endEditing(true)
-        
-        //reset search input
-        self.searchBar.text = nil
-        
-        //go to other view controller
-        self.navigationController?.pushViewController(vc, animated:true)
-        
-        
-    }
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//        let query = "\(searchBar.text!)"
+//        
+//        //set up other view controller
+//        let vc = (storyboard?.instantiateViewController(withIdentifier: "pantrySearch"))! as! PantrySearchViewController
+//        
+//        vc.queryFromHome = query
+//        vc.searchFromHome = true
+//        
+//        //hide keyboard
+//        view.endEditing(true)
+//        
+//        //reset search input
+//        self.searchBar.text = nil
+//        
+//        //go to other view controller
+//        self.navigationController?.pushViewController(vc, animated:true)
+//        
+//        
+//    }
     
     func adjustUITextViewHeight(arg : UITextView)
     {

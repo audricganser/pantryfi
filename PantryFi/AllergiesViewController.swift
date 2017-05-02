@@ -12,9 +12,9 @@ class AllergiesViewController: UIViewController, UITableViewDataSource, UITableV
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var topNavigation:UINavigationItem!
-    var allergies = ["Milk", "Eggs", "Fish", "Crustacean shellfish", "Tree Nuts", "Peanuts", "Wheat", "Soybeans"]
+    var allergies = ["Milk", "Eggs", "Fish", "Crustacean shellfish", "Tree Nuts", "Peanuts", "Wheat", "Soybeans", "Gluten", "Soy", "Sulfite"]
     
-    var diets = ["Vegan", "Vegetarian", "Gluten Free", "Ketogenic", "Whole 30"]
+    var diets = ["Vegan", "Vegetarian", "Gluten Free", "Ketogenic", "Whole 30", "Paleo"]
     
     var tableCellList = [String]()
     var listSegue = true
@@ -24,42 +24,30 @@ class AllergiesViewController: UIViewController, UITableViewDataSource, UITableV
         
         if listSegue {
             self.tableCellList = self.allergies
-            self.topNavigation.title = "Food Allergies"
 
         }
         else {
             self.tableCellList = self.diets
-            self.topNavigation.title = "Dietary Restrictions"
         }
-        
         
         tableView.delegate = self
         tableView.dataSource = self
         
     }
+    
+    @IBAction func applyButton(_ sender: Any) {
+        print("Save data and go back to userProfile")
+        let storyBoard : UIStoryboard = UIStoryboard(name: "userProfiles", bundle:nil)
+        let vc = storyBoard.instantiateViewController(withIdentifier: "userProfiles") as!UserProfileTableViewController
+        self.navigationController?.pushViewController(vc, animated:true)
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    @IBAction func applyButton(_ sender: Any) {
         
-        print("Save data and go back home")
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Home", bundle:nil)
-        
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SideMenu")
-        self.present(nextViewController, animated:true, completion:nil)
-    }
-    
-    @IBAction func backHome(_ sender: Any) {
-        print("go back home")
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Home", bundle:nil)
-        
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SideMenu")
-        self.present(nextViewController, animated:true, completion:nil)
-    }
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
