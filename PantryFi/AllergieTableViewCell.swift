@@ -11,8 +11,9 @@ import UIKit
 class AllergieTableViewCell: UITableViewCell {
 
     @IBOutlet weak var allerginLabel: UILabel!
-    @IBOutlet weak var allerginSegmented: UISegmentedControl!
     
+    @IBOutlet weak var `switch`: UISwitch!
+   
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
