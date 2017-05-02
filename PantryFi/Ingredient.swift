@@ -15,14 +15,16 @@ class Ingredient {
     var quantity:String
     let ref: FIRDatabaseReference?
     let key: String
+    let image:String
 
     
-    init(name:String, quantity:String, key: String = "")
+    init(name:String, quantity:String, key: String = "", image:String = "")
     {
         self.key = key
         self.name = name
         self.quantity = quantity
         self.ref = nil
+        self.image = image
     }
     
     init(snapshot: FIRDataSnapshot) {
@@ -31,6 +33,7 @@ class Ingredient {
         name = snapshotValue["name"] as! String
         quantity = snapshotValue["quantity"] as! String
         ref = snapshot.ref
+        image = ""
     }
     
     

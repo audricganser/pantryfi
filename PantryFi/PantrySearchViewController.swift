@@ -88,22 +88,21 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
         let recipe = recipeList1[indexPath.row]
         
         // Configure the cell...
-        cell.recipeTitle.text = recipe.title
-        //cell.recipeTitle.textColor = UIColor.white
-        //cell.recipeTitle.backgroundColor = UIColor(red: 76.0, green: 210.0, blue: 132.0, alpha: 0.0)
-        cell.prepTimeLabel.text = "\(recipe.readyInMinutes)"
-        cell.ratingLabel.text = "\(recipe.spoonacularScore)"
-        //cell.recipeDescript.text = descript
-        
         // Loading image from url
         Alamofire.request(recipe.image).response { response in
             if let data = response.data {
                 let image = UIImage(data: data)
                 cell.recipeImage.image = image
             } else {
+                // place holder image
+                // cell.imgView1.image = something!!!
                 print("Data is nil. I don't know what to do :(")
             }
         }
+        cell.recipeTitle.text = recipe.title
+        cell.prepTimeLabel.text = "\(recipe.readyInMinutes) minutes"
+        cell.ratingLabel.text = "\(recipe.spoonacularScore)"
+        
         
         return cell
     }
@@ -216,10 +215,13 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
     
     func makeIngredient (ingredient: Dictionary<String, Any>) -> Ingredient {
         let name = ingredient["name"]!
-        let quantity = ingredient["amount"]!
+        let amount = ingredient["amount"]!
+        let unit = ingredient["unitLong"]!
+        let quantity = "\(amount) \(unit)"
         let key = ingredient["id"]!
+        let image = ingredient["image"]!
         
-        return Ingredient.init(name: "\(name)", quantity: "\(quantity)", key: "\(key)")
+        return Ingredient.init(name: "\(name)", quantity: "\(quantity)", key: "\(key)", image: "\(image)")
     }
     
     func makeAnalyzedInstructions (analyzedInstructions: Dictionary<String, Any>) -> AnalyzedInstructions {

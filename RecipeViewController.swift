@@ -38,7 +38,7 @@ class RecipeViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         self.recipeTitle.text = self.recipe.title
-        self.recipePrepTime.text = "\(self.recipe.readyInMinutes)"
+        self.recipePrepTime.text = "\(self.recipe.readyInMinutes) minutes"
         self.recipeServes.text = "\(self.recipe.servings)"
         self.ratingLabel.text = "\(self.recipe.spoonacularScore)"
         self.healthScoreLabel.text = "\(self.recipe.healthScore)"
@@ -71,15 +71,32 @@ class RecipeViewController: UIViewController {
     
     
     @IBAction func showIngredients(_ sender: Any) {
+        let storyBoard1:UIStoryboard = UIStoryboard(name: "Recipe-Ingredients", bundle:nil)
+        let vc = storyBoard1.instantiateViewController(withIdentifier: "recipeIngredients") as! RecipeIngredientsTableViewController
+        
+        var i = [Ingredient]()
+        i.append(contentsOf: self.recipe.missedIngredients)
+        i.append(contentsOf: self.recipe.usedIngredients)
+//        i.append(self.recipe.missedIngredients)
+//        i.append(self.recipe.usedIngredients)
+        vc.ingredients = i
+        
+        //go to other view controller
+        self.navigationController?.pushViewController(vc, animated:true)
+
+        
     }
     
     @IBAction func showNutrition(_ sender: Any) {
+        
     }
     
     @IBAction func showSummary(_ sender: Any) {
+        
     }
     
     @IBAction func showInstructions(_ sender: Any) {
+        
     }
     
 
