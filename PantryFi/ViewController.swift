@@ -9,6 +9,9 @@
 import UIKit
 import CoreData
 import FirebaseAuth
+import FirebaseDatabase
+import FacebookCore
+import FacebookLogin
 
 class ViewController: UIViewController {
     
@@ -93,6 +96,52 @@ class ViewController: UIViewController {
             self.loginSegue()
             
         })
+    }
+    
+    @IBAction func facebookButton(_ sender: Any)
+    {
+        let loginManager = LoginManager()
+        loginManager.logIn([ .publicProfile, .email ], viewController: self) { loginResult in
+            switch loginResult {
+            case .failed(let error):
+                print(error)
+            case .cancelled:
+                print("User cancelled login.")
+            case .success(let grantedPermissions, let declinedPermissions, let accessToken):
+                let credential = FIRFacebookAuthProvider.credential(withAccessToken: (AccessToken.current?.authenticationToken)!)
+                
+                FIRAuth.auth()?.signIn(with: credential) { (user,error) in
+                    
+                    if let error = error {
+                        print("Error \(error))")
+                        return
+                    }
+                    print("User logged into Firebase")
+                    let uid = user!.uid
+                    
+                    if user?.uid != nil
+                    {
+                        guard let email = user?.email, let name = user?.displayName
+                        else
+                        {
+                            return
+                        }
+                        
+                        let uid = user!.uid
+                        let values: [String: Any] = ["name":name]
+                        var ref: FIRDatabaseReference!
+                        ref = FIRDatabase.database().reference(fromURL: "https://pantryfi-2e385.firebaseio.com/")
+                        ref.child("users").child(uid).updateChildValues(values)
+                        self.loginSegue()
+                        
+                    }
+                    else
+                    {
+                        self.loginSegue()
+                    }
+                }
+            }
+        }
     }
     
     func loginSegue ()
