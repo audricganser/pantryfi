@@ -217,11 +217,10 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
         let name = ingredient["name"]!
         let amount = ingredient["amount"]!
         let unit = ingredient["unitLong"]!
-        let quantity = "\(amount) \(unit)"
         let key = ingredient["id"]!
         let image = ingredient["image"]!
         
-        return Ingredient.init(name: "\(name)", quantity: "\(quantity)", key: "\(key)", image: "\(image)")
+        return Ingredient.init(name: "\(name)", quantity: "\(amount)", key: "\(key)", unit: "\(unit)", image: "\(image)")
     }
     
     func makeAnalyzedInstructions (analyzedInstructions: Dictionary<String, Any>) -> AnalyzedInstructions {

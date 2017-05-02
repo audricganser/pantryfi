@@ -21,19 +21,7 @@ class Ingredient {
     let image:String
 
     
-    init(name:String, quantity:String, key: String = "", image:String = "")
-    {
-        self.key = key
-        self.name = name
-        self.quantity = quantity
-        self.ref = nil
-        self.image = image
-        self.unit = ""
-        self.expirationAlert = false
-        self.expirationDate = ""
-    }
-    
-    init(name:String, quantity:String, key: String = "", unit:String, expirationDate:String, expirationAlert:Bool, image:String = "")
+    init(name:String, quantity:String, key: String = "", unit:String, expirationDate:String = "", expirationAlert:Bool = false, image:String = "")
     {
         self.key = key
         self.name = name
