@@ -220,19 +220,25 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let row = indexPath.row
             let ingredient = items[row-1]
             itemCell.titleLabel.text = ingredient.name
-            itemCell.quantityLabel.text = ingredient.quantity
+            itemCell.quantityLabel.text = "\(ingredient.quantity) \(ingredient.unit)"
             
             return itemCell
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated:true)
         
         let row = indexPath.row
         if(row == 0)
         {
+            tableView.deselectRow(at: indexPath, animated:true)
             didTapAddItem()
+        }
+        else
+        {
+            self.performSegue(withIdentifier: "editIngredient", sender: self)
+            tableView.deselectRow(at: indexPath, animated:true)
+
         }
     }
     
@@ -285,20 +291,16 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.navigationController?.pushViewController(vc, animated:true)
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        // Get the new view controller using segue.destinationViewController.
-//        // Pass the selected object to the new view controller.
-//        if (segue.identifier == "pantrySearchSegue") {
-//            let destinationVC = segue.destination as! PantrySearchViewController
-//            var ingredientsString = ""
-//            
-//            for i in items {
-//                ingredientsString += i.name + ","
-//            }
-//            destinationVC.ingredientsString = ingredientsString
-//        }
-//        
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        if (segue.identifier == "editIngredient") {
+            let destinationVC = segue.destination as! AddIngredientViewController
+            let indexPath = self.tableView.indexPathForSelectedRow?.row
+            destinationVC.ingredient = items[indexPath! - 1]
+        }
+        
+    }
     
     // Keyboard functions
     func textFieldShouldReturn (_ textField: UITextField) -> Bool {
