@@ -216,9 +216,50 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             itemCell.backgroundColor = UIColor.clear
             itemCell.cellRect.layer.cornerRadius = 5
             itemCell.cellRect.layer.borderWidth = 1.25
-            itemCell.cellRect.layer.borderColor = UIColor(hex: "0x2ECC71").cgColor
             let row = indexPath.row
             let ingredient = items[row-1]
+            if(ingredient.expirationDate != "")
+            {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "MM/dd/yyyy"
+
+                let calendar = NSCalendar.current
+
+                let date = dateFormatter.date(from: ingredient.expirationDate)
+
+                let now = Date()
+                let unit: NSCalendar.Unit = [
+                    NSCalendar.Unit.day,
+                    NSCalendar.Unit.month,
+                    NSCalendar.Unit.year,
+                    ]
+                let nowComponents:DateComponents = (calendar as NSCalendar).components(unit, from: now)
+                let targetComponents:DateComponents = (calendar as NSCalendar).components(unit, from: date!)
+                let day = targetComponents.day! - nowComponents.day!
+                if(day <= 5  && day > 0)
+                {
+                    itemCell.cellRect.layer.borderColor = UIColor(hex: "0xf1c40f").cgColor
+                    itemCell.titleLabel.textColor = UIColor(hex: "0xf1c40f")
+                }
+                else if(day <= 0)
+                {
+                    itemCell.cellRect.layer.borderColor = UIColor(hex: "0xe74c3c").cgColor
+                    itemCell.titleLabel.textColor = UIColor(hex: "0xe74c3c")
+
+                }
+                else
+                {
+                    itemCell.cellRect.layer.borderColor = UIColor(hex: "0x2ECC71").cgColor
+                    itemCell.titleLabel.textColor = UIColor(hex: "0x2ECC71")
+
+                    
+                }
+            }
+            else
+            {
+                itemCell.cellRect.layer.borderColor = UIColor(hex: "0x2ECC71").cgColor
+                itemCell.titleLabel.textColor = UIColor(hex: "0x2ECC71")
+            }
             itemCell.titleLabel.text = ingredient.name
             itemCell.quantityLabel.text = "\(ingredient.quantity) \(ingredient.unit)"
             
