@@ -18,20 +18,10 @@ class Ingredient {
     var expirationAlert:Bool
     let ref: FIRDatabaseReference?
     let key: String
+    let image:String
 
     
-    init(name:String, quantity:String, key: String = "")
-    {
-        self.key = key
-        self.name = name
-        self.quantity = quantity
-        self.ref = nil
-        self.unit = ""
-        self.expirationAlert = false
-        self.expirationDate = ""
-    }
-    
-    init(name:String, quantity:String, key: String = "", unit:String, expirationDate:String, expirationAlert:Bool)
+    init(name:String, quantity:String, key: String = "", unit:String, expirationDate:String = "", expirationAlert:Bool = false, image:String = "")
     {
         self.key = key
         self.name = name
@@ -40,6 +30,7 @@ class Ingredient {
         self.unit = unit
         self.expirationDate = expirationDate
         self.expirationAlert = expirationAlert
+        self.image = image
     }
     
     init(snapshot: FIRDataSnapshot) {
@@ -51,6 +42,7 @@ class Ingredient {
         expirationDate = snapshotValue["expirationDate"] as! String
         expirationAlert = snapshotValue["expirationAlert"] as! Bool
         ref = snapshot.ref
+        image = snapshotValue["image"] as! String
     }
     
     
@@ -60,7 +52,8 @@ class Ingredient {
             "quantity": quantity,
             "unit": unit,
             "expirationDate": expirationDate,
-            "expirationAlert": expirationAlert
+            "expirationAlert": expirationAlert,
+            "image": image
         ]
     }
 }

@@ -1,26 +1,25 @@
 //
-//  RecipeResultTableViewCell.swift
+//  RecipeIngredientsTableViewCell.swift
 //  PantryFi
 //
-//  Created by david ares on 3/24/17.
+//  Created by david ares on 5/2/17.
 //  Copyright © 2017 IOS Group 5. All rights reserved.
 //
 
 import UIKit
 
-class RecipeResultTableViewCell: UITableViewCell {
+class RecipeIngredientsTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var recipeImage: UIImageView!
-    @IBOutlet weak var recipeTitle: UILabel!
-    @IBOutlet weak var prepTimeLabel: UILabel!
-    @IBOutlet weak var ratingLabel: UILabel!
+    
+    @IBOutlet weak var imgView1: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var quantityLabel: UILabel!
+    
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
-        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
