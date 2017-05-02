@@ -23,14 +23,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var items = [Ingredient]()
     var spotlightItems = [spotlightItem]()
     var spotlightPosition = 0
-//    let colorArray = [
-//        UIColor.red,
-//        UIColor.orange,
-//        UIColor.yellow,
-//        UIColor.green,
-//        UIColor.blue
-//    ]
-//    var colorPick = 0
 
     @IBOutlet weak var pantrySearchButton: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -44,11 +36,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //pushed view controller up when keyboard is shown
+        //pushed view controller up when keyboard is shown NOT USED
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        
-        //top right button for settings
         
         //table set up
         self.tableView.separatorColor = UIColor.clear
@@ -164,26 +154,26 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         prevSpotlightItem()
     }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        let query = "\(searchBar.text!)"
-        
-        //set up other view controller
-        let vc = (storyboard?.instantiateViewController(withIdentifier: "pantrySearch"))! as! PantrySearchViewController
-        
-        vc.queryFromHome = query
-        vc.searchFromHome = true
-        
-        //hide keyboard
-        view.endEditing(true)
-        
-        //reset search input
-        self.searchBar.text = nil
-        
-        //go to other view controller
-        self.navigationController?.pushViewController(vc, animated:true)
-        
-        
-    }
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//        let query = "\(searchBar.text!)"
+//        
+//        //set up other view controller
+//        let vc = (storyboard?.instantiateViewController(withIdentifier: "pantrySearch"))! as! PantrySearchViewController
+//        
+//        vc.queryFromHome = query
+//        vc.searchFromHome = true
+//        
+//        //hide keyboard
+//        view.endEditing(true)
+//        
+//        //reset search input
+//        self.searchBar.text = nil
+//        
+//        //go to other view controller
+//        self.navigationController?.pushViewController(vc, animated:true)
+//        
+//        
+//    }
     
     func adjustUITextViewHeight(arg : UITextView)
     {
@@ -226,23 +216,70 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             itemCell.backgroundColor = UIColor.clear
             itemCell.cellRect.layer.cornerRadius = 5
             itemCell.cellRect.layer.borderWidth = 1.25
-            itemCell.cellRect.layer.borderColor = UIColor(hex: "0x2ECC71").cgColor
             let row = indexPath.row
             let ingredient = items[row-1]
+            if(ingredient.expirationDate != "")
+            {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "MM/dd/yyyy"
+
+                let calendar = NSCalendar.current
+
+                let date = dateFormatter.date(from: ingredient.expirationDate)
+
+                let now = Date()
+                let unit: NSCalendar.Unit = [
+                    NSCalendar.Unit.day,
+                    NSCalendar.Unit.month,
+                    NSCalendar.Unit.year,
+                    ]
+                let nowComponents:DateComponents = (calendar as NSCalendar).components(unit, from: now)
+                let targetComponents:DateComponents = (calendar as NSCalendar).components(unit, from: date!)
+                let day = targetComponents.day! - nowComponents.day!
+                if(day <= 5  && day > 0)
+                {
+                    itemCell.cellRect.layer.borderColor = UIColor(hex: "0xf1c40f").cgColor
+                    itemCell.titleLabel.textColor = UIColor(hex: "0xf1c40f")
+                }
+                else if(day <= 0)
+                {
+                    itemCell.cellRect.layer.borderColor = UIColor(hex: "0xe74c3c").cgColor
+                    itemCell.titleLabel.textColor = UIColor(hex: "0xe74c3c")
+
+                }
+                else
+                {
+                    itemCell.cellRect.layer.borderColor = UIColor(hex: "0x2ECC71").cgColor
+                    itemCell.titleLabel.textColor = UIColor(hex: "0x2ECC71")
+
+                    
+                }
+            }
+            else
+            {
+                itemCell.cellRect.layer.borderColor = UIColor(hex: "0x2ECC71").cgColor
+                itemCell.titleLabel.textColor = UIColor(hex: "0x2ECC71")
+            }
             itemCell.titleLabel.text = ingredient.name
-            itemCell.quantityLabel.text = ingredient.quantity
+            itemCell.quantityLabel.text = "\(ingredient.quantity) \(ingredient.unit)"
             
             return itemCell
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated:true)
         
         let row = indexPath.row
         if(row == 0)
         {
+            tableView.deselectRow(at: indexPath, animated:true)
             didTapAddItem()
+        }
+        else
+        {
+            self.performSegue(withIdentifier: "editIngredient", sender: self)
+            tableView.deselectRow(at: indexPath, animated:true)
+
         }
     }
     
@@ -257,45 +294,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     {
         
         self.performSegue(withIdentifier: "addIngredient", sender: self)
-//        let alert = UIAlertController(title: "New Ingredient", message:"Insert name of item and quantity", preferredStyle: .alert)
-//        alert.addTextField(configurationHandler: nil)
-//        alert.addTextField(configurationHandler: nil)
-//        alert.textFields?[0].placeholder = "Item"
-//        alert.textFields?[1].placeholder = "Quantity"
-//        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
-//            if let title = alert.textFields?[0].text
-//            {
-//                if let itemQuantity = alert.textFields?[1].text
-//                {
-//                    if(title == "" || itemQuantity == "")
-//                    {
-//                        
-//                    }
-//                    else
-//                    {
-//                        guard let textField = alert.textFields?.first,
-//                            let text = textField.text else { return }
-//                        
-//                        if let user = FIRAuth.auth()?.currentUser
-//                        {
-//                            let uid = user.uid
-//
-//                        
-//                        // 2
-//                        let ingredient = Ingredient(name:text, quantity:itemQuantity)
-//                        // 3
-//                        let ingredientItemRef = self.ref.child(uid).child(text.lowercased())
-//                        
-//                        // 4
-//                        ingredientItemRef.setValue(ingredient.toAnyObject())
-//                        }
-//                        
-//                    }
-//                }
-//            }
-//        }))
-//        self.present(alert, animated: true, completion: nil)
-
     }
     
      func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -308,6 +306,15 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             ingredientItem.ref?.removeValue()
         }
     }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if (indexPath.row == 0)
+        {
+            return false
+        }
+        return true
+    }
+
     
     @IBAction func searchPantry(_ sender: Any) {
         let storyBoard1:UIStoryboard = UIStoryboard(name: "searchResults", bundle:nil)
@@ -325,20 +332,16 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.navigationController?.pushViewController(vc, animated:true)
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        // Get the new view controller using segue.destinationViewController.
-//        // Pass the selected object to the new view controller.
-//        if (segue.identifier == "pantrySearchSegue") {
-//            let destinationVC = segue.destination as! PantrySearchViewController
-//            var ingredientsString = ""
-//            
-//            for i in items {
-//                ingredientsString += i.name + ","
-//            }
-//            destinationVC.ingredientsString = ingredientsString
-//        }
-//        
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        if (segue.identifier == "editIngredient") {
+            let destinationVC = segue.destination as! AddIngredientViewController
+            let indexPath = self.tableView.indexPathForSelectedRow?.row
+            destinationVC.ingredient = items[indexPath! - 1]
+        }
+        
+    }
     
     // Keyboard functions
     func textFieldShouldReturn (_ textField: UITextField) -> Bool {

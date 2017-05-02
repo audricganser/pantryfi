@@ -18,11 +18,29 @@ class AddIngredientViewController: UIViewController, UIPickerViewDelegate {
     @IBOutlet var ingredientAmount: UITextField!
     @IBOutlet var unitPicker: UISegmentedControl!
     
-    let ref = FIRDatabase.database().reference(withPath: "ingredients")
+    var editMode = false
+    var ingredient: Ingredient?
+    var key: String?
+    var ref = FIRDatabase.database().reference(withPath: "ingredients")
+    var unitArray = ["lbs", "ml", "mg", "Units"]
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
+        if(ingredient != nil)
+        {
+            editMode = true
+            self.key = ingredient?.key
+            self.ingredientName.text = ingredient?.name
+            self.ingredientAmount.text = ingredient?.quantity
+            //self.unitPicker.selectedSegmentIndex =
+            let unit:String = (ingredient?.unit)!
+            self.unitPicker.selectedSegmentIndex = unitArray.index(of: unit)!
+            self.ingredientExpiration.text = ingredient?.expirationDate
+            self.expirationAlertSwitch.isOn = (ingredient?.expirationAlert)!
+            self.ref = (ingredient?.ref)!
+        }
         // Do any additional setup after loading the view.
     }
 
@@ -60,15 +78,73 @@ class AddIngredientViewController: UIViewController, UIPickerViewDelegate {
     }
 
     @IBAction func addPressed(_ sender: Any) {
-        
+        if(editMode == true)
+        {
+            if let title = self.ingredientName.text{
+                
+                if let expiration = self.ingredientExpiration.text
+                {
+                    if let amount = self.ingredientAmount.text
+                    {
+                        let units = unitArray[self.unitPicker.selectedSegmentIndex]
+                        let alertOn = expirationAlertSwitch.isOn
+                        if(title == "" || amount == "")
+                        {
+                            let alert = UIAlertController(title: "Fields Blank", message:"Insert name of item and quantity", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler:nil))
+                            self.present(alert, animated: true, completion:nil)
+                        }
+                        if(expirationAlertSwitch.isOn == true && ingredientExpiration.text == "")
+                        {
+                            let alert = UIAlertController(title: "Expiration Alert", message:"You must select an expiration date for an expiration alarm", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler:nil))
+                            self.present(alert, animated: true, completion:nil)
+                        }
+                        else
+                        {
+                            if let user = FIRAuth.auth()?.currentUser
+                                
+                            {
+                                
+                                // 2
+                                let ingredient = Ingredient(name: title, quantity: amount, unit: units, expirationDate: expiration, expirationAlert: alertOn)
+                                // 3
+                                let ingredientItemRef = self.ref
+                                // 4
+                                ingredientItemRef.setValue(ingredient.toAnyObject())
+                                
+                                let alert = UIAlertController(title: "Success", message:"This ingredient was updated", preferredStyle: .alert)
+                                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                                    self.dismiss(animated: true, completion: nil)
+                                }))
+                                self.present(alert, animated: true, completion:nil)
+                                
+                            }
+                        }
+                    }
+                }
+                
+            }
+
+        }
+        else
+        {
         if let title = self.ingredientName.text{
             
             if let expiration = self.ingredientExpiration.text {
                     if let amount = self.ingredientAmount.text
                     {
+                        let units = unitArray[self.unitPicker.selectedSegmentIndex]
+                        let alertOn = expirationAlertSwitch.isOn
                         if(title == "" || amount == "")
                         {
                             let alert = UIAlertController(title: "Fields Blank", message:"Insert name of item and quantity", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler:nil))
+                            self.present(alert, animated: true, completion:nil)
+                        }
+                        if(expirationAlertSwitch.isOn == true && ingredientExpiration.text == "")
+                        {
+                            let alert = UIAlertController(title: "Expiration Alert", message:"You must select an expiration date for an expiration alarm", preferredStyle: .alert)
                             alert.addAction(UIAlertAction(title: "OK", style: .default, handler:nil))
                             self.present(alert, animated: true, completion:nil)
                         }
@@ -80,13 +156,14 @@ class AddIngredientViewController: UIViewController, UIPickerViewDelegate {
                                 
                                 let uid = user.uid
                                 // 2
-                                let ingredient = Ingredient(name:title, quantity:amount)
+                                let ingredient = Ingredient(name: title, quantity: amount, unit: units, expirationDate: expiration, expirationAlert: alertOn)
+                                
                                 // 3
                                 let ingredientItemRef = self.ref.child(uid).child(title.lowercased())
                                 // 4
                                 ingredientItemRef.setValue(ingredient.toAnyObject())
                                 
-                                let alert = UIAlertController(title: "Ingredient Added", message:"Thanks", preferredStyle: .alert)
+                                let alert = UIAlertController(title: "Success", message:"The ingredient was added to your pantry", preferredStyle: .alert)
                                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
                                     self.dismiss(animated: true, completion: nil)
                                 }))
@@ -97,6 +174,7 @@ class AddIngredientViewController: UIViewController, UIPickerViewDelegate {
                 }
             }
             
+        }
         }
         
     }
@@ -110,4 +188,16 @@ class AddIngredientViewController: UIViewController, UIPickerViewDelegate {
     }
     */
 
+}
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
