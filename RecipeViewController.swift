@@ -8,6 +8,8 @@
 
 import UIKit
 import Foundation
+import FirebaseAuth
+import FirebaseDatabase
 import Alamofire
 
 class RecipeViewController: UIViewController {
@@ -21,6 +23,7 @@ class RecipeViewController: UIViewController {
     @IBOutlet weak var recipeTitle: UILabel!
     
     var recipe:RecipeWithIngredients = RecipeWithIngredients.init()
+    let ref = FIRDatabase.database().reference(withPath: "recipes")
     
     
     override func viewDidLoad() {
@@ -102,6 +105,30 @@ class RecipeViewController: UIViewController {
         
     }
     
+    @IBAction func favoriteRecipe(_ sender: Any) {
+        
+        let title = self.recipe.title
+        
+
+                    if let user = FIRAuth.auth()?.currentUser
+                        {
+                            let uid = user.uid
+                            let recipe = self.recipe
+                            
+                            let recipeRef = self.ref.child(uid).child(title.lowercased())
+                            
+                            recipeRef.setValue(recipe.toAnyObject())
+                            
+                            let alert = UIAlertController(title: "Success", message:"The item was added to your favorites", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                                
+                            }))
+                            self.present(alert, animated: true, completion:nil)
+                        }
+        
+        
+        
+    }
     @IBAction func showNutrition(_ sender: Any) {
         
     }

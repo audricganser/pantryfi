@@ -7,8 +7,11 @@
 //
 
 import Foundation
+import FirebaseDatabase
 
 class RecipeWithIngredients {
+    let key: String
+    let ref: FIRDatabaseReference?
     var id:Int
     var title:String
     var image:String
@@ -26,7 +29,7 @@ class RecipeWithIngredients {
     
     
     
-    init(id:Int = 0, title:String = "", image:String = "", usedIngredientCount:Int = 0, missedIngredientCount:Int = 0, likes:Int = 0, healthScore:Int = 0, spoonacularScore:Int = 0, servings:Int = 0, readyInMinutes:Int = 0, missedIngredients:[Ingredient] = [], usedIngredients:[Ingredient] = [], analyzedInstructions:AnalyzedInstructions = AnalyzedInstructions.init(), summary:String = "") {
+    init(id:Int = 0, title:String = "", image:String = "", usedIngredientCount:Int = 0, missedIngredientCount:Int = 0, likes:Int = 0, healthScore:Int = 0, spoonacularScore:Int = 0, servings:Int = 0, readyInMinutes:Int = 0, missedIngredients:[Ingredient] = [], usedIngredients:[Ingredient] = [], analyzedInstructions:AnalyzedInstructions = AnalyzedInstructions.init(), summary:String = "", key:String = "") {
         self.id = id
         self.title = title
         self.image = image
@@ -41,6 +44,29 @@ class RecipeWithIngredients {
         self.usedIngredients = usedIngredients
         self.analyzedInstructions = analyzedInstructions
         self.summary = summary
+        self.key = key
+        self.ref = nil
+    }
+    
+    init(snapshot: FIRDataSnapshot) {
+        key = snapshot.key
+        let snapshotValue = snapshot.value as! [String: AnyObject]
+        ref = snapshot.ref
+        id = snapshotValue["id"] as! Int
+        title = snapshotValue["title"] as! String
+        image = snapshotValue["image"] as! String
+        usedIngredientCount = 0
+        missedIngredientCount = 0
+        likes = 0
+        healthScore = 0
+        spoonacularScore = 0
+        servings = 0
+        readyInMinutes = 0
+        missedIngredients = []
+        usedIngredients = []
+        analyzedInstructions = AnalyzedInstructions.init()
+        summary = ""
+
     }
     
     func toAnyObject() -> Any {
@@ -48,18 +74,7 @@ class RecipeWithIngredients {
             "id": id,
             "title": title,
             "image": image,
-            "usedIngredientCount": usedIngredientCount,
-            "missedIngredientCount": missedIngredientCount,
-            "likes": likes,
-            "healthScore": healthScore,
-            "spoonacularScore": spoonacularScore,
-            "servings": servings,
-            "readyInMinutes": readyInMinutes,
-            "missedIngredients": missedIngredients,
-            "usedIngredients": usedIngredients,
-            "analyzedInstructions": analyzedInstructions,
-            "summary": summary
-        ]
+            ]
     }
     
     static func getRecipe(recipe: Dictionary<String, Any>) -> RecipeWithIngredients {
