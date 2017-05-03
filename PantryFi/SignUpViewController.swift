@@ -63,11 +63,11 @@ class SignUpViewController: UIViewController {
         }
         //check if email is valid
         else if (!isValidEmail(email: email.text!)) {
-            self.errorLabel.text = "email is invalid"
+            self.errorLabel.text = "Email is invalid"
         }
         //checks if confirm password and password match
         else if (password.text != confirmPass.text){
-                self.errorLabel.text = "your password doesn't match"
+                self.errorLabel.text = "Your password doesn't match"
         }
         //save the user on core data
         else {
@@ -77,27 +77,32 @@ class SignUpViewController: UIViewController {
                     return
                 }
                 
-                let uid = user!.uid
-                print("saving user2: \(uid)" )
-                let values: [String : Any] = ["firstName": firstName, "lastName": lastName]
+                let uid = user?.uid
+                if(error != nil)
+                {
+                    self.errorLabel.text = "Error, cannot create account"
+                }
+                else if(uid == nil)
+                {
+                    self.errorLabel.text = "This email has already been used"
+                    
+                }
+                else
+                {
+                    print("saving user2: \(uid)" )
+                    let values: [String : Any] = ["name": "\(firstName) \(lastName)"]
                 
-                var ref: FIRDatabaseReference!
-                ref = FIRDatabase.database().reference(fromURL: "https://pantryfi-2e385.firebaseio.com/")
-                ref.child("users").child(uid).updateChildValues(values)
+                    var ref: FIRDatabaseReference!
+                    ref = FIRDatabase.database().reference(fromURL: "https://pantryfi-2e385.firebaseio.com/")
+                    ref.child("users").child(uid!).updateChildValues(values)
+                    
+                    self.view.endEditing(true)
+                    let storyBoard1:UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                    let nextViewController = storyBoard1.instantiateViewController(withIdentifier: "Login")
+                    self.present(nextViewController, animated:true, completion:nil)
+                }
                 
             }
-            print("saving user1")
-            
-
-            //var ref: FIRDatabaseReference!
-
-            print("saving user3")
-            //hides keyboard once candidate is saved
-            self.view.endEditing(true)
-            
-            let storyBoard1:UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            let nextViewController = storyBoard1.instantiateViewController(withIdentifier: "Login")
-            self.present(nextViewController, animated:true, completion:nil)
 
         }
     }

@@ -8,42 +8,31 @@
 
 import UIKit
 import Foundation
+import FirebaseAuth
+import FirebaseDatabase
 import Alamofire
 
-class RecipeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class RecipeViewController: UIViewController {
 
     @IBOutlet weak var recipeImage: UIImageView!
-    @IBOutlet weak var recipeName: UILabel!
     @IBOutlet weak var recipePrepTime: UILabel!
     @IBOutlet weak var recipeServes: UILabel!
     @IBOutlet weak var missingIngredients: UILabel!
+    @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var healthScoreLabel: UILabel!
+    @IBOutlet weak var recipeTitle: UILabel!
     
-    var recipeImageSegue:String?
-    var recipeNameSegue:String?
-    var recipePrepTimeSegue:String?
-    var recipeServesSegue:String?
-    var recipeIdSegue:String?
-    var missingIngrSegue:Int?
-    var containsIngSegue:Int?
+    var recipe:RecipeWithIngredients = RecipeWithIngredients.init()
+    let ref = FIRDatabase.database().reference(withPath: "recipes")
     
-    @IBOutlet weak var tableView: UITableView!
-    
-    var ingredientsList = [Ingredient]()
-    var prepStepsList = [Steps]()
-    
-    //private var iList = [Dictionary<String,String>]()
-    
-//    private var i1:Dictionary<String,String> = ["title":"Salmon","serving":"1 lbs"]
-//    private var i2:Dictionary<String,String> = ["title":"Lemon","serving":"1"]
-//    private var i3:Dictionary<String,String> = ["title":"Spinach","serving":"0.5 lbs"]
-//    private var i4:Dictionary<String,String> = ["title":"Rice","serving":"2 lbs"]
-//    private var i5:Dictionary<String,String> = ["title":"Pasta","serving":"0.75 lbs"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // setting recipe summary
+        recipeSummary(id: self.recipe.id)
         // Loading image from url
-        Alamofire.request(self.recipeImageSegue!).response { response in
+        Alamofire.request(self.recipe.image).response { response in
             if let data = response.data {
                 let image = UIImage(data: data)
                 self.recipeImage.image = image
@@ -53,24 +42,18 @@ class RecipeViewController: UIViewController, UITableViewDataSource, UITableView
         }
 
         // Do any additional setup after loading the view.
-        self.recipeName.text = self.recipeNameSegue!
-        
-        if missingIngrSegue! > 0 {
-            self.missingIngredients.text = "Pantry contains " + "\(self.containsIngSegue!)"
+        self.recipeTitle.text = self.recipe.title
+        self.recipePrepTime.text = "\(self.recipe.readyInMinutes) minutes"
+        self.recipeServes.text = "\(self.recipe.servings)"
+        self.ratingLabel.text = "\(self.recipe.spoonacularScore)"
+        self.healthScoreLabel.text = "\(self.recipe.healthScore)"
+        if self.recipe.missedIngredientCount > 0 {
+            self.missingIngredients.text = "Pantry contains " + "\(self.recipe.usedIngredientCount)"
         }
         else {
             self.missingIngredients.text = "Pantry contains all"
         }
-        //self.missingIngredients.text = "
-//        self.recipePrepTime.text = self.recipePrepTimeSegue!
-//        self.recipeServes.text = self.recipeServesSegue!
         
-        
-        // new request!
-        // get Analyzed Recipe Instructions
-        getRecipeInfo(id:recipeIdSegue!)
-        tableView.delegate = self
-        tableView.dataSource = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -78,27 +61,7 @@ class RecipeViewController: UIViewController, UITableViewDataSource, UITableView
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: - Table view data source
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return self.ingredientsList.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ingredientCell", for: indexPath)
-        
-        // Configure the cell...
-        cell.textLabel?.text = self.ingredientsList[indexPath.row].name
-        cell.detailTextLabel?.text = self.ingredientsList[indexPath.row].quantity
-        return cell
-    }
-
     /*
     // MARK: - Navigation
 
@@ -109,69 +72,74 @@ class RecipeViewController: UIViewController, UITableViewDataSource, UITableView
     }
     */
     
-    func getRecipeInfo (id: String) {
-        let baseUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + "\(id)" + "/information"
+    // Get Recipe Summary
+    func recipeSummary (id: Int) {
+        let baseUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + "\(id)" + "/summary"
         let headers: HTTPHeaders = ["X-Mashape-Key": "oWragx4kwsmshOw6ZL8IH8RP81DUp1L0QFVjsn0JaX9pEIPpUg"]
-        
+        var summary = ""
         Alamofire.request(baseUrl, headers: headers).responseJSON { response in
-            //            print(response.request)  // original URL request
-            //            print(response.response) // HTTP URL response
-            //            print(response.data)     // server data
-            print(response.result)   // result of response serialization
-            
             if let JSON = response.result.value {
                 let json = JSON as! Dictionary<String, Any>
-                //print("info: \(JSON)")
-                let servings = json["servings"]!
-                let prepTime = json["readyInMinutes"]!
-                self.recipeServes.text = "\(servings)"
-                self.recipePrepTime.text = "\(prepTime)" + " minutes"
-                
-                let ingredients = json["extendedIngredients"] as! NSArray
-                for i in ingredients {
-                    let ingredient = i as! Dictionary<String, Any>
-                    let id = ingredient["id"]!
-                    let name = ingredient["name"]!
-                    let amount = ingredient["amount"]!
-                    let unit = ingredient["unit"]!
-                    let quantity = "\(amount)" + " " + "\(unit)"
-                    self.ingredientsList.append(Ingredient.init(name: "\(name)", quantity: "\(quantity)", key: "\(id)"))
-                    
-                    /*
-                     "id": 5006,
-                     "aisle": "Meat",
-                     "image": "https://spoonacular.com/cdn/ingredients_100x100/whole-chicken.jpg",
-                     "name": "chicken",
-                     "amount": 1,
-                     "unit": "serving",
-                     "unitShort": "serving",
-                     "unitLong": "serving",
-                     "originalString": "to taste cooked, sliced chicken, cooked onions, red peppers, chop",
-                     "metaInformation": [
-                     "red",
-                     "cooked",
-                     "sliced",
-                     "to taste"
-                     ]
-                     */
-                }
-                self.tableView.reloadData()
-                
-                let instruct = json["analyzedInstructions"] as! NSArray
-                let instruct1 = instruct[0] as! Dictionary<String, Any>
-                let steps = instruct1["steps"] as! NSArray
-                
-                for step in steps {
-                    let step1 = step as! Dictionary<String, Any>
-                    let stepString = step1["step"]!
-                    self.prepStepsList.append(Steps.init(number: step1["number"]! as! Int, step: "\(stepString)"))
-                }
-                //self.tableView.reloadData()
+                let sum = json["summary"]!
+                summary = "\(sum)"
+                self.recipe.summary = summary
             }
- 
- 
         }
+    }
+    
+    
+    @IBAction func showIngredients(_ sender: Any) {
+        let storyBoard1:UIStoryboard = UIStoryboard(name: "Recipe-Ingredients", bundle:nil)
+        let vc = storyBoard1.instantiateViewController(withIdentifier: "recipeIngredients") as! RecipeIngredientsTableViewController
+        
+        var i = [Ingredient]()
+        i.append(contentsOf: self.recipe.missedIngredients)
+        i.append(contentsOf: self.recipe.usedIngredients)
+//        i.append(self.recipe.missedIngredients)
+//        i.append(self.recipe.usedIngredients)
+        vc.ingredients = i
+        
+        //go to other view controller
+        self.navigationController?.pushViewController(vc, animated:true)
+
         
     }
+    
+    @IBAction func favoriteRecipe(_ sender: Any) {
+        
+        let title = self.recipe.title
+        
+
+                    if let user = FIRAuth.auth()?.currentUser
+                        {
+                            let uid = user.uid
+                            let recipe = self.recipe
+                            
+                            let recipeRef = self.ref.child(uid).child(title.lowercased())
+                            
+                            recipeRef.setValue(recipe.toAnyObject())
+                            
+                            let alert = UIAlertController(title: "Success", message:"The item was added to your favorites", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                                
+                            }))
+                            self.present(alert, animated: true, completion:nil)
+                        }
+        
+        
+        
+    }
+    @IBAction func showNutrition(_ sender: Any) {
+        
+    }
+    
+    @IBAction func showSummary(_ sender: Any) {
+        
+    }
+    
+    @IBAction func showInstructions(_ sender: Any) {
+        
+    }
+    
 
 }

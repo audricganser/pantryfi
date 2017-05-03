@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--diet-->
+        <scene sceneID="g4O-kV-keA">
+            <objects>
+                <viewController storyboardIdentifier="diet" title="Dietary Restriction" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PUc-zK-7yK" userLabel="diet" customClass="DietViewController" customModule="PantryFi" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EcM-5n-CHW"/>
+                        <viewControllerLayoutGuide type="bottom" id="eYe-yp-JkJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dgp-q4-Mm3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="H02-MD-KUP">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="dietCell" id="M5Z-hf-Zpb" customClass="DietTableViewCell" customModule="PantryFi" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="M5Z-hf-Zpb" id="K2W-EG-tqk">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;Label&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="isR-pq-BS1">
+                                                    <rect key="frame" x="8" y="11" width="278" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="278" id="BuI-pa-Vw1"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="oQi-gM-YMZ">
+                                                    <rect key="frame" x="318" y="6" width="51" height="31"/>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="isR-pq-BS1" firstAttribute="centerY" secondItem="oQi-gM-YMZ" secondAttribute="centerY" id="9N3-Qp-8Mv"/>
+                                                <constraint firstItem="isR-pq-BS1" firstAttribute="centerY" secondItem="K2W-EG-tqk" secondAttribute="centerY" id="gx8-FU-Zin"/>
+                                                <constraint firstItem="oQi-gM-YMZ" firstAttribute="leading" secondItem="isR-pq-BS1" secondAttribute="trailing" constant="32" id="r8w-5B-6Wg"/>
+                                                <constraint firstItem="isR-pq-BS1" firstAttribute="leading" secondItem="K2W-EG-tqk" secondAttribute="leadingMargin" id="wOo-dq-5v6"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="dietLabel" destination="isR-pq-BS1" id="4Lp-3J-wlp"/>
+                                            <outlet property="switch" destination="oQi-gM-YMZ" id="FVn-cH-j4e"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="H02-MD-KUP" firstAttribute="leading" secondItem="dgp-q4-Mm3" secondAttribute="leading" id="EOv-jj-X3v"/>
+                            <constraint firstAttribute="trailing" secondItem="H02-MD-KUP" secondAttribute="trailing" id="lLZ-Xq-nAt"/>
+                            <constraint firstItem="H02-MD-KUP" firstAttribute="bottom" secondItem="eYe-yp-JkJ" secondAttribute="top" id="sZP-IU-H7p"/>
+                            <constraint firstItem="H02-MD-KUP" firstAttribute="top" secondItem="dgp-q4-Mm3" secondAttribute="top" id="spU-aO-ojV"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Diets" id="egQ-fV-VAW"/>
+                    <connections>
+                        <outlet property="tableView" destination="H02-MD-KUP" id="hmg-8Y-HEK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oU9-kz-PqM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5088.8000000000002" y="35.532233883058474"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="bFP-43-aC1">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4ef-2O-PQ7" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Lvx-wg-hUD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="PUc-zK-7yK" kind="relationship" relationship="rootViewController" id="kId-hI-gNw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cZM-LH-TcR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4149.6000000000004" y="35.532233883058474"/>
+        </scene>
+    </scenes>
+</document>

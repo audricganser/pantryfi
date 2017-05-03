@@ -9,7 +9,9 @@
 import UIKit
 import Firebase
 import CoreData
-import Firebase
+import FacebookCore
+import FacebookLogin
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,17 +22,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         let navigationAppearance = UINavigationBar.appearance()
-        navigationAppearance.tintColor = UIColor(hex: "0xffffff")
-        navigationAppearance.barTintColor = UIColor(hex: "0x2ECC71")
+        navigationAppearance.tintColor = UIColor(hex: "0x2ECC71")
+        navigationAppearance.barTintColor = UIColor(hex: "0xffffff")
         let attrs = [
-            NSForegroundColorAttributeName: UIColor.white,
+            NSForegroundColorAttributeName: UIColor(hex: "0x2ECC71"),
             NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 20)!
         ]
         
         navigationAppearance.titleTextAttributes = attrs
 
         FIRApp.configure()
-        return true
+        
+        return SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -55,6 +59,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
         self.saveContext()
+    }
+    
+ 
+    
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        return SDKApplicationDelegate.shared.application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        return SDKApplicationDelegate.shared.application(app, open: url, options: options)
+        
     }
 
     // MARK: - Core Data stack

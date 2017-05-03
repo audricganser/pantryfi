@@ -12,40 +12,38 @@ import FirebaseAuth
 import FirebaseDatabase
 
 
-class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate  {
+class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UIGestureRecognizerDelegate {
+    
+    @IBOutlet var spotLightView: UIView!
+    @IBOutlet var spotlightImage: UIImageView!
+    @IBOutlet var spotlightTitle: UILabel!
+    @IBOutlet var spotlightDescription: UITextView!
+    @IBOutlet var spotlightPageControl: UIPageControl!
     
     var items = [Ingredient]()
-//    let colorArray = [
-//        UIColor.red,
-//        UIColor.orange,
-//        UIColor.yellow,
-//        UIColor.green,
-//        UIColor.blue
-//    ]
-//    var colorPick = 0
+    var spotlightItems = [spotlightItem]()
+    var spotlightPosition = 0
 
     @IBOutlet weak var pantrySearchButton: UIButton!
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet var tableView: UITableView!
     
-    let addCellIdentifier = "addCell"
+    let avarellIdentifier = "addCell"
     let itemIdentifier = "itemCell"
     let ref = FIRDatabase.database().reference(withPath: "ingredients")
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "PantryFi"
-        print("hitting view did load in homeViewContoller")
-   
-        let button = UIButton.init(type: .custom)
-        button.setImage(#imageLiteral(resourceName: "menu-button"), for: UIControlState.normal)
-        button.addTarget(self, action:#selector(SSASideMenu.presentRightMenuViewController), for: UIControlEvents.touchUpInside)
-        print("add target")
-        button.frame = CGRect.init(x: 0, y: 0, width: 30, height: 30) //CGRectMake(0, 0, 30, 30)
-        let barButton = UIBarButtonItem.init(customView: button)
-        self.navigationItem.rightBarButtonItem = barButton
-        pantrySearchButton.layer.borderColor = UIColor.white.cgColor
         
+        //pushed view controller up when keyboard is shown NOT USED
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        //table set up
+        self.tableView.separatorColor = UIColor.clear
+        
+        //tableView set up
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -69,6 +67,17 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.tableView.reloadData()
         })
         }
+        
+        let gestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(gestureRecognizer:)))
+        gestureRecognizer.direction = UISwipeGestureRecognizerDirection.left
+        gestureRecognizer.delegate = self
+        self.spotLightView.addGestureRecognizer(gestureRecognizer)
+        
+        let rightGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(handleRightSwipe(gestureRecognizer:)))
+        rightGestureRecognizer.direction = UISwipeGestureRecognizerDirection.right
+        rightGestureRecognizer.delegate = self
+        self.spotLightView.addGestureRecognizer(rightGestureRecognizer)
+        setupSpotlight()
 
     }
 
@@ -77,14 +86,100 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Dispose of any resources that can be recreated.
     }
     
-    func createSearchBar()
+    func setupSpotlight()
     {
-        let searchBar = UISearchBar()
-        searchBar.showsCancelButton = false
-        searchBar.placeholder = "Search for your recipe"
-        searchBar.delegate = self
+        let item1 = spotlightItem(title: "Chicken Caesar Salad", description: "What a beautiful salad. Nice and healthy salad. V good."
+, image: #imageLiteral(resourceName: "salad"))
         
-        self.navigationItem.titleView = searchBar
+        let item2 = spotlightItem(title: "African Stir Fry", description: "This is a good dish very good I like this dish because it is cultural", image: #imageLiteral(resourceName: "african_recipes"))
+        
+        let item3 = spotlightItem(title: "Ugly Pasta", description: "This is some ugly pasta, but I'm sure it is healthy and tastes pretty good", image: #imageLiteral(resourceName: "pasta"))
+        
+        spotlightItems.append(item1)
+        spotlightItems.append(item2)
+        spotlightItems.append(item3)
+        spotlightPageControl.numberOfPages = spotlightItems.count
+        spotlightImage.image = spotlightItems.first?.image
+        spotlightTitle.text = spotlightItems.first?.title
+        spotlightDescription.text = spotlightItems.first?.description
+        adjustUITextViewHeight(arg: self.spotlightDescription)
+
+    }
+    
+    func nextSpotlightItem()
+    {
+            spotlightPosition += 1
+            if(spotlightPosition >= spotlightItems.count)
+            {
+                spotlightPosition = 0
+            }
+            let nextSpotlight = spotlightItems[spotlightPosition]
+            self.spotlightImage.pushTransition(0.3)
+            self.spotlightImage.image = nextSpotlight.image
+            self.spotlightTitle.pushTransition(0.2)
+            self.spotlightTitle.text = nextSpotlight.title
+            self.spotlightDescription.pushTransition(0.4)
+            self.spotlightDescription.text = nextSpotlight.description
+            adjustUITextViewHeight(arg: self.spotlightDescription)
+            self.spotlightPageControl.currentPage = spotlightPosition
+        
+        
+    }
+    
+    func prevSpotlightItem()
+    {
+        spotlightPosition -= 1
+        if(spotlightPosition < 0)
+        {
+            spotlightPosition = spotlightItems.count - 1
+        }
+        let nextSpotlight = spotlightItems[spotlightPosition]
+        self.spotlightImage.pullTransition(0.3)
+        self.spotlightImage.image = nextSpotlight.image
+        self.spotlightTitle.pullTransition(0.2)
+        self.spotlightTitle.text = nextSpotlight.title
+        self.spotlightDescription.pullTransition(0.4)
+        self.spotlightDescription.text = nextSpotlight.description
+        adjustUITextViewHeight(arg: self.spotlightDescription)
+        self.spotlightPageControl.currentPage = spotlightPosition
+
+
+    }
+    
+    func handleSwipe(gestureRecognizer: UIGestureRecognizer) {
+        nextSpotlightItem()
+    }
+    
+    func handleRightSwipe(gestureRecognizer: UIGestureRecognizer) {
+        prevSpotlightItem()
+    }
+    
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//        let query = "\(searchBar.text!)"
+//        
+//        //set up other view controller
+//        let vc = (storyboard?.instantiateViewController(withIdentifier: "pantrySearch"))! as! PantrySearchViewController
+//        
+//        vc.queryFromHome = query
+//        vc.searchFromHome = true
+//        
+//        //hide keyboard
+//        view.endEditing(true)
+//        
+//        //reset search input
+//        self.searchBar.text = nil
+//        
+//        //go to other view controller
+//        self.navigationController?.pushViewController(vc, animated:true)
+//        
+//        
+//    }
+    
+    func adjustUITextViewHeight(arg : UITextView)
+    {
+        arg.translatesAutoresizingMaskIntoConstraints = true
+        arg.sizeToFit()
+        arg.isScrollEnabled = true
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -107,31 +202,84 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         if(indexPath.row == 0)
         {
-            let addCell = tableView.dequeueReusableCell(withIdentifier: addCellIdentifier) as! AddIngredientTableViewCell
+            let addCell = tableView.dequeueReusableCell(withIdentifier: avarellIdentifier) as! AddIngredientTableViewCell
             addCell.backgroundColor = UIColor.clear
-
+            addCell.cellRect.layer.backgroundColor = UIColor(hex: "0x2ECC71").cgColor
+            addCell.cellRect.layer.cornerRadius = 5
+            addCell.cellRect.layer.borderWidth = 1.25
+            addCell.cellRect.layer.borderColor = UIColor(hex: "0x2ECC71").cgColor
             return addCell
         }
         else
         {
             let itemCell = tableView.dequeueReusableCell(withIdentifier: itemIdentifier) as! IngredientTableViewCell
             itemCell.backgroundColor = UIColor.clear
+            itemCell.cellRect.layer.cornerRadius = 5
+            itemCell.cellRect.layer.borderWidth = 1.25
             let row = indexPath.row
             let ingredient = items[row-1]
+            if(ingredient.expirationDate != "")
+            {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "MM/dd/yyyy"
+
+                let calendar = NSCalendar.current
+
+                let date = dateFormatter.date(from: ingredient.expirationDate)
+
+                let now = Date()
+                let unit: NSCalendar.Unit = [
+                    NSCalendar.Unit.day,
+                    NSCalendar.Unit.month,
+                    NSCalendar.Unit.year,
+                    ]
+                let nowComponents:DateComponents = (calendar as NSCalendar).components(unit, from: now)
+                let targetComponents:DateComponents = (calendar as NSCalendar).components(unit, from: date!)
+                let day = targetComponents.day! - nowComponents.day!
+                if(day <= 5  && day > 0)
+                {
+                    itemCell.cellRect.layer.borderColor = UIColor(hex: "0xf1c40f").cgColor
+                    itemCell.titleLabel.textColor = UIColor(hex: "0xf1c40f")
+                }
+                else if(day <= 0)
+                {
+                    itemCell.cellRect.layer.borderColor = UIColor(hex: "0xe74c3c").cgColor
+                    itemCell.titleLabel.textColor = UIColor(hex: "0xe74c3c")
+
+                }
+                else
+                {
+                    itemCell.cellRect.layer.borderColor = UIColor(hex: "0x2ECC71").cgColor
+                    itemCell.titleLabel.textColor = UIColor(hex: "0x2ECC71")
+
+                    
+                }
+            }
+            else
+            {
+                itemCell.cellRect.layer.borderColor = UIColor(hex: "0x2ECC71").cgColor
+                itemCell.titleLabel.textColor = UIColor(hex: "0x2ECC71")
+            }
             itemCell.titleLabel.text = ingredient.name
-            itemCell.quantityLabel.text = ingredient.quantity
+            itemCell.quantityLabel.text = "\(ingredient.quantity) \(ingredient.unit)"
             
             return itemCell
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated:true)
         
         let row = indexPath.row
         if(row == 0)
         {
+            tableView.deselectRow(at: indexPath, animated:true)
             didTapAddItem()
+        }
+        else
+        {
+            self.performSegue(withIdentifier: "editIngredient", sender: self)
+            tableView.deselectRow(at: indexPath, animated:true)
+
         }
     }
     
@@ -145,43 +293,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func didTapAddItem()
     {
         
-        let alert = UIAlertController(title: "New Ingredient", message:"Insert name of item and quantity", preferredStyle: .alert)
-        alert.addTextField(configurationHandler: nil)
-        alert.addTextField(configurationHandler: nil)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
-            if let title = alert.textFields?[0].text
-            {
-                if let itemQuantity = alert.textFields?[1].text
-                {
-                    if(title == "" || itemQuantity == "")
-                    {
-                        
-                    }
-                    else
-                    {
-                        guard let textField = alert.textFields?.first,
-                            let text = textField.text else { return }
-                        
-                        if let user = FIRAuth.auth()?.currentUser
-                        {
-                            let uid = user.uid
-
-                        
-                        // 2
-                        let ingredient = Ingredient(name:text, quantity:itemQuantity)
-                        // 3
-                        let ingredientItemRef = self.ref.child(uid).child(text.lowercased())
-                        
-                        // 4
-                        ingredientItemRef.setValue(ingredient.toAnyObject())
-                        }
-                        
-                    }
-                }
-            }
-        }))
-        self.present(alert, animated: true, completion: nil)
-
+        self.performSegue(withIdentifier: "addIngredient", sender: self)
     }
     
      func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -195,26 +307,41 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
-    // MARK: - Navigation
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if (indexPath.row == 0)
+        {
+            return false
+        }
+        return true
+    }
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
+    @IBAction func searchPantry(_ sender: Any) {
+        let storyBoard1:UIStoryboard = UIStoryboard(name: "searchResults", bundle:nil)
+        let vc = storyBoard1.instantiateViewController(withIdentifier: "pantrySearch") as! PantrySearchViewController
+
+        var ingredientsString = ""
+        
+        for i in items {
+            ingredientsString += i.name + ","
+        }
+        vc.ingredientsString = ingredientsString
+        vc.searchFromHome = false
+        
+        //go to other view controller
+        self.navigationController?.pushViewController(vc, animated:true)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        if (segue.identifier == "pantrySearchSegue") {
-            let destinationVC = segue.destination as! PantrySearchViewController
-            var ingredientsString = ""
-            for i in items {
-                ingredientsString += i.name + ","
-            }
-            destinationVC.ingredientsString = ingredientsString
-            
+        if (segue.identifier == "editIngredient") {
+            let destinationVC = segue.destination as! AddIngredientViewController
+            let indexPath = self.tableView.indexPathForSelectedRow?.row
+            destinationVC.ingredient = items[indexPath! - 1]
         }
-
-        
         
     }
-
     
     // Keyboard functions
     func textFieldShouldReturn (_ textField: UITextField) -> Bool {
@@ -222,9 +349,63 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return true
     }
     
+    func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0{
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y != 0{
+                self.view.frame.origin.y += keyboardSize.height
+            }
+        }
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
 
 }
+
+class spotlightItem{
+    var title:String?
+    var description:String?
+    var image:UIImage?
+    
+    init(title:String, description:String, image:UIImage)
+    {
+        self.title = title
+        self.description = description
+        self.image = image
+    }
+}
+
+extension UIView {
+    func pushTransition(_ duration:CFTimeInterval) {
+        let animation:CATransition = CATransition()
+        animation.timingFunction = CAMediaTimingFunction(name:
+            kCAMediaTimingFunctionEaseInEaseOut)
+        animation.type = kCATransitionPush
+        animation.subtype = kCATransitionFromRight
+        animation.duration = duration
+        layer.add(animation, forKey: kCATransitionPush)
+    }
+    
+    func pullTransition(_ duration:CFTimeInterval) {
+        let animation:CATransition = CATransition()
+        animation.timingFunction = CAMediaTimingFunction(name:
+            kCAMediaTimingFunctionEaseInEaseOut)
+        animation.type = kCATransitionPush
+        animation.subtype = kCATransitionFromLeft
+        animation.duration = duration
+        layer.add(animation, forKey: kCATransitionPush)
+    }
+
+}
+
+
 

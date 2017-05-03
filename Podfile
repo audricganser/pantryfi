@@ -11,6 +11,9 @@ target 'PantryFi' do
    pod 'Firebase/Database'
    pod 'Firebase/Storage'
    pod 'Alamofire', '~> 4.4'
+   pod 'FacebookCore'
+   pod 'FacebookLogin'
+   pod 'FacebookShare'
 
 
 
