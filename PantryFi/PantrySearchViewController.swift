@@ -47,11 +47,13 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        print("editing scope is: \( self.scope)")
+        //print("editing scope is: \( self.scope)")
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("clicked")
+        //print("clicked")
+        self.recipeList1.removeAll()
+        self.tableView.reloadData()
         print(searchBar.text!)
         let query = "\(searchBar.text!)"
         if self.scope == 1 {
@@ -114,6 +116,7 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
         let indexPath = tableView.indexPathForSelectedRow
         let recipe = recipeList1[indexPath!.row]
         vc.recipe = recipe
+        vc.callerVC = "searchResults"
 
         tableView.deselectRow(at: indexPath!, animated:true)
         //go to other view controller
@@ -142,7 +145,7 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
                 // 5
                 self.items = newItems
                 self.ingredientsString = newItems.joined(separator: ",")
-                print(self.ingredientsString)
+                //print(self.ingredientsString)
                 self.complexSearch(includeIngredients: self.ingredientsString )
             })
         }
@@ -172,86 +175,14 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
                 // print(results)
                 self.recipeList1 = []
                 for recipe in results {
-                    let newRecipe = self.getRecipe(recipe: recipe as! Dictionary<String, Any>)
+                    let newRecipe = RecipeWithIngredients.getRecipe(recipe: recipe as! Dictionary<String, Any>)
                     self.recipeList1.append(newRecipe)
-                    // print("appending recipe")
-                    // print(newRecipe.id)
-                    // print(newRecipe.title)
+                    
                 }
                 self.tableView.reloadData()
                 
             }
         }
-    }
-    
-    func getRecipe(recipe: Dictionary<String, Any>) -> RecipeWithIngredients {
-        let id:Int = recipe["id"]! as! Int
-        let title = recipe["title"]!
-        let image = recipe["image"]!
-        let usedIngredientCount:Int = recipe["usedIngredientCount"]! as! Int
-        let missedIngredientCount:Int = recipe["missedIngredientCount"]! as! Int
-        let likes:Int = recipe["likes"]! as! Int
-        let healthScore:Int = recipe["healthScore"]! as! Int
-        let spoonacularScore:Int = recipe["spoonacularScore"]! as! Int
-        let servings:Int = recipe["servings"]! as! Int
-        let readyInMinutes:Int = recipe["readyInMinutes"]! as! Int
-        var missedIngredients:[Ingredient] = [Ingredient]()
-        for i in recipe["missedIngredients"]! as! NSArray {
-            missedIngredients.append(makeIngredient(ingredient: i as! Dictionary<String, Any>))
-        }
-        
-        var usedIngredients:[Ingredient] = [Ingredient]()
-        for i in recipe["usedIngredients"]! as! NSArray {
-            usedIngredients.append(makeIngredient(ingredient: i as! Dictionary<String, Any>))
-        }
-
-        let ai = recipe["analyzedInstructions"]! as! NSArray
-        let analyzedInstructions:AnalyzedInstructions = makeAnalyzedInstructions(analyzedInstructions: ai[0] as! Dictionary<String, Any>)
-        
-        let recipe_ret = RecipeWithIngredients.init(id: id, title: "\(title)", image: "\(image)", usedIngredientCount: usedIngredientCount, missedIngredientCount: missedIngredientCount, likes: likes, healthScore: healthScore, spoonacularScore: spoonacularScore, servings: servings, readyInMinutes: readyInMinutes, missedIngredients: missedIngredients, usedIngredients: usedIngredients, analyzedInstructions: analyzedInstructions)
-
-        // print(recipe_ret)
-        return recipe_ret
-    }
-    
-    func makeIngredient (ingredient: Dictionary<String, Any>) -> Ingredient {
-        var name = ""
-        if let nameVal = ingredient["name"] { name = "\(nameVal)" }
-        var amount = ""
-        if let amountVal = ingredient["amount"] { amount = "\(amountVal)" }
-        var unit = ""
-        if let unitVal = ingredient["unitLong"] { unit = "\(unitVal)" }
-        var key = ""
-        if let keyVal = ingredient["key"] { key = "\(keyVal)" }
-        var image = ""
-        if let imageVal = ingredient["image"] { image = "\(imageVal)" }
-        return Ingredient.init(name: name, quantity: amount, key: key, unit: unit, image: image)
-    }
-    
-    func makeAnalyzedInstructions (analyzedInstructions: Dictionary<String, Any>) -> AnalyzedInstructions {
-        var name = ""
-        if let nameVal = analyzedInstructions["name"] { name = "\(nameVal)" }
-        var steps = [Steps]()
-        if let _ = analyzedInstructions["steps"] {
-            for s in analyzedInstructions["steps"]! as! NSArray {
-                let step = s as! Dictionary<String, Any>
-                var number = 0
-                if let numVal = step["number"] { number = numVal as! Int }
-                var stepText = ""
-                if let stepVal = step["step"] { stepText = "\(stepVal)" }
-                steps.append(Steps.init(number: number, step: stepText))
-            }
-        }
-        var ingredients = [Ingredient]()
-        if let _ = analyzedInstructions["ingredients"] {
-            for i in analyzedInstructions["ingredients"]! as! NSArray {
-                let ingredient = makeIngredient(ingredient: i as! Dictionary<String, Any>)
-                ingredients.append(ingredient)
-            }
-        }
- 
-        return AnalyzedInstructions.init(name: name, steps: steps, ingredients: ingredients)
-        
     }
 
     // MARK: - Navigation
