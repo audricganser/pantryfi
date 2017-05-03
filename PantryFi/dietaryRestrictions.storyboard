@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--allergies-->
+        <!--diet-->
         <scene sceneID="g4O-kV-keA">
             <objects>
-                <viewController storyboardIdentifier="allergies" title="allergies" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PUc-zK-7yK" customClass="AllergiesViewController" customModule="PantryFi" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="diet" title="Dietary Restriction" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PUc-zK-7yK" userLabel="diet" customClass="DietViewController" customModule="PantryFi" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EcM-5n-CHW"/>
                         <viewControllerLayoutGuide type="bottom" id="eYe-yp-JkJ"/>
@@ -23,10 +23,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="H02-MD-KUP">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="607"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="allerginCell" id="M5Z-hf-Zpb" customClass="AllergieTableViewCell" customModule="PantryFi" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="dietCell" id="M5Z-hf-Zpb" customClass="DietTableViewCell" customModule="PantryFi" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="M5Z-hf-Zpb" id="K2W-EG-tqk">
@@ -42,7 +42,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oQi-gM-YMZ">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="oQi-gM-YMZ">
                                                     <rect key="frame" x="318" y="6" width="51" height="31"/>
                                                 </switch>
                                             </subviews>
@@ -54,41 +54,24 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="allerginLabel" destination="isR-pq-BS1" id="0sN-qh-dOX"/>
+                                            <outlet property="dietLabel" destination="isR-pq-BS1" id="4Lp-3J-wlp"/>
                                             <outlet property="switch" destination="oQi-gM-YMZ" id="FVn-cH-j4e"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PX2-iX-Qbs">
-                                <rect key="frame" x="16" y="615" width="343" height="44"/>
-                                <color key="backgroundColor" red="0.18039215689999999" green="0.80000000000000004" blue="0.4431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="Czy-6r-3b0"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                <state key="normal" title="Apply">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="applyButton:" destination="PUc-zK-7yK" eventType="touchUpInside" id="U8s-d1-J2r"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="PX2-iX-Qbs" firstAttribute="leading" secondItem="dgp-q4-Mm3" secondAttribute="leadingMargin" id="5lf-VQ-fzM"/>
-                            <constraint firstItem="H02-MD-KUP" firstAttribute="centerX" secondItem="PX2-iX-Qbs" secondAttribute="centerX" id="5uw-Vb-58i"/>
-                            <constraint firstItem="PX2-iX-Qbs" firstAttribute="top" secondItem="H02-MD-KUP" secondAttribute="bottom" constant="8" id="Cmu-Dg-FF3"/>
                             <constraint firstItem="H02-MD-KUP" firstAttribute="leading" secondItem="dgp-q4-Mm3" secondAttribute="leading" id="EOv-jj-X3v"/>
                             <constraint firstAttribute="trailing" secondItem="H02-MD-KUP" secondAttribute="trailing" id="lLZ-Xq-nAt"/>
+                            <constraint firstItem="H02-MD-KUP" firstAttribute="bottom" secondItem="eYe-yp-JkJ" secondAttribute="top" id="sZP-IU-H7p"/>
                             <constraint firstItem="H02-MD-KUP" firstAttribute="top" secondItem="dgp-q4-Mm3" secondAttribute="top" id="spU-aO-ojV"/>
-                            <constraint firstItem="eYe-yp-JkJ" firstAttribute="top" secondItem="PX2-iX-Qbs" secondAttribute="bottom" constant="8" id="tTU-O7-f3F"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="egQ-fV-VAW"/>
+                    <navigationItem key="navigationItem" title="Dietary Restrictions" id="egQ-fV-VAW"/>
                     <connections>
-                        <outlet property="tableView" destination="H02-MD-KUP" id="wet-EF-tHa"/>
+                        <outlet property="tableView" destination="H02-MD-KUP" id="hmg-8Y-HEK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oU9-kz-PqM" userLabel="First Responder" sceneMemberID="firstResponder"/>

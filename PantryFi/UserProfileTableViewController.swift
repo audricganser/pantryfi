@@ -16,9 +16,7 @@ class UserProfileTableViewController: UITableViewController, UIImagePickerContro
     
     var imageView: UIImageView!
     
-    var firstLastName = ""
-    
-    var user = ["Profile", "Allergies", "Diet Restrictions", "Settings", "Logout"]
+    var user = ["Allergies", "Diet Restrictions", "Logout"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,14 +49,33 @@ class UserProfileTableViewController: UITableViewController, UIImagePickerContro
         // #warning Incomplete implementation, return the number of rows
         return user.count + 1
     }
-
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        if indexPath.row == 0 {
+            return 100.0;//Choose your custom row height
+        }
+        else {
+            return 44.0
+        }
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "Info", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Info", for: indexPath)
         
         if indexPath.row == 0 {
-            cell = tableView.dequeueReusableCell(withIdentifier: "Profile", for: indexPath)
-            cell.textLabel?.text = firstLastName
+            if let user = FIRAuth.auth()?.currentUser {
+                let uid = user.uid
+                FIRDatabase.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                    if let dictionary = snapshot.value as? [String: AnyObject] {
+                        
+                        let name = dictionary["name"] as? String
+                        cell.textLabel?.text = "\(name!)"
+                    }
+                }, withCancel: nil)
+            }
+
+            cell.textLabel?.textAlignment = .center
             cell.imageView?.image = #imageLiteral(resourceName: "profile")
 
         }
@@ -70,12 +87,6 @@ class UserProfileTableViewController: UITableViewController, UIImagePickerContro
         return cell
     }
     
-//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
-//    {
-//        return 50.0;//Choose your custom row height
-//    }
-    
-    
     public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
@@ -83,23 +94,18 @@ class UserProfileTableViewController: UITableViewController, UIImagePickerContro
         case 0:
             imagePicker.allowsEditing = false
             imagePicker.sourceType = .photoLibrary
-            
             present(imagePicker, animated: true, completion: nil)
             break
             
         case 1:
-            break;
-        case 2:
-            //change
-            let storyBoard1:UIStoryboard = UIStoryboard(name: "foodRestrictions", bundle:nil)
-            let vc = storyBoard1.instantiateViewController(withIdentifier: "allergies") as! AllergiesViewController
-            self.navigationController?.pushViewController(vc, animated:true)            
+//            let storyBoard1:UIStoryboard = UIStoryboard(name: "allergies", bundle:nil)
+//            let vc = storyBoard1.instantiateViewController(withIdentifier: "sllergies") as! AllergiesViewController
+//            self.navigationController?.pushViewController(vc, animated:true)            
             break
             
-        case 3:
-            let storyBoard1:UIStoryboard = UIStoryboard(name: "foodRestrictions", bundle:nil)
-            let vc = storyBoard1.instantiateViewController(withIdentifier: "allergies") as! AllergiesViewController
-            vc.listSegue = false
+        case 2:
+            let storyBoard1:UIStoryboard = UIStoryboard(name: "dietaryRestrictions", bundle:nil)
+            let vc = storyBoard1.instantiateViewController(withIdentifier: "diet") as! DietViewController
             self.navigationController?.pushViewController(vc, animated:true)
             
             break
@@ -111,7 +117,7 @@ class UserProfileTableViewController: UITableViewController, UIImagePickerContro
 //            
 //            break
             
-        case 5:
+        case 3:
             do{
                 try FIRAuth.auth()?.signOut()
             }

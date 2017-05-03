@@ -18,7 +18,7 @@ class UserProfileTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        nameLabel.text = ""
+        nameLabel.text = "This is the text"
         
         if let user = FIRAuth.auth()?.currentUser {
             let uid = user.uid
