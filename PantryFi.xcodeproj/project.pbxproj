@@ -39,6 +39,8 @@
 		753AA0C01EB29D7200895E9F /* favoriteStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 753AA0BF1EB29D7200895E9F /* favoriteStoryboard.storyboard */; };
 		753AA0C91EB29DB600895E9F /* shopping.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 753AA0C81EB29DB600895E9F /* shopping.storyboard */; };
 		753AA0CC1EB2B1F400895E9F /* AddIngredientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AA0CB1EB2B1F400895E9F /* AddIngredientViewController.swift */; };
+		75AD9FB71EB9457B00574B51 /* ShoppingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AD9FB61EB9457B00574B51 /* ShoppingTableViewController.swift */; };
+		75AD9FB91EB94A3D00574B51 /* AddShoppingItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AD9FB81EB94A3D00574B51 /* AddShoppingItemViewController.swift */; };
 		75BE49D91EA19EC900BC9F4B /* SSASideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BE49D81EA19EC900BC9F4B /* SSASideMenu.swift */; };
 		75E65CDE1E9F684E003B9D87 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75E65CDD1E9F684E003B9D87 /* GoogleService-Info.plist */; };
 		75F0C9C51E830B29002E1458 /* AddIngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F0C9C41E830B29002E1458 /* AddIngredientTableViewCell.swift */; };
@@ -83,6 +85,8 @@
 		753AA0BF1EB29D7200895E9F /* favoriteStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = favoriteStoryboard.storyboard; sourceTree = "<group>"; };
 		753AA0C81EB29DB600895E9F /* shopping.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = shopping.storyboard; sourceTree = "<group>"; };
 		753AA0CB1EB2B1F400895E9F /* AddIngredientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddIngredientViewController.swift; sourceTree = "<group>"; };
+		75AD9FB61EB9457B00574B51 /* ShoppingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingTableViewController.swift; sourceTree = "<group>"; };
+		75AD9FB81EB94A3D00574B51 /* AddShoppingItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddShoppingItemViewController.swift; sourceTree = "<group>"; };
 		75BE49D81EA19EC900BC9F4B /* SSASideMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSASideMenu.swift; sourceTree = "<group>"; };
 		75E65CDD1E9F684E003B9D87 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		75F0C9C41E830B29002E1458 /* AddIngredientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddIngredientTableViewCell.swift; sourceTree = "<group>"; };
@@ -254,6 +258,8 @@
 			isa = PBXGroup;
 			children = (
 				753AA0C81EB29DB600895E9F /* shopping.storyboard */,
+				75AD9FB81EB94A3D00574B51 /* AddShoppingItemViewController.swift */,
+				75AD9FB61EB9457B00574B51 /* ShoppingTableViewController.swift */,
 			);
 			name = Shopping;
 			sourceTree = "<group>";
@@ -293,7 +299,7 @@
 				TargetAttributes = {
 					2BC8DC4D1E78758C00A7A3AD = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = M7NK5W38NR;
+						DevelopmentTeam = N4J8447DC3;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -400,10 +406,12 @@
 				753AA0CC1EB2B1F400895E9F /* AddIngredientViewController.swift in Sources */,
 				1518B9741E85B3A70046868C /* PantrySearchViewController.swift in Sources */,
 				2BC8DC5A1E78758C00A7A3AD /* PantryFi.xcdatamodeld in Sources */,
+				75AD9FB71EB9457B00574B51 /* ShoppingTableViewController.swift in Sources */,
 				2B6262451EB9764100415C12 /* DietViewController.swift in Sources */,
 				15D29BAB1EB8E4BC00523943 /* RecipeIngredientsTableViewController.swift in Sources */,
 				2B1AD5CE1E85B9C100FBEA48 /* RecipeTableViewCell.swift in Sources */,
 				75FEFE481EA34047008D1619 /* Ingredient.swift in Sources */,
+				75AD9FB91EB94A3D00574B51 /* AddShoppingItemViewController.swift in Sources */,
 				15D163801EA3F6AA0023A51A /* RecipeWithIngredients.swift in Sources */,
 				75F0C9C71E830B35002E1458 /* IngredientTableViewCell.swift in Sources */,
 				15D29BAD1EB8E4D400523943 /* RecipeIngredientsTableViewCell.swift in Sources */,
@@ -537,7 +545,7 @@
 			baseConfigurationReference = 0C903BC548FA9DB323A4DCAC /* Pods-PantryFi.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = M7NK5W38NR;
+				DEVELOPMENT_TEAM = N4J8447DC3;
 				INFOPLIST_FILE = PantryFi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.PantryFi.ios;
@@ -551,7 +559,7 @@
 			baseConfigurationReference = E71E59CE2604B568A6F78096 /* Pods-PantryFi.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = M7NK5W38NR;
+				DEVELOPMENT_TEAM = N4J8447DC3;
 				INFOPLIST_FILE = PantryFi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.PantryFi.ios;
