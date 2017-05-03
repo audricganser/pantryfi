@@ -169,14 +169,14 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
             if let JSON = response.result.value {
                 let jsonDict = JSON as! Dictionary<String, Any>
                 let results = jsonDict["results"] as! NSArray
-                print(results)
+                // print(results)
                 self.recipeList1 = []
                 for recipe in results {
                     let newRecipe = self.getRecipe(recipe: recipe as! Dictionary<String, Any>)
                     self.recipeList1.append(newRecipe)
-                    print("appending recipe")
-                    print(newRecipe.id)
-                    print(newRecipe.title)
+                    // print("appending recipe")
+                    // print(newRecipe.id)
+                    // print(newRecipe.title)
                 }
                 self.tableView.reloadData()
                 
@@ -210,49 +210,49 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
         
         let recipe_ret = RecipeWithIngredients.init(id: id, title: "\(title)", image: "\(image)", usedIngredientCount: usedIngredientCount, missedIngredientCount: missedIngredientCount, likes: likes, healthScore: healthScore, spoonacularScore: spoonacularScore, servings: servings, readyInMinutes: readyInMinutes, missedIngredients: missedIngredients, usedIngredients: usedIngredients, analyzedInstructions: analyzedInstructions)
 
-        print(recipe_ret)
+        // print(recipe_ret)
         return recipe_ret
     }
     
     func makeIngredient (ingredient: Dictionary<String, Any>) -> Ingredient {
-        let name = ingredient["name"]!
-        let amount = ingredient["amount"]!
-        let unit = ingredient["unitLong"]!
-        let key = ingredient["id"]!
-        let image = ingredient["image"]!
-        
-        return Ingredient.init(name: "\(name)", quantity: "\(amount)", key: "\(key)", unit: "\(unit)", image: "\(image)")
+        var name = ""
+        if let nameVal = ingredient["name"] { name = "\(nameVal)" }
+        var amount = ""
+        if let amountVal = ingredient["amount"] { amount = "\(amountVal)" }
+        var unit = ""
+        if let unitVal = ingredient["unitLong"] { unit = "\(unitVal)" }
+        var key = ""
+        if let keyVal = ingredient["key"] { key = "\(keyVal)" }
+        var image = ""
+        if let imageVal = ingredient["image"] { image = "\(imageVal)" }
+        return Ingredient.init(name: name, quantity: amount, key: key, unit: unit, image: image)
     }
     
     func makeAnalyzedInstructions (analyzedInstructions: Dictionary<String, Any>) -> AnalyzedInstructions {
-        let name = analyzedInstructions["name"]!
+        var name = ""
+        if let nameVal = analyzedInstructions["name"] { name = "\(nameVal)" }
         var steps = [Steps]()
-        for s in analyzedInstructions["steps"]! as! NSArray {
-            let step = s as! Dictionary<String, Any>
-            let number = step["number"]! as! Int
-            let step1 = step["step"]!
-            steps.append(Steps.init(number: number, step: "\(step1)"))
-            
+        if let _ = analyzedInstructions["steps"] {
+            for s in analyzedInstructions["steps"]! as! NSArray {
+                let step = s as! Dictionary<String, Any>
+                var number = 0
+                if let numVal = step["number"] { number = numVal as! Int }
+                var stepText = ""
+                if let stepVal = step["step"] { stepText = "\(stepVal)" }
+                steps.append(Steps.init(number: number, step: stepText))
+            }
         }
-        return AnalyzedInstructions.init(name: "\(name)", steps: steps)
+        var ingredients = [Ingredient]()
+        if let _ = analyzedInstructions["ingredients"] {
+            for i in analyzedInstructions["ingredients"]! as! NSArray {
+                let ingredient = makeIngredient(ingredient: i as! Dictionary<String, Any>)
+                ingredients.append(ingredient)
+            }
+        }
+ 
+        return AnalyzedInstructions.init(name: name, steps: steps, ingredients: ingredients)
         
     }
-    
-    private func stringFromHtml(string: String) -> NSAttributedString? {
-        do {
-            let data = string.data(using: String.Encoding.utf8, allowLossyConversion: true)
-            if let d = data {
-                let str = try NSAttributedString(data: d,
-                                                 options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
-                                                 documentAttributes: nil)
-                return str
-            }
-        } catch {
-        }
-        return nil
-    }
-    
-    
 
     // MARK: - Navigation
 
