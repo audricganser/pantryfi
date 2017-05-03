@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--User Profile Table View Controller-->
+        <!--Settings-->
         <scene sceneID="NT8-yV-OzD">
             <objects>
                 <tableViewController storyboardIdentifier="userProfiles" useStoryboardIdentifierAsRestorationIdentifier="YES" id="m7e-ro-UCH" customClass="UserProfileTableViewController" customModule="PantryFi" customModuleProvider="target" sceneMemberID="viewController">
@@ -33,7 +33,7 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="" image="001-line" selectedImage="001-line" id="in8-aB-AVB"/>
-                    <navigationItem key="navigationItem" id="QOZ-Gh-g8H"/>
+                    <navigationItem key="navigationItem" title="Settings" id="QOZ-Gh-g8H"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fCn-tN-jp9" userLabel="First Responder" sceneMemberID="firstResponder"/>

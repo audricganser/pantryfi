@@ -38,7 +38,6 @@
 		2BC8DC5C1E78758C00A7A3AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BC8DC5B1E78758C00A7A3AD /* Assets.xcassets */; };
 		2BC8DC5F1E78758C00A7A3AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BC8DC5D1E78758C00A7A3AD /* LaunchScreen.storyboard */; };
 		2BC8DC671E7890F700A7A3AD /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC8DC661E7890F700A7A3AD /* SignUpViewController.swift */; };
-		2BD0D33E1EB3E5970051E592 /* UserProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD0D33D1EB3E5970051E592 /* UserProfileTableViewCell.swift */; };
 		753AA0C01EB29D7200895E9F /* favoriteStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 753AA0BF1EB29D7200895E9F /* favoriteStoryboard.storyboard */; };
 		753AA0C91EB29DB600895E9F /* shopping.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 753AA0C81EB29DB600895E9F /* shopping.storyboard */; };
 		753AA0CC1EB2B1F400895E9F /* AddIngredientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AA0CB1EB2B1F400895E9F /* AddIngredientViewController.swift */; };
@@ -89,7 +88,6 @@
 		2BC8DC5E1E78758C00A7A3AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2BC8DC601E78758C00A7A3AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2BC8DC661E7890F700A7A3AD /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		2BD0D33D1EB3E5970051E592 /* UserProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileTableViewCell.swift; sourceTree = "<group>"; };
 		753AA0BF1EB29D7200895E9F /* favoriteStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = favoriteStoryboard.storyboard; sourceTree = "<group>"; };
 		753AA0C81EB29DB600895E9F /* shopping.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = shopping.storyboard; sourceTree = "<group>"; };
 		753AA0CB1EB2B1F400895E9F /* AddIngredientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddIngredientViewController.swift; sourceTree = "<group>"; };
@@ -171,7 +169,6 @@
 			children = (
 				159E5A031EAEC08D00BEE0C8 /* userProfiles.storyboard */,
 				2B6262421EB82DBF00415C12 /* UserProfileTableViewController.swift */,
-				2BD0D33D1EB3E5970051E592 /* UserProfileTableViewCell.swift */,
 				159E5A011EAEC05300BEE0C8 /* dietaryRestrictions.storyboard */,
 				2B6262441EB9764100415C12 /* DietViewController.swift */,
 				2B67AE021EA59E2A0029205F /* DietTableViewCell.swift */,
