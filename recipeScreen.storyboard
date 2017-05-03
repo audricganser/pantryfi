@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -195,6 +195,13 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vyI-Yq-zTL">
                                 <rect key="frame" x="0.0" y="64" width="375" height="261"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZhA-hr-Gua">
+                                <rect key="frame" x="335" y="80" width="24" height="24"/>
+                                <state key="normal" image="007-mark-as-favourite-star"/>
+                                <connections>
+                                    <action selector="favoriteRecipe:" destination="dUe-jb-S4p" eventType="touchUpInside" id="Obf-Je-6hb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="9Kv-L0-DC9" firstAttribute="top" secondItem="vyI-Yq-zTL" secondAttribute="bottom" constant="342" id="31b-rg-RlS"/>
@@ -205,6 +212,8 @@
                             <constraint firstAttribute="trailing" secondItem="bO4-g5-qLy" secondAttribute="trailing" id="dUH-Jv-n14"/>
                             <constraint firstItem="bO4-g5-qLy" firstAttribute="leading" secondItem="dO8-2a-vGk" secondAttribute="leading" id="fUO-P1-hB5"/>
                             <constraint firstItem="bO4-g5-qLy" firstAttribute="leading" secondItem="vyI-Yq-zTL" secondAttribute="leading" id="kQZ-e8-BPo"/>
+                            <constraint firstItem="ZhA-hr-Gua" firstAttribute="leading" secondItem="vyI-Yq-zTL" secondAttribute="trailing" constant="-40" id="q7L-aW-GTD"/>
+                            <constraint firstItem="vyI-Yq-zTL" firstAttribute="top" secondItem="ZhA-hr-Gua" secondAttribute="bottom" constant="-40" id="rwG-Bc-3k7"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="PantryFi" id="SJA-4b-6jk"/>
@@ -241,4 +250,7 @@
             <point key="canvasLocation" x="2540" y="44.527736131934034"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="007-mark-as-favourite-star" width="24" height="24"/>
+    </resources>
 </document>
