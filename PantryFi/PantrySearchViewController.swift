@@ -116,7 +116,7 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
         let indexPath = tableView.indexPathForSelectedRow
         let recipe = recipeList1[indexPath!.row]
         vc.recipe = recipe
-        vc.callerVC = "searchResults"
+        //vc.callerVC = "searchResults"
 
         tableView.deselectRow(at: indexPath!, animated:true)
         //go to other view controller
