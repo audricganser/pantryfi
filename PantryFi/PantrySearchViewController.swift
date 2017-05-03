@@ -238,28 +238,6 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
         
     }
     
-    // Get Recipe Summary
-    func recipeSummary (id: String, cell: RecipeResultTableViewCell) {
-        let baseUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + "\(id)" + "/summary"
-        let headers: HTTPHeaders = ["X-Mashape-Key": "oWragx4kwsmshOw6ZL8IH8RP81DUp1L0QFVjsn0JaX9pEIPpUg"]
-        var summary = ""
-        Alamofire.request(baseUrl, headers: headers).responseJSON { response in
-            // print(response.request)  // original URL request
-            // print(response.response) // HTTP URL response
-            // print(response.data)     // server data
-            // print(response.result)   // result of response serialization
-            
-            if let JSON = response.result.value {
-                let json = JSON as! Dictionary<String, Any>
-                let sum = json["summary"]!
-                summary = "\(sum)"
-                //cell.recipeDescript.attributedText = self.stringFromHtml(string: summary)
-                //print("JSON: \(summary)")
-                
-            }
-        }
-    }
-    
     private func stringFromHtml(string: String) -> NSAttributedString? {
         do {
             let data = string.data(using: String.Encoding.utf8, allowLossyConversion: true)
