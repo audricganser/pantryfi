@@ -8,6 +8,8 @@
 
 import UIKit
 import Foundation
+import FirebaseAuth
+import FirebaseDatabase
 import Alamofire
 
 class RecipeViewController: UIViewController {
@@ -21,11 +23,14 @@ class RecipeViewController: UIViewController {
     @IBOutlet weak var recipeTitle: UILabel!
     
     var recipe:RecipeWithIngredients = RecipeWithIngredients.init()
+    let ref = FIRDatabase.database().reference(withPath: "recipes")
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // setting recipe summary
+        recipeSummary(id: self.recipe.id)
         // Loading image from url
         Alamofire.request(self.recipe.image).response { response in
             if let data = response.data {
@@ -67,7 +72,20 @@ class RecipeViewController: UIViewController {
     }
     */
     
-    
+    // Get Recipe Summary
+    func recipeSummary (id: Int) {
+        let baseUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + "\(id)" + "/summary"
+        let headers: HTTPHeaders = ["X-Mashape-Key": "oWragx4kwsmshOw6ZL8IH8RP81DUp1L0QFVjsn0JaX9pEIPpUg"]
+        var summary = ""
+        Alamofire.request(baseUrl, headers: headers).responseJSON { response in
+            if let JSON = response.result.value {
+                let json = JSON as! Dictionary<String, Any>
+                let sum = json["summary"]!
+                summary = "\(sum)"
+                self.recipe.summary = summary
+            }
+        }
+    }
     
     
     @IBAction func showIngredients(_ sender: Any) {
@@ -87,6 +105,30 @@ class RecipeViewController: UIViewController {
         
     }
     
+    @IBAction func favoriteRecipe(_ sender: Any) {
+        
+        let title = self.recipe.title
+        
+
+                    if let user = FIRAuth.auth()?.currentUser
+                        {
+                            let uid = user.uid
+                            let recipe = self.recipe
+                            
+                            let recipeRef = self.ref.child(uid).child(title.lowercased())
+                            
+                            recipeRef.setValue(recipe.toAnyObject())
+                            
+                            let alert = UIAlertController(title: "Success", message:"The item was added to your favorites", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                                
+                            }))
+                            self.present(alert, animated: true, completion:nil)
+                        }
+        
+        
+        
+    }
     @IBAction func showNutrition(_ sender: Any) {
         
     }
