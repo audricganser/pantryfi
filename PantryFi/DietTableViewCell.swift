@@ -1,5 +1,5 @@
 //
-//  AllergieTableViewCell.swift
+//  DietTableViewCell.swift
 //  PantryFi
 //
 //  Created by Audric Ganser on 4/17/17.
@@ -8,10 +8,9 @@
 
 import UIKit
 
-class AllergieTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var allerginLabel: UILabel!
+class DietTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var dietLabel: UILabel!
     @IBOutlet weak var `switch`: UISwitch!
    
     override func awakeFromNib() {
