@@ -26,6 +26,8 @@ class RecipeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // setting recipe summary
+        recipeSummary(id: self.recipe.id)
         // Loading image from url
         Alamofire.request(self.recipe.image).response { response in
             if let data = response.data {
@@ -67,7 +69,20 @@ class RecipeViewController: UIViewController {
     }
     */
     
-    
+    // Get Recipe Summary
+    func recipeSummary (id: Int) {
+        let baseUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + "\(id)" + "/summary"
+        let headers: HTTPHeaders = ["X-Mashape-Key": "oWragx4kwsmshOw6ZL8IH8RP81DUp1L0QFVjsn0JaX9pEIPpUg"]
+        var summary = ""
+        Alamofire.request(baseUrl, headers: headers).responseJSON { response in
+            if let JSON = response.result.value {
+                let json = JSON as! Dictionary<String, Any>
+                let sum = json["summary"]!
+                summary = "\(sum)"
+                self.recipe.summary = summary
+            }
+        }
+    }
     
     
     @IBAction func showIngredients(_ sender: Any) {

@@ -8,10 +8,13 @@
 
 import UIKit
 import Alamofire
+import FirebaseAuth
+import FirebaseDatabase
 
 class RecipeIngredientsTableViewController: UITableViewController {
     
     var ingredients = [Ingredient]()
+    var ref = FIRDatabase.database().reference(withPath: "shoppingList")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,13 +64,37 @@ class RecipeIngredientsTableViewController: UITableViewController {
                 print("Data is nil. I don't know what to do :(")
             }
         }
-
+        //cell.addButton.titleLabel?.textColor = UIColor.green
+        //cell.addButton.setBackgroundImage(img, for: UIControlState.normal)
         cell.titleLabel.text = ingredient.name
-        cell.quantityLabel.text = ingredient.quantity
+        cell.quantityLabel.text = ingredient.quantity + " " + ingredient.unit
+        cell.ingredient = ingredient
+        cell.addButton.tag = indexPath.row
 
         return cell
     }
     
+    public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated:true)
+    }
+    
+    @IBAction func addButton(_ sender: UIButton) {
+        let row = sender.tag
+        let ingredient = self.ingredients[row]
+        if let user = FIRAuth.auth()?.currentUser {
+            let uid = user.uid
+            let shoppingItemRef = self.ref.child(uid).child(ingredient.name.lowercased())
+            
+            shoppingItemRef.setValue(ingredient.toAnyObject())
+            let alertController = UIAlertController(title: "Success", message: "The item was added to your shopping cart", preferredStyle: UIAlertControllerStyle.alert)
+            
+            let OKAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (action:UIAlertAction) in }
+            alertController.addAction(OKAction)
+            self.present(alertController, animated: true, completion:nil)
+        }
+    }
+
+
 
     /*
     // Override to support conditional editing of the table view.
