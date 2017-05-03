@@ -41,6 +41,8 @@
 		753AA0C01EB29D7200895E9F /* favoriteStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 753AA0BF1EB29D7200895E9F /* favoriteStoryboard.storyboard */; };
 		753AA0C91EB29DB600895E9F /* shopping.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 753AA0C81EB29DB600895E9F /* shopping.storyboard */; };
 		753AA0CC1EB2B1F400895E9F /* AddIngredientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AA0CB1EB2B1F400895E9F /* AddIngredientViewController.swift */; };
+		753BE86D1EBA56D200F5954D /* FavoriteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753BE86C1EBA56D200F5954D /* FavoriteCollectionViewCell.swift */; };
+		753BE86F1EBA56E500F5954D /* FavoritesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753BE86E1EBA56E500F5954D /* FavoritesCollectionViewController.swift */; };
 		75AD9FB71EB9457B00574B51 /* ShoppingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AD9FB61EB9457B00574B51 /* ShoppingTableViewController.swift */; };
 		75AD9FB91EB94A3D00574B51 /* AddShoppingItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AD9FB81EB94A3D00574B51 /* AddShoppingItemViewController.swift */; };
 		75BE49D91EA19EC900BC9F4B /* SSASideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BE49D81EA19EC900BC9F4B /* SSASideMenu.swift */; };
@@ -89,6 +91,8 @@
 		753AA0BF1EB29D7200895E9F /* favoriteStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = favoriteStoryboard.storyboard; sourceTree = "<group>"; };
 		753AA0C81EB29DB600895E9F /* shopping.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = shopping.storyboard; sourceTree = "<group>"; };
 		753AA0CB1EB2B1F400895E9F /* AddIngredientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddIngredientViewController.swift; sourceTree = "<group>"; };
+		753BE86C1EBA56D200F5954D /* FavoriteCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteCollectionViewCell.swift; sourceTree = "<group>"; };
+		753BE86E1EBA56E500F5954D /* FavoritesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesCollectionViewController.swift; sourceTree = "<group>"; };
 		75AD9FB61EB9457B00574B51 /* ShoppingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingTableViewController.swift; sourceTree = "<group>"; };
 		75AD9FB81EB94A3D00574B51 /* AddShoppingItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddShoppingItemViewController.swift; sourceTree = "<group>"; };
 		75BE49D81EA19EC900BC9F4B /* SSASideMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSASideMenu.swift; sourceTree = "<group>"; };
@@ -256,6 +260,8 @@
 			isa = PBXGroup;
 			children = (
 				753AA0BF1EB29D7200895E9F /* favoriteStoryboard.storyboard */,
+				753BE86C1EBA56D200F5954D /* FavoriteCollectionViewCell.swift */,
+				753BE86E1EBA56E500F5954D /* FavoritesCollectionViewController.swift */,
 			);
 			name = Favorite;
 			sourceTree = "<group>";
@@ -408,6 +414,7 @@
 				152A246E1E7F2BD300C42EAA /* HomeViewController.swift in Sources */,
 				1518B9781E85B4D30046868C /* TableViewController.swift in Sources */,
 				2BD0D33E1EB3E5970051E592 /* UserProfileTableViewCell.swift in Sources */,
+				753BE86F1EBA56E500F5954D /* FavoritesCollectionViewController.swift in Sources */,
 				159E58A61EA5462100BEE0C8 /* Steps.swift in Sources */,
 				753AA0CC1EB2B1F400895E9F /* AddIngredientViewController.swift in Sources */,
 				1518B9741E85B3A70046868C /* PantrySearchViewController.swift in Sources */,
@@ -430,6 +437,7 @@
 				2BC8DC671E7890F700A7A3AD /* SignUpViewController.swift in Sources */,
 				75F0C9C51E830B29002E1458 /* AddIngredientTableViewCell.swift in Sources */,
 				75BE49D91EA19EC900BC9F4B /* SSASideMenu.swift in Sources */,
+				753BE86D1EBA56D200F5954D /* FavoriteCollectionViewCell.swift in Sources */,
 				15D29BA21EB8597400523943 /* AnalyzedInstructions.swift in Sources */,
 				2BC8DC521E78758C00A7A3AD /* AppDelegate.swift in Sources */,
 			);
