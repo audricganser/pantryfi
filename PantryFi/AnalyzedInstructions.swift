@@ -11,10 +11,12 @@ import Foundation
 class AnalyzedInstructions  {
     var name:String
     var steps:[Steps]
+    var ingredients:[Ingredient]
     
-    init(name:String = "", steps:[Steps] = []) {
+    init(name:String = "", steps:[Steps] = [], ingredients: [Ingredient] = []) {
         self.name = name
         self.steps = steps
+        self.ingredients = ingredients
     }
 }
 
