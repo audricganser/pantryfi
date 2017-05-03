@@ -69,7 +69,7 @@
                             <constraint firstItem="H02-MD-KUP" firstAttribute="top" secondItem="dgp-q4-Mm3" secondAttribute="top" id="spU-aO-ojV"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Dietary Restrictions" id="egQ-fV-VAW"/>
+                    <navigationItem key="navigationItem" title="Diets" id="egQ-fV-VAW"/>
                     <connections>
                         <outlet property="tableView" destination="H02-MD-KUP" id="hmg-8Y-HEK"/>
                     </connections>

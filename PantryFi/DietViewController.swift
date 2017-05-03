@@ -19,6 +19,8 @@ class DietViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.tableFooterView = UIView()
+        
         tableView.isScrollEnabled = false;
         tableView.delegate = self
         tableView.dataSource = self
@@ -45,6 +47,8 @@ class DietViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "dietCell", for: indexPath) as!
         DietTableViewCell
+        
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
         
         cell.dietLabel.text = diets[indexPath.row]
         

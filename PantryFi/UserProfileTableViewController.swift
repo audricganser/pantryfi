@@ -16,22 +16,20 @@ class UserProfileTableViewController: UITableViewController, UIImagePickerContro
     
     var imageView: UIImageView!
     
-    var user = ["Allergies", "Diet Restrictions", "Logout"]
+    var user = ["Allergies", "Diets", "Logout"]
+    
+    let headerTitles = ["Profile", "Restrictions", "    "]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
+        tableView.tableFooterView = UIView()
+        
 
         tableView.isScrollEnabled = false;
         tableView.delegate = self
         tableView.dataSource = self
 
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,17 +41,17 @@ class UserProfileTableViewController: UITableViewController, UIImagePickerContro
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return user.count + 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return user.count + 1
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        if indexPath.row == 0 {
+        if indexPath.section == 0 {
             return 100.0;//Choose your custom row height
         }
         else {
@@ -63,8 +61,8 @@ class UserProfileTableViewController: UITableViewController, UIImagePickerContro
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Info", for: indexPath)
-        
-        if indexPath.row == 0 {
+        print("section \(indexPath.section)")
+        if indexPath.section == 0 {
             if let user = FIRAuth.auth()?.currentUser {
                 let uid = user.uid
                 FIRDatabase.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -82,16 +80,37 @@ class UserProfileTableViewController: UITableViewController, UIImagePickerContro
         }
         else {
             // Configure the cell...
-            cell.textLabel?.text = user[indexPath.row - 1]
+            //print("row")
+            cell.textLabel?.text = user[indexPath.section - 1]
+        }
+        
+        if indexPath.section - 1 == user.count - 1 {
+            cell.textLabel?.textColor = UIColor.red
+            cell.textLabel?.textAlignment = .center
         }
         
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        print(section)
+        if section == 0 {
+            return headerTitles[section]
+        }
+        if section == 1 {
+            return headerTitles[section]
+        }
+        if section == 3 {
+            return headerTitles[section - 1]
+        }
+        return nil
+    }
+
+    
     public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        switch indexPath.row {
+    
+        switch indexPath.section {
         case 0:
             imagePicker.allowsEditing = false
             imagePicker.sourceType = .photoLibrary
