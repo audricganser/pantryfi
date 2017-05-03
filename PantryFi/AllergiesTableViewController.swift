@@ -84,12 +84,12 @@ class AllergiesTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
         if editingStyle == .delete {
             let allergiesItem = items[indexPath.row]
             allergiesItem.ref?.removeValue()
-            print(tableView.visibleCells.count)
+            
             if tableView.visibleCells.count == 1 {
-                //should put this in a function
                 splashText()
             }
         }
