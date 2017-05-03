@@ -61,11 +61,21 @@ class RecipeIngredientsTableViewController: UITableViewController {
                 print("Data is nil. I don't know what to do :(")
             }
         }
-
+        //cell.addButton.titleLabel?.textColor = UIColor.green
+        //cell.addButton.setBackgroundImage(img, for: UIControlState.normal)
         cell.titleLabel.text = ingredient.name
-        cell.quantityLabel.text = ingredient.quantity
+        cell.quantityLabel.text = ingredient.quantity + " " + ingredient.unit
+        cell.ingredient = ingredient
+        cell.addButton.tag = indexPath.row
+        cell.addButton.addTarget(self, action: "showAlert:", for: UIControlEvents.touchUpInside)
 
         return cell
+    }
+    
+    func showAlert(sender:UIButton!) {
+        print(sender.tag)
+        print("I was touched!")
+        
     }
     
 
