@@ -9,42 +9,61 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="XIK-IY-4ng">
+        <!--Allergies-->
+        <scene sceneID="s6X-cf-KSE">
             <objects>
-                <viewController id="niH-0x-xxj" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="XGz-hG-aHw"/>
-                        <viewControllerLayoutGuide type="bottom" id="p5x-T6-Lf6"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="7es-AY-7lg">
+                <tableViewController storyboardIdentifier="allergies" title="Allergies" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fpF-N2-oBc" customClass="AllergiesTableViewController" customModule="PantryFi" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="XPe-Qt-l12">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="AiQ-mH-RVy"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="f3g-FH-Hoz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemCell" id="5hv-jc-C0n">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5hv-jc-C0n" id="HQe-3s-1wf">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="fpF-N2-oBc" id="Ro1-vB-ydO"/>
+                            <outlet property="delegate" destination="fpF-N2-oBc" id="pOC-9D-8tA"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Allergies" id="qod-Fq-QOE">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="g5l-qf-ni3">
+                            <color key="tintColor" red="0.18039215689999999" green="0.80000000000000004" blue="0.4431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="addButton:" destination="fpF-N2-oBc" id="cGh-jA-Cop"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mZl-jb-ned" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1128.8" y="98.50074962518741"/>
+            <point key="canvasLocation" x="1817" y="68"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="4n9-H3-zzj">
+        <scene sceneID="7n1-To-EHI">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Vmt-dD-zxo" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qhe-SX-aEp" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hmD-Cc-KuT">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2Qc-CN-Q8A">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="niH-0x-xxj" kind="relationship" relationship="rootViewController" id="Hoi-pe-ggt"/>
+                        <segue destination="fpF-N2-oBc" kind="relationship" relationship="rootViewController" id="HtM-AR-SoO"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wzr-aj-pSA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qog-cU-bh1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="189.59999999999999" y="98.50074962518741"/>
+            <point key="canvasLocation" x="960.79999999999995" y="67.916041979010501"/>
         </scene>
     </scenes>
 </document>

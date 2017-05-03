@@ -13,11 +13,13 @@ class DietViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //var allergies = ["Milk", "Eggs", "Fish", "Crustacean shellfish", "Tree Nuts", "Peanuts", "Wheat", "Soybeans", "Gluten", "Soy", "Sulfite"]
     @IBOutlet weak var tableView: UITableView!
     
+    
     var diets = ["Vegan", "Vegetarian", "Gluten Free", "Ketogenic", "Whole 30", "Paleo"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.isScrollEnabled = false;
         tableView.delegate = self
         tableView.dataSource = self
         
