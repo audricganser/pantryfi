@@ -22,6 +22,8 @@
 		15D29BA91EB8E44F00523943 /* Recipe-Ingredients.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15D29BA81EB8E44F00523943 /* Recipe-Ingredients.storyboard */; };
 		15D29BAB1EB8E4BC00523943 /* RecipeIngredientsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D29BAA1EB8E4BC00523943 /* RecipeIngredientsTableViewController.swift */; };
 		15D29BAD1EB8E4D400523943 /* RecipeIngredientsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D29BAC1EB8E4D400523943 /* RecipeIngredientsTableViewCell.swift */; };
+		2B08AB191EB99570003575F7 /* AllergiesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B08AB181EB99570003575F7 /* AllergiesTableViewController.swift */; };
+		2B08AB1B1EB999B7003575F7 /* allergies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B08AB1A1EB999B7003575F7 /* allergies.swift */; };
 		2B1AD5CA1E85AEF700FBEA48 /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1AD5C91E85AEF700FBEA48 /* RecipeViewController.swift */; };
 		2B1AD5CE1E85B9C100FBEA48 /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1AD5CD1E85B9C100FBEA48 /* RecipeTableViewCell.swift */; };
 		2B6262431EB82DBF00415C12 /* UserProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6262421EB82DBF00415C12 /* UserProfileTableViewController.swift */; };
@@ -66,6 +68,8 @@
 		15D29BA81EB8E44F00523943 /* Recipe-Ingredients.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Recipe-Ingredients.storyboard"; sourceTree = "<group>"; };
 		15D29BAA1EB8E4BC00523943 /* RecipeIngredientsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeIngredientsTableViewController.swift; sourceTree = "<group>"; };
 		15D29BAC1EB8E4D400523943 /* RecipeIngredientsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeIngredientsTableViewCell.swift; sourceTree = "<group>"; };
+		2B08AB181EB99570003575F7 /* AllergiesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllergiesTableViewController.swift; sourceTree = "<group>"; };
+		2B08AB1A1EB999B7003575F7 /* allergies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = allergies.swift; sourceTree = "<group>"; };
 		2B1AD5C91E85AEF700FBEA48 /* RecipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
 		2B1AD5CD1E85B9C100FBEA48 /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
 		2B6262421EB82DBF00415C12 /* UserProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileTableViewController.swift; sourceTree = "<group>"; };
@@ -169,6 +173,8 @@
 				2B6262441EB9764100415C12 /* DietViewController.swift */,
 				2B67AE021EA59E2A0029205F /* DietTableViewCell.swift */,
 				2B6262481EB97D4C00415C12 /* allergies.storyboard */,
+				2B08AB181EB99570003575F7 /* AllergiesTableViewController.swift */,
+				2B08AB1A1EB999B7003575F7 /* allergies.swift */,
 			);
 			name = "Menu Items";
 			sourceTree = "<group>";
@@ -416,6 +422,8 @@
 				75F0C9C71E830B35002E1458 /* IngredientTableViewCell.swift in Sources */,
 				15D29BAD1EB8E4D400523943 /* RecipeIngredientsTableViewCell.swift in Sources */,
 				2B1AD5CA1E85AEF700FBEA48 /* RecipeViewController.swift in Sources */,
+				2B08AB1B1EB999B7003575F7 /* allergies.swift in Sources */,
+				2B08AB191EB99570003575F7 /* AllergiesTableViewController.swift in Sources */,
 				2BC8DC541E78758C00A7A3AD /* ViewController.swift in Sources */,
 				2B6262431EB82DBF00415C12 /* UserProfileTableViewController.swift in Sources */,
 				1518B9761E85B4100046868C /* RecipeResultTableViewCell.swift in Sources */,

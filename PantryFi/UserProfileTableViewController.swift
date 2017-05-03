@@ -22,6 +22,7 @@ class UserProfileTableViewController: UITableViewController, UIImagePickerContro
         super.viewDidLoad()
         imagePicker.delegate = self
 
+        tableView.isScrollEnabled = false;
         tableView.delegate = self
         tableView.dataSource = self
 
@@ -98,9 +99,9 @@ class UserProfileTableViewController: UITableViewController, UIImagePickerContro
             break
             
         case 1:
-//            let storyBoard1:UIStoryboard = UIStoryboard(name: "allergies", bundle:nil)
-//            let vc = storyBoard1.instantiateViewController(withIdentifier: "sllergies") as! AllergiesViewController
-//            self.navigationController?.pushViewController(vc, animated:true)            
+            let storyBoard1:UIStoryboard = UIStoryboard(name: "allergies", bundle:nil)
+            let vc = storyBoard1.instantiateViewController(withIdentifier: "allergies") as! AllergiesTableViewController
+            self.navigationController?.pushViewController(vc, animated:true)
             break
             
         case 2:
