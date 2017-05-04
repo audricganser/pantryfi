@@ -18,39 +18,42 @@ class DietViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     @IBOutlet weak var tableView: UITableView!
     
-    var diets:[Diet] = [Diet.init(diet: "Vegan", dietSwitch: false), Diet.init(diet: "Vegetarian", dietSwitch: false), Diet.init(diet: "Gluten Free", dietSwitch: false), Diet.init(diet: "Ketogenic", dietSwitch: false), Diet.init(diet: "Whole 30", dietSwitch: false), Diet.init(diet: "Paleo", dietSwitch: false)]
+    var diets:[Diet] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.tableFooterView = UIView()
+        diets = [Diet.init(diet: "Vegan", dietSwitch: false), Diet.init(diet: "Vegetarian", dietSwitch: false), Diet.init(diet: "Gluten Free", dietSwitch: false), Diet.init(diet: "Ketogenic", dietSwitch: false), Diet.init(diet: "Whole 30", dietSwitch: false), Diet.init(diet: "Paleo", dietSwitch: false)]
         
-        if let user = FIRAuth.auth()?.currentUser
-        {
+        //print(self.items.count)
+        if let user = FIRAuth.auth()?.currentUser {
             let uid = user.uid
-            
-            ref.child(uid).queryOrdered(byChild: "completed").observe(.value, with: { snapshot in
-                var newItems: [Diet] = []
+          
+            ref.child(uid).queryOrdered(byChild: "diet").observe(.value, with: { snapshot in
+                self.items = [Diet]()
                 
-                for item in snapshot.children {
+               for item in snapshot.children {
                     let dietItem = Diet(snapshot: item as! FIRDataSnapshot)
-                    newItems.append(dietItem)
+                    //print(dietItem.diet)
+                    //print(dietItem.dietSwitch)
+                    self.items.append(dietItem)
                 }
-                self.items = self.diets
                 
-                self.tableView.reloadData()
-            })
-        }
-        
-        if self.items.count == 0 {
-            self.items = self.diets
-            print("items here \(self.items)")
-            for d in self.diets {
-                self.saveDiet(diet: d)
-            }
-        }
+                if self.items.count == 0 {
+                    self.items = self.diets
+                    for d in self.diets {
+                        self.saveDiet(diet: d)
+                    }
+                }
 
+                //self.items = self.diets
+                self.tableView.reloadData()
+                
+            })
+       }
         
+        
+        tableView.tableFooterView = UIView()
         tableView.isScrollEnabled = false;
         tableView.delegate = self
         tableView.dataSource = self
@@ -69,8 +72,7 @@ class DietViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        print("diets count \(diets.count)")
-        return self.diets.count
+        return self.items.count
     }
     
     
@@ -80,49 +82,31 @@ class DietViewController: UIViewController, UITableViewDataSource, UITableViewDe
         DietTableViewCell
         
         cell.selectionStyle = UITableViewCellSelectionStyle.none
-        print("items \(self.items)")
-        print("index path row \(indexPath.row)")
         cell.dietLabel.text = self.items[indexPath.row].diet
         cell.dietCellSwitch.tag = indexPath.row
+        cell.dietCellSwitch.isOn = self.items[indexPath.row].dietSwitch
         
         return cell
     }
     
     func saveDiet (diet:Diet) {
-        // save  into data base
         if let user = FIRAuth.auth()?.currentUser
         {
             let uid = user.uid
             let diet = Diet(diet:diet.diet, dietSwitch:diet.dietSwitch)
         
-            let dietItemRef = self.ref.child(uid).child((title?.lowercased())!)
+            let dietItemRef = self.ref.child(uid).child((diet.diet.lowercased()))
         
             dietItemRef.setValue(diet.toAnyObject())
         }
 
-        
     }
     
     @IBAction func switchChange(_ sender: UISwitch) {
-        print("switch changed")
         let row = sender.tag
         let diet = items[row]
         diet.dietSwitch = sender.isOn
+        print(diet.dietSwitch)
         saveDiet(diet: diet)
-        
-        //var switchResult =
-//        let title = "placeholder"
-//        if self.dietSwitch.isOn {
-//            dietSwitch = self.dietSwitch.isOn
-//        }
-//        if let user = FIRAuth.auth()?.currentUser
-//        {
-//            let uid = user.uid
-//            let diet = Diet(name:title, dietSwitch:amount)
-//            
-//            let dietItemRef = self.ref.child(uid).child((title?.lowercased())!)
-//            
-//            dietItemRef.setValue(diet.toAnyObject())
-//        }
     }
 }
