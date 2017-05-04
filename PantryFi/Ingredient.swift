@@ -22,7 +22,7 @@ class Ingredient {
     let image:String
 
     
-    init(name:String, quantity:String = "", key: String = "", unit:String = "", expirationDate:String = "", expirationAlert:Bool = false, image:String = "", completed:Bool = false)
+    init(name:String = "", quantity:String = "", key: String = "", unit:String = "", expirationDate:String = "", expirationAlert:Bool = false, image:String = "", completed:Bool = false)
     {
         self.key = key
         self.name = name
