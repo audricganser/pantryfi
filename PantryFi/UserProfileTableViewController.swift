@@ -61,7 +61,6 @@ class UserProfileTableViewController: UITableViewController, UIImagePickerContro
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Info", for: indexPath)
-        print("section \(indexPath.section)")
         if indexPath.section == 0 {
             if let user = FIRAuth.auth()?.currentUser {
                 let uid = user.uid
@@ -80,7 +79,6 @@ class UserProfileTableViewController: UITableViewController, UIImagePickerContro
         }
         else {
             // Configure the cell...
-            //print("row")
             cell.textLabel?.text = user[indexPath.section - 1]
         }
         
@@ -93,7 +91,6 @@ class UserProfileTableViewController: UITableViewController, UIImagePickerContro
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        print(section)
         if section == 0 {
             return headerTitles[section]
         }
@@ -105,7 +102,7 @@ class UserProfileTableViewController: UITableViewController, UIImagePickerContro
         }
         return nil
     }
-
+    
     
     public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -161,6 +158,8 @@ class UserProfileTableViewController: UITableViewController, UIImagePickerContro
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imageView.contentMode = .scaleAspectFit
             imageView.image = pickedImage
+            //save image picked to database
+            
             
         }
         
