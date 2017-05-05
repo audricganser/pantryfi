@@ -37,6 +37,9 @@ class ShoppingTableViewController: UITableViewController {
             self.tableView.reloadData()
         })
         }
+        
+        tableView.tableFooterView = UIView()
+        tableView.backgroundColor = UIColor.init(hex: "d3d3d3")
 
     }
 
@@ -62,6 +65,18 @@ class ShoppingTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "   "
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let returnedView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 25))
+        returnedView.backgroundColor = UIColor.init(hex: "d3d3d3")
+        
+        return returnedView
+    }
+
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath)
