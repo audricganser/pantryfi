@@ -40,7 +40,10 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
         tableView.dataSource = self
         searchBar.delegate = self
         tableView.tableFooterView = UIView()
+        //tableView.tableFooterView?.backgroundColor = UIColor.init(hex: "d3d3d3")
         tableView.backgroundColor = UIColor.init(hex: "d3d3d3")
+        
+        splashText()
 
     }
 
@@ -84,6 +87,14 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return recipeList1.count
+    }
+    
+    func splashText() {
+        let noDataLabel: UILabel     = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+        noDataLabel.text          = "No Results"
+        noDataLabel.textColor     = UIColor.black
+        noDataLabel.textAlignment = .center
+        tableView.backgroundView  = noDataLabel
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

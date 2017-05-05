@@ -61,6 +61,8 @@ class UserProfileTableViewController: UITableViewController, UIImagePickerContro
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Info", for: indexPath)
+        
+        //user profile
         if indexPath.section == 0 {
             if let user = FIRAuth.auth()?.currentUser {
                 let uid = user.uid
@@ -77,14 +79,20 @@ class UserProfileTableViewController: UITableViewController, UIImagePickerContro
             cell.imageView?.image = #imageLiteral(resourceName: "profile")
 
         }
-        else {
+        //restrictions
+        else{
             // Configure the cell...
             cell.textLabel?.text = user[indexPath.section - 1]
         }
         
+        //logout
         if indexPath.section - 1 == user.count - 1 {
             cell.textLabel?.textColor = UIColor.red
             cell.textLabel?.textAlignment = .center
+        }
+        
+        if indexPath.section == 1 || indexPath.section == 2 {
+            cell.accessoryType = .disclosureIndicator
         }
         
         return cell
@@ -159,6 +167,9 @@ class UserProfileTableViewController: UITableViewController, UIImagePickerContro
             imageView.contentMode = .scaleAspectFit
             imageView.image = pickedImage
             //save image picked to database
+            
+            //reload table
+            tableView.reloadData()
             
             
         }
