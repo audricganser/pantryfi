@@ -39,6 +39,9 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
+        tableView.tableFooterView = UIView()
+        tableView.backgroundColor = UIColor.init(hex: "d3d3d3")
+
     }
 
     override func didReceiveMemoryWarning() {
