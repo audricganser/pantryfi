@@ -11,8 +11,8 @@ import UIKit
 class DietTableViewCell: UITableViewCell {
     
     @IBOutlet weak var dietLabel: UILabel!
-    @IBOutlet weak var `switch`: UISwitch!
-   
+    @IBOutlet weak var dietCellSwitch: UISwitch!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

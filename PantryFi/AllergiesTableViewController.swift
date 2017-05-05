@@ -40,6 +40,9 @@ class AllergiesTableViewController: UITableViewController {
                 self.tableView.reloadData()
             })
         }
+        
+        tableView.tableFooterView = UIView()
+        tableView.backgroundColor = UIColor.init(hex: "d3d3d3")
     }
 
     override func didReceiveMemoryWarning() {
@@ -71,6 +74,17 @@ class AllergiesTableViewController: UITableViewController {
         tableView.backgroundView  = noDataLabel
     }
     
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "   "
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let returnedView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 25))
+        returnedView.backgroundColor = UIColor.init(hex: "d3d3d3")
+        
+        return returnedView
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         tableView.backgroundView  = nil
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath)
@@ -84,12 +98,12 @@ class AllergiesTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
         if editingStyle == .delete {
             let allergiesItem = items[indexPath.row]
             allergiesItem.ref?.removeValue()
-            print(tableView.visibleCells.count)
+            
             if tableView.visibleCells.count == 1 {
-                //should put this in a function
                 splashText()
             }
         }

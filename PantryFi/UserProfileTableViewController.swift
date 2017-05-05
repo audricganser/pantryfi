@@ -61,7 +61,8 @@ class UserProfileTableViewController: UITableViewController, UIImagePickerContro
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Info", for: indexPath)
-        print("section \(indexPath.section)")
+        
+        //user profile
         if indexPath.section == 0 {
             if let user = FIRAuth.auth()?.currentUser {
                 let uid = user.uid
@@ -78,22 +79,26 @@ class UserProfileTableViewController: UITableViewController, UIImagePickerContro
             cell.imageView?.image = #imageLiteral(resourceName: "profile")
 
         }
-        else {
+        //restrictions
+        else{
             // Configure the cell...
-            //print("row")
             cell.textLabel?.text = user[indexPath.section - 1]
         }
         
+        //logout
         if indexPath.section - 1 == user.count - 1 {
             cell.textLabel?.textColor = UIColor.red
             cell.textLabel?.textAlignment = .center
+        }
+        
+        if indexPath.section == 1 || indexPath.section == 2 {
+            cell.accessoryType = .disclosureIndicator
         }
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        print(section)
         if section == 0 {
             return headerTitles[section]
         }
@@ -105,7 +110,7 @@ class UserProfileTableViewController: UITableViewController, UIImagePickerContro
         }
         return nil
     }
-
+    
     
     public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -161,6 +166,11 @@ class UserProfileTableViewController: UITableViewController, UIImagePickerContro
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imageView.contentMode = .scaleAspectFit
             imageView.image = pickedImage
+            //save image picked to database
+            
+            //reload table
+            tableView.reloadData()
+            
             
         }
         
