@@ -10,6 +10,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 import BarcodeScanner
+import Alamofire
 
 class AddIngredientViewController: UIViewController, UIPickerViewDelegate {
     
@@ -223,8 +224,41 @@ extension AddIngredientViewController: BarcodeScannerCodeDelegate {
         print(code)
         
         //CODE TO DO STUFF WITH UPC
+        getGroceryItem(code: code)
+        
+        
         controller.reset()
     }
+}
+
+/*curl --get --include 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/products/upc/041631000564' \
+ -H 'X-Mashape-Key: oWragx4kwsmshOw6ZL8IH8RP81DUp1L0QFVjsn0JaX9pEIPpUg' \
+ -H 'Accept: application/json'*/
+
+func getGroceryItem(code: String) {
+    let baseUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/products/upc/\(code)"
+    let headers: HTTPHeaders = ["X-Mashape-Key": "oWragx4kwsmshOw6ZL8IH8RP81DUp1L0QFVjsn0JaX9pEIPpUg"]
+    
+    Alamofire.request(baseUrl, headers: headers).responseJSON { response in
+        
+        if let JSON = response.result.value {
+            let jsonDict = JSON as! Dictionary<String, Any>
+            var id = 0
+            if let idVal = jsonDict["id"] { id = idVal as! Int }
+            var title = ""
+            if let titleVal = jsonDict["title"] { title = "\(titleVal)" }
+            var numberOfServings = 0
+            if let nsVal = jsonDict["number_of_servings"] { numberOfServings = nsVal as! Int }
+            
+            let item = Ingredient.init(name: title, quantity: "\(numberOfServings)", key: "\(id)")
+            
+            // Set View Controller Fields here:
+            
+            
+        }
+    }
+    
+    
 }
 
 extension AddIngredientViewController: BarcodeScannerErrorDelegate {
