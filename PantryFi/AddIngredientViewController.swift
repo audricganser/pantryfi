@@ -20,6 +20,7 @@ class AddIngredientViewController: UIViewController, UIPickerViewDelegate {
     @IBOutlet var ingredientAmount: UITextField!
     @IBOutlet var unitPicker: UISegmentedControl!
     
+    var barcodeController:BarcodeScannerController?
     var editMode = false
     var ingredient: Ingredient?
     var key: String?
@@ -182,14 +183,71 @@ class AddIngredientViewController: UIViewController, UIPickerViewDelegate {
     }
     
     @IBAction func scanPressed(_ sender: Any) {
-        let controller = BarcodeScannerController()
-        controller.codeDelegate = self
-        controller.errorDelegate = self
-        controller.dismissalDelegate = self
+        self.barcodeController = BarcodeScannerController()
+        barcodeController?.codeDelegate = self
+        barcodeController?.errorDelegate = self
+        barcodeController?.dismissalDelegate = self
 
         
-        present(controller, animated: true, completion: nil)
+        present(barcodeController!, animated: true, completion: nil)
     }
+    
+    func getGroceryItem(code: String) {
+        let baseUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/products/upc/\(code)"
+        let headers: HTTPHeaders = ["X-Mashape-Key": "oWragx4kwsmshOw6ZL8IH8RP81DUp1L0QFVjsn0JaX9pEIPpUg"]
+        
+        Alamofire.request(baseUrl, headers: headers).responseJSON { response in
+            
+            print(response.result.value!)
+            if let JSON = response.result.value {
+                let jsonDict = JSON as! Dictionary<String, Any>
+                var id = 0
+                if let idVal = jsonDict["id"] { id = idVal as! Int }
+                var title = ""
+                if let titleVal = jsonDict["title"] {
+                    title = "\(titleVal)"
+                    print( (titleVal))
+                    self.ingredientName.text = title
+
+                }
+                var numberOfServings = 0
+                if let nsVal = jsonDict["number_of_servings"] { numberOfServings = nsVal as! Int }
+                
+                var status = ""
+                if let statusVal = jsonDict["status"]
+                {
+                    status = statusVal as! String
+                }
+                if(status == "failure")
+                {
+                    self.upcFailure()
+                }
+                else
+                {
+                    self.barcodeController?.dismiss(animated: true, completion: nil)
+
+                }
+                
+                //let item = Ingredient.init(name: title, quantity: "\(numberOfServings)", key: "\(id)")
+                
+                // Set View Controller Fields here:
+                
+            }
+        }
+        
+        
+    }
+    
+    func upcFailure()
+    {
+        self.barcodeController?.dismiss(animated: true, completion: nil)
+        let alert = UIAlertController(title: "Failure", message:"Could not find barcode item", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+        }))
+        self.present(alert, animated: true, completion:nil)
+
+    }
+
 
  
 
@@ -227,39 +285,13 @@ extension AddIngredientViewController: BarcodeScannerCodeDelegate {
         getGroceryItem(code: code)
         
         
-        controller.reset()
+        //controller.reset()
     }
 }
 
 /*curl --get --include 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/products/upc/041631000564' \
  -H 'X-Mashape-Key: oWragx4kwsmshOw6ZL8IH8RP81DUp1L0QFVjsn0JaX9pEIPpUg' \
  -H 'Accept: application/json'*/
-
-func getGroceryItem(code: String) {
-    let baseUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/products/upc/\(code)"
-    let headers: HTTPHeaders = ["X-Mashape-Key": "oWragx4kwsmshOw6ZL8IH8RP81DUp1L0QFVjsn0JaX9pEIPpUg"]
-    
-    Alamofire.request(baseUrl, headers: headers).responseJSON { response in
-        
-        if let JSON = response.result.value {
-            let jsonDict = JSON as! Dictionary<String, Any>
-            var id = 0
-            if let idVal = jsonDict["id"] { id = idVal as! Int }
-            var title = ""
-            if let titleVal = jsonDict["title"] { title = "\(titleVal)" }
-            var numberOfServings = 0
-            if let nsVal = jsonDict["number_of_servings"] { numberOfServings = nsVal as! Int }
-            
-            let item = Ingredient.init(name: title, quantity: "\(numberOfServings)", key: "\(id)")
-            
-            // Set View Controller Fields here:
-            
-            
-        }
-    }
-    
-    
-}
 
 extension AddIngredientViewController: BarcodeScannerErrorDelegate {
     
