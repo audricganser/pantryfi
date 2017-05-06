@@ -2,6 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "002-search-symbol-in-black-circular-button.png",
       "scale" : "1x"
     },
     {
@@ -11,7 +12,7 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "002-search-symbol-in-black-circular-button.png",
+      "filename" : "search-symbol-in-black-circular-button.png",
       "scale" : "3x"
     }
   ],

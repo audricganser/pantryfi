@@ -33,7 +33,7 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.hideKeyboardWhenTappedAround()
         getIngredients()
         
         tableView.delegate = self

@@ -438,7 +438,6 @@
 				2B67AE031EA59E2A0029205F /* DietTableViewCell.swift in Sources */,
 				152A246E1E7F2BD300C42EAA /* HomeViewController.swift in Sources */,
 				1518B9781E85B4D30046868C /* TableViewController.swift in Sources */,
-				2BD0D33E1EB3E5970051E592 /* UserProfileTableViewCell.swift in Sources */,
 				753BE86F1EBA56E500F5954D /* FavoritesCollectionViewController.swift in Sources */,
 				159E58A61EA5462100BEE0C8 /* Steps.swift in Sources */,
 				753AA0CC1EB2B1F400895E9F /* AddIngredientViewController.swift in Sources */,

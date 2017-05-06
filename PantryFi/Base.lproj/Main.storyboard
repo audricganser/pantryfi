@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="jdi-RH-9mD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="jdi-RH-9mD">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -111,11 +111,11 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="PVA-fg-pww" firstAttribute="top" secondItem="iVg-d5-tiv" secondAttribute="bottom" constant="230" id="0s9-Of-yPD"/>
                                     <constraint firstItem="E10-le-DrE" firstAttribute="centerX" secondItem="OrU-mA-lNq" secondAttribute="centerX" id="1TP-K9-1fh"/>
                                     <constraint firstItem="dwS-V1-Y7J" firstAttribute="leading" secondItem="iVg-d5-tiv" secondAttribute="leading" id="8Yy-Wq-Idm"/>
                                     <constraint firstItem="E10-le-DrE" firstAttribute="top" secondItem="OrU-mA-lNq" secondAttribute="top" constant="106" id="97h-jo-04v"/>
                                     <constraint firstItem="O7m-ku-GxU" firstAttribute="leading" secondItem="TCs-yr-Zux" secondAttribute="leading" id="9nP-cH-60a"/>
+                                    <constraint firstItem="mlf-I7-xUT" firstAttribute="trailing" secondItem="iVg-d5-tiv" secondAttribute="trailing" id="BcV-tP-DdM"/>
                                     <constraint firstItem="O7m-ku-GxU" firstAttribute="trailing" secondItem="dwS-V1-Y7J" secondAttribute="trailing" id="DGe-FC-iqX"/>
                                     <constraint firstItem="mlf-I7-xUT" firstAttribute="leading" secondItem="iVg-d5-tiv" secondAttribute="leading" id="Es5-XT-qoj"/>
                                     <constraint firstItem="TCs-yr-Zux" firstAttribute="top" secondItem="O7m-ku-GxU" secondAttribute="bottom" constant="3" id="FqA-rp-E1q"/>
@@ -123,6 +123,8 @@
                                     <constraint firstItem="TCs-yr-Zux" firstAttribute="trailing" secondItem="iVg-d5-tiv" secondAttribute="trailing" id="HuP-hN-7zR"/>
                                     <constraint firstItem="dwS-V1-Y7J" firstAttribute="top" secondItem="E10-le-DrE" secondAttribute="bottom" constant="62" id="Ixe-4R-s75"/>
                                     <constraint firstItem="iVg-d5-tiv" firstAttribute="top" secondItem="dwS-V1-Y7J" secondAttribute="bottom" constant="39" id="PDJ-c6-Q5D"/>
+                                    <constraint firstItem="PVA-fg-pww" firstAttribute="leading" secondItem="OrU-mA-lNq" secondAttribute="leading" id="VVy-ZL-FYr"/>
+                                    <constraint firstItem="mlf-I7-xUT" firstAttribute="centerX" secondItem="iVg-d5-tiv" secondAttribute="centerX" id="b08-Or-1LE"/>
                                     <constraint firstItem="dwS-V1-Y7J" firstAttribute="bottom" secondItem="TCs-yr-Zux" secondAttribute="bottom" id="fVF-ZC-pFj"/>
                                     <constraint firstItem="dwS-V1-Y7J" firstAttribute="leading" secondItem="OrU-mA-lNq" secondAttribute="leading" constant="42" id="gC7-QD-tKc"/>
                                     <constraint firstItem="O7m-ku-GxU" firstAttribute="leading" secondItem="OrU-mA-lNq" secondAttribute="leading" constant="68" id="hJu-tx-pkR"/>
@@ -142,6 +144,7 @@
                             <constraint firstItem="MFe-rI-ggJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="fNf-t8-9ot"/>
                             <constraint firstItem="OrU-mA-lNq" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="jxm-d7-4lC"/>
                             <constraint firstItem="MFe-rI-ggJ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="ldy-Es-jdR"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="PVA-fg-pww" secondAttribute="bottom" id="nk7-ha-rK1"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="DPh-vE-qvR"/>

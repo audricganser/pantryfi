@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import BarcodeScanner
 
 class AddIngredientViewController: UIViewController, UIPickerViewDelegate {
     
@@ -178,6 +179,20 @@ class AddIngredientViewController: UIViewController, UIPickerViewDelegate {
         }
         
     }
+    
+    @IBAction func scanPressed(_ sender: Any) {
+        let controller = BarcodeScannerController()
+        controller.codeDelegate = self
+        controller.errorDelegate = self
+        controller.dismissalDelegate = self
+
+        
+        present(controller, animated: true, completion: nil)
+    }
+
+ 
+
+    
     /*
     // MARK: - Navigation
 
@@ -199,5 +214,29 @@ extension UIViewController {
     
     func dismissKeyboard() {
         view.endEditing(true)
+    }
+}
+
+extension AddIngredientViewController: BarcodeScannerCodeDelegate {
+    
+    func barcodeScanner(_ controller: BarcodeScannerController, didCaptureCode code: String, type: String) {
+        print(code)
+        
+        //CODE TO DO STUFF WITH UPC
+        controller.reset()
+    }
+}
+
+extension AddIngredientViewController: BarcodeScannerErrorDelegate {
+    
+    func barcodeScanner(_ controller: BarcodeScannerController, didReceiveError error: Error) {
+        print(error)
+    }
+}
+
+extension AddIngredientViewController: BarcodeScannerDismissalDelegate {
+    
+    func barcodeScannerDidDismiss(_ controller: BarcodeScannerController) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }
