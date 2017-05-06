@@ -24,36 +24,20 @@ class RecipeViewController: UIViewController {
     
     var recipe:RecipeWithIngredients = RecipeWithIngredients.init()
     let ref = FIRDatabase.database().reference(withPath: "recipes")
-    
+    var recipeFromFavs = false
+    var recipeId = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // setting recipe summary
-        recipeSummary(id: self.recipe.id)
-        // Loading image from url
-        Alamofire.request(self.recipe.image).response { response in
-            if let data = response.data {
-                let image = UIImage(data: data)
-                self.recipeImage.image = image
-            } else {
-                print("Data is nil. I don't know what to do :(")
-            }
-        }
 
         // Do any additional setup after loading the view.
-        self.recipeTitle.text = self.recipe.title
-        self.recipePrepTime.text = "\(self.recipe.readyInMinutes) minutes"
-        self.recipeServes.text = "\(self.recipe.servings)"
-        self.ratingLabel.text = "\(self.recipe.spoonacularScore)"
-        self.healthScoreLabel.text = "\(self.recipe.healthScore)"
-        if self.recipe.missedIngredientCount > 0 {
-            self.missingIngredients.text = "Pantry contains " + "\(self.recipe.usedIngredientCount)"
+        if recipeFromFavs {
+            print("recipe was saved in favorites")
+            print(recipeId)
         }
         else {
-            self.missingIngredients.text = "Pantry contains all"
+            fillLabels()
         }
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -87,6 +71,33 @@ class RecipeViewController: UIViewController {
         }
     }
     
+    func fillLabels () {
+        // Loading image from url
+        Alamofire.request(self.recipe.image).response { response in
+            if let data = response.data {
+                let image = UIImage(data: data)
+                self.recipeImage.image = image
+            } else {
+                print("Data is nil. I don't know what to do :(")
+            }
+        }
+        // Filling labels with recipe values
+        self.recipeTitle.text = self.recipe.title
+        self.recipePrepTime.text = "\(self.recipe.readyInMinutes) minutes"
+        self.recipeServes.text = "\(self.recipe.servings)"
+        self.ratingLabel.text = "\(self.recipe.spoonacularScore)"
+        self.healthScoreLabel.text = "\(self.recipe.healthScore)"
+        if self.recipe.missedIngredientCount > 0 {
+            self.missingIngredients.text = "Pantry contains " + "\(self.recipe.usedIngredientCount)"
+        }
+        else {
+            self.missingIngredients.text = "Pantry contains all"
+        }
+        // setting recipe summary
+        recipeSummary(id: self.recipe.id)
+        
+    }
+    
     
     @IBAction func showIngredients(_ sender: Any) {
         let storyBoard1:UIStoryboard = UIStoryboard(name: "Recipe-Ingredients", bundle:nil)
@@ -101,8 +112,6 @@ class RecipeViewController: UIViewController {
         
         //go to other view controller
         self.navigationController?.pushViewController(vc, animated:true)
-
-        
     }
     
     @IBAction func favoriteRecipe(_ sender: Any) {
@@ -129,15 +138,27 @@ class RecipeViewController: UIViewController {
         
         
     }
-    @IBAction func showNutrition(_ sender: Any) {
-        
-    }
     
     @IBAction func showSummary(_ sender: Any) {
+        let storyBoard1:UIStoryboard = UIStoryboard(name: "RecipeSummary", bundle:nil)
+        let vc = storyBoard1.instantiateViewController(withIdentifier: "recipeSummary") as! RecipeSummaryViewController
         
+        vc.recipe = self.recipe
+        //go to other view controller
+        self.navigationController?.pushViewController(vc, animated:true)
     }
     
+    
     @IBAction func showInstructions(_ sender: Any) {
+        let storyBoard1:UIStoryboard = UIStoryboard(name: "RecipeInstructions", bundle:nil)
+        let vc = storyBoard1.instantiateViewController(withIdentifier: "recipeInstructions") as! RecipeInstructionsTableViewController
+        
+        var steps = [Steps]()
+        steps.append(contentsOf: self.recipe.analyzedInstructions.steps)
+        vc.steps = steps
+        
+        //go to other view controller
+        self.navigationController?.pushViewController(vc, animated:true)
         
     }
     
