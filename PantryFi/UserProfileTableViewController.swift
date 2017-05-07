@@ -9,23 +9,29 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import FirebaseStorage
 
 class UserProfileTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    @IBOutlet weak var userImage: UIImageView!
    
     let imagePicker = UIImagePickerController()
     
-    var imageView: UIImageView!
+    var userProfileImage: UIImage = #imageLiteral(resourceName: "profile")
     
+    let storage = FIRStorage.storage()
+    var reference: FIRStorageReference!
+
     var user = ["Allergies", "Diets", "Logout"]
-    
     let headerTitles = ["Profile", "Restrictions", "    "]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         imagePicker.delegate = self
+        //imagePicker.allowsEditing = true
+        
         tableView.tableFooterView = UIView()
         
-
         tableView.isScrollEnabled = false;
         tableView.delegate = self
         tableView.dataSource = self
@@ -76,7 +82,9 @@ class UserProfileTableViewController: UITableViewController, UIImagePickerContro
             }
 
             cell.textLabel?.textAlignment = .center
-            cell.imageView?.image = #imageLiteral(resourceName: "profile")
+            cell.imageView?.image = userProfileImage
+            
+            //if let profileImageUrl = user.
 
         }
         //restrictions
@@ -110,6 +118,44 @@ class UserProfileTableViewController: UITableViewController, UIImagePickerContro
         }
         return nil
     }
+    
+    //dont surpress warning
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            self.userProfileImage = image
+        } else{
+            print("Something went wrong")
+        }
+        
+        let imageName = NSUUID().uuidString
+        let storageRef = FIRStorage.storage().reference().child("profile_images").child("\(imageName).png")
+        //var imageUrl
+        if let uploadData = UIImagePNGRepresentation(self.userProfileImage) {
+            
+            storageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
+                if error != nil {
+                    print(error)
+                    return
+                }
+                //imageUrl = metadata.im
+                print(metadata)
+            })
+        }
+        
+//        let user = FIRAuth.auth()?.currentUser
+//        let uid = user?.uid
+//        let userReference = ref.child("users").child(uid!)
+        
+        //let values = ["name": name, "email": email, "profileImageUrl": imageUrl]
+    
+        self.tableView.reloadData()
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+
     
     
     public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -161,26 +207,6 @@ class UserProfileTableViewController: UITableViewController, UIImagePickerContro
         
 
     }
-    
-    private func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            imageView.contentMode = .scaleAspectFit
-            imageView.image = pickedImage
-            //save image picked to database
-            
-            //reload table
-            tableView.reloadData()
-            
-            
-        }
-        
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
-    }
-
     
     /*
     // Override to support conditional editing of the table view.
