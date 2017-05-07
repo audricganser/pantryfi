@@ -102,7 +102,7 @@ class AllergiesTableViewController: UITableViewController {
         if editingStyle == .delete {
             let allergiesItem = items[indexPath.row]
             allergiesItem.ref?.removeValue()
-            
+            ExcludedIngredients.allergies.remove(at: indexPath.row)
             if tableView.visibleCells.count == 1 {
                 splashText()
             }
@@ -136,7 +136,8 @@ class AllergiesTableViewController: UITableViewController {
                             
                         // 4
                         allergiesItemRef.setValue(allergies.toAnyObject())
-                        }
+                        ExcludedIngredients.allergies = self.items
+                    }
                         
                     }
                 }
