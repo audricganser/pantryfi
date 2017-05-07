@@ -1,52 +1,55 @@
 1: Implementation Contributions: 
 
-Audric Ganser - ag46372
-Contributed: 33%
-Side Menu implementation
+Audric Ganser: 33%
+Settings menu implementation
 Storyboard implementation for profile, allergies, diet restrictions
+Allergies, Diets and Profile images upload to database
 UI updates
 
-David Ares -da27577
-Contributed: 33%
+David Ares: 33%
 API Calls to Spoonacular for recipe data
 Search with Pantry Items
 Search for any recipes
-	
-Hassaan Raza - hr7233
-Contributed: 33%
+Search with allergies and diets
+
+Hassan Raza: 33%
 Firebase integration/authentication
 Menu View Controller
 User Profiles
+UI updates
+Tab view controller
 	
 2: Same Grade to for all members
 
 3: Differences
 Finding recipes with user’s current items:
-When a user clicks the ‘Search Pantry’ button on the home screen, a search query will be performed using their ingredients listed in their pantry. 
-If no items have been added to the list, the result cells will be empty 
+Once the user clicks on the search button on the tab view they will first get a search by their pantry items. Once on the new view controller they will be able exclude pantry in order to search
+without pantry items. Search is also based on their allergies and diet restrictions.
 
-Search recipes:
-Once a user is on the search results screen. They can click the search bar and enter a value. On pressing return, a search for that value will be performed and displayed
-For example: a user can enter ‘chicken salad’ and they will see chicken salad recipes 
 
 Favorites Recipes:
-Users do not have the ability to select a favorite recipe yet. Will be done on final release
+User are able to add favorites by clicking on the star on the top right hand corner of the recipe image. Once the star is clicked
+it is automatically added to the favorites view theat can be accessed from the tab view.
 
 Food Label Scanner:
-Food Label Scanner feature has not been implemented yet. This will be done in final version.
+Food Label Scanner was scratched from the project. 
 
 Expanding User Profiles:
 User profiles can be reached by pressing the menu button on the home screen. 
-The Menu has five options (Home, Profile, Food Allergies, Diet Restrictions, Logout)
-Home: returns you to the home screen
-Profile: opens a view that displays the user’s email. (More information about the user will be added in final version)
-Food Allergies: displays a table view of toggle options for each kind of major food allergy. (This toggle options do not currently persist. In final it will be saved in the database and used in queries.)
-Diet Restrictions: displays a table view of toggle options for each kind of major dietary restriction like vegan or dairy free. (This toggle options do not currently persist. In final it will be saved in the database and used in queries.)
+The Menu has four options (Profile, Allergies, Diets, Logout)
+
+Profile: displays user name and image which can be clicked and changed out with a picture from the users library.
+Food Allergies: displays a table view of toggle options for each kind of major food allergy.
+Diet Restrictions: displays a table view with a plus on the top right where the user can add allergies and delete as they like.
 Logout: this button logs the user out.
+
+Shopping cart:
+when the user searches for a recipe and goes to the ingedients list for that recipe they are able to add items that they dont have to a shopping cart.
+The shopping cart can be accessed from the tab view, and the user can delete, add, and check off items from the shopping cart view.
 
 4: Special Instructions
 Please run the file called PantryFi.xcworkspace (the white logo file)
 Run app and press the ‘Create Account’ button. After registering, sign into your account. 
-You will be able to add items to Pantry and you will get dynamic search results when clicking on the ‘Search Pantry’ button. 
+You will be able to add items to Pantry and you will get dynamic search results when clicking on the big search button on the tab view. 
 The app is for iPhone 7 and 7 plus models only.
 
