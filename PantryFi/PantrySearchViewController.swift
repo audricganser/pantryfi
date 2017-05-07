@@ -28,22 +28,49 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
     
     var searchFromHome = false
     var queryFromHome = ""
+    var excludedIngredients = ""
+    var diets = ""
     
      //var searchActive : Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setExcludedIngredients()
         getIngredients()
         
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
+        tableView.tableFooterView = UIView()
+        //tableView.tableFooterView?.backgroundColor = UIColor.init(hex: "d3d3d3")
+        tableView.backgroundColor = UIColor.init(hex: "d3d3d3")
+        
+        splashText()
+
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func setExcludedIngredients () {
+        print("Excluded Ingredients")
+        
+        for a in ExcludedIngredients.allergies {
+            
+            self.excludedIngredients += a.name + ","
+        }
+        
+//        for d in ExcludedIngredients.diets {
+//            print(d.diet)
+//            print(d.dietSwitch)
+//            if d.dietSwitch {
+//                self.diets += d.diet + ","
+//            }
+//        }
+
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -81,6 +108,14 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return recipeList1.count
+    }
+    
+    func splashText() {
+        let noDataLabel: UILabel     = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+        noDataLabel.text          = "No Results"
+        noDataLabel.textColor     = UIColor.black
+        noDataLabel.textAlignment = .center
+        tableView.backgroundView  = noDataLabel
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -153,6 +188,7 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
     
     // API Complex Recipe Search Function
     func complexSearch (query:String = "", includeIngredients: String = "", excludeIngredients: String = "", intolerances: String = "", number: Int = 10, offset: Int = 0, type: String = "") {
+        setExcludedIngredients()
         
         let baseUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/searchComplex"
         let headers: HTTPHeaders = ["X-Mashape-Key": "oWragx4kwsmshOw6ZL8IH8RP81DUp1L0QFVjsn0JaX9pEIPpUg"]
@@ -161,7 +197,7 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
                                       "limitLicense": "true",
                                       "fillIngredients": "true",
                                       "includeIngredients": includeIngredients,
-                                      "excludeIngredients": excludeIngredients,
+                                      "excludeIngredients": self.excludedIngredients,
                                       "intolerances": intolerances,
                                       "number": number,
                                       "offset": offset,

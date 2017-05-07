@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3Ga-b8-qAl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3Ga-b8-qAl">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -25,6 +25,8 @@
                         <subviews>
                             <searchBar contentMode="redraw" placeholder="Search Any Recipe by Name or Type " showsScopeBar="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o6A-pp-ilt">
                                 <rect key="frame" x="0.0" y="64" width="375" height="88"/>
+                                <color key="tintColor" red="0.18039215689999999" green="0.80000000000000004" blue="0.4431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="barTintColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
                                 <scopeButtonTitles>
                                     <string>Include Pantry</string>
@@ -32,7 +34,7 @@
                                 </scopeButtonTitles>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Wv0-pf-5xc">
-                                <rect key="frame" x="0.0" y="160" width="375" height="430"/>
+                                <rect key="frame" x="0.0" y="151" width="375" height="467"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -40,7 +42,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="88"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m09-JM-3p7" id="Yg7-NC-vnC">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="87.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="87"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="itM-d2-U2I">
@@ -51,7 +53,7 @@
                                                     <attributedString key="attributedText">
                                                         <fragment content="&lt;Recipe Title&gt;">
                                                             <attributes>
-                                                                <font key="NSFont" size="15" name=".AppleSystemUIFont"/>
+                                                                <font key="NSFont" size="15" name="HelveticaNeue"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
@@ -69,7 +71,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="67" id="pgy-8d-vVE"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -78,7 +80,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="42" id="aSl-Jm-vSz"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -87,13 +89,13 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="Dd8-bl-BCg"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;45&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LBd-XT-y3u">
                                                     <rect key="frame" x="166" y="34" width="106" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -137,8 +139,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="o6A-pp-ilt" firstAttribute="top" secondItem="n42-fF-CYN" secondAttribute="bottom" id="26X-48-0eb"/>
-                            <constraint firstItem="Wv0-pf-5xc" firstAttribute="top" secondItem="o6A-pp-ilt" secondAttribute="bottom" constant="8" id="4Au-S2-3BK"/>
-                            <constraint firstItem="Wv0-pf-5xc" firstAttribute="bottom" secondItem="M4p-Xt-0dO" secondAttribute="top" constant="-28" id="BEq-hG-BcR"/>
+                            <constraint firstItem="Wv0-pf-5xc" firstAttribute="top" secondItem="o6A-pp-ilt" secondAttribute="bottom" constant="-1" id="4Au-S2-3BK"/>
+                            <constraint firstItem="Wv0-pf-5xc" firstAttribute="bottom" secondItem="M4p-Xt-0dO" secondAttribute="top" id="BEq-hG-BcR"/>
                             <constraint firstItem="o6A-pp-ilt" firstAttribute="leading" secondItem="Wv0-pf-5xc" secondAttribute="leading" id="FMF-g5-n2v"/>
                             <constraint firstAttribute="trailing" secondItem="o6A-pp-ilt" secondAttribute="trailing" id="Vev-Mh-i6r"/>
                             <constraint firstItem="o6A-pp-ilt" firstAttribute="leading" secondItem="HSi-bH-OMg" secondAttribute="leading" id="ZJe-9v-JbN"/>

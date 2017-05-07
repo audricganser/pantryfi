@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Summary-->
+        <scene sceneID="MV9-23-K78">
+            <objects>
+                <viewController storyboardIdentifier="recipeSummary" id="9Xk-ct-krh" customClass="RecipeSummaryViewController" customModule="PantryFi" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yE3-BO-NtC"/>
+                        <viewControllerLayoutGuide type="bottom" id="bVY-KQ-062"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aDq-PG-wt8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DTf-mI-WbG">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="261"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9lJ-XN-PRd">
+                                <rect key="frame" x="335" y="16" width="24" height="24"/>
+                                <color key="tintColor" red="1" green="0.97826207340000004" blue="0.2491721167" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" image="007-mark-as-favourite-star"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;Recipe Title&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bIQ-Gt-vg4">
+                                <rect key="frame" x="8" y="217" width="359" height="44"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="22"/>
+                                <color key="textColor" red="0.18039215689999999" green="0.80000000000000004" blue="0.4431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;Prep Time&gt;" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXE-dq-LWK">
+                                <rect key="frame" x="9" y="313" width="357" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="mhS-e5-ubV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Summary:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0YB-4x-vnl">
+                                <rect key="frame" x="9" y="284" width="92" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="92" id="bUX-XM-K6i"/>
+                                    <constraint firstAttribute="height" constant="21" id="tPX-QG-t4p"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" red="0.18039215689999999" green="0.80000000000000004" blue="0.4431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="9lJ-XN-PRd" firstAttribute="trailing" secondItem="aDq-PG-wt8" secondAttribute="trailingMargin" id="0TZ-QO-snZ"/>
+                            <constraint firstItem="bVY-KQ-062" firstAttribute="top" secondItem="aXE-dq-LWK" secondAttribute="bottom" constant="323" id="1Kf-ae-l3o"/>
+                            <constraint firstItem="DTf-mI-WbG" firstAttribute="leading" secondItem="aDq-PG-wt8" secondAttribute="leading" id="2Wx-wv-6bN"/>
+                            <constraint firstItem="0YB-4x-vnl" firstAttribute="top" secondItem="bIQ-Gt-vg4" secondAttribute="bottom" constant="23" id="EM2-gA-iQ9"/>
+                            <constraint firstItem="bIQ-Gt-vg4" firstAttribute="centerX" secondItem="aXE-dq-LWK" secondAttribute="centerX" id="EQ5-ah-DrJ"/>
+                            <constraint firstItem="DTf-mI-WbG" firstAttribute="centerX" secondItem="bIQ-Gt-vg4" secondAttribute="centerX" id="Lfe-II-N2C"/>
+                            <constraint firstAttribute="trailing" secondItem="DTf-mI-WbG" secondAttribute="trailing" id="MhK-mz-tI6"/>
+                            <constraint firstItem="aXE-dq-LWK" firstAttribute="top" secondItem="0YB-4x-vnl" secondAttribute="bottom" constant="8" symbolic="YES" id="OEv-Jd-wTU"/>
+                            <constraint firstItem="yE3-BO-NtC" firstAttribute="top" secondItem="9lJ-XN-PRd" secondAttribute="bottom" constant="24" id="S8l-Km-fCt"/>
+                            <constraint firstItem="bIQ-Gt-vg4" firstAttribute="top" secondItem="yE3-BO-NtC" secondAttribute="bottom" constant="153" id="WeB-87-JbM"/>
+                            <constraint firstItem="bIQ-Gt-vg4" firstAttribute="leading" secondItem="aDq-PG-wt8" secondAttribute="leadingMargin" constant="-8" id="awH-rc-6ku"/>
+                            <constraint firstItem="DTf-mI-WbG" firstAttribute="bottom" secondItem="bIQ-Gt-vg4" secondAttribute="bottom" id="bcg-bX-jFT"/>
+                            <constraint firstItem="0YB-4x-vnl" firstAttribute="leading" secondItem="aDq-PG-wt8" secondAttribute="leadingMargin" constant="-7" id="bgE-sV-qQf"/>
+                            <constraint firstItem="DTf-mI-WbG" firstAttribute="top" secondItem="aDq-PG-wt8" secondAttribute="top" id="fNp-iw-swB"/>
+                            <constraint firstItem="0YB-4x-vnl" firstAttribute="leading" secondItem="aXE-dq-LWK" secondAttribute="leading" id="ghk-iq-n0G"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Summary" id="bri-Iz-Szp">
+                        <barButtonItem key="backBarButtonItem" title="Recipe" id="OpO-lL-SOl"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="recipeImage" destination="DTf-mI-WbG" id="DMp-QI-j5C"/>
+                        <outlet property="recipeSummary" destination="aXE-dq-LWK" id="3UX-I5-RnE"/>
+                        <outlet property="recipeTitle" destination="bIQ-Gt-vg4" id="9vx-PA-9bR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="79D-qH-GYP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5909.6000000000004" y="74.212893553223395"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Npi-bP-4mg">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0HY-td-VkF" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="VyX-3s-pQw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="9Xk-ct-krh" kind="relationship" relationship="rootViewController" id="JEV-h2-cEU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hhp-Fj-dbE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4970.3999999999996" y="74.212893553223395"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="007-mark-as-favourite-star" width="24" height="24"/>
+    </resources>
+</document>

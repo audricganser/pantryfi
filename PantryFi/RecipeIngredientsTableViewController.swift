@@ -70,6 +70,7 @@ class RecipeIngredientsTableViewController: UITableViewController {
         cell.quantityLabel.text = ingredient.quantity + " " + ingredient.unit
         cell.ingredient = ingredient
         cell.addButton.tag = indexPath.row
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
 
         return cell
     }

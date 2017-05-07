@@ -31,6 +31,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     let avarellIdentifier = "addCell"
     let itemIdentifier = "itemCell"
     let ref = FIRDatabase.database().reference(withPath: "ingredients")
+    var ref1 = FIRDatabase.database().reference(withPath: "allergiesList")
+    var ref2 = FIRDatabase.database().reference(withPath: "dietList")
 
     
     override func viewDidLoad() {
@@ -39,7 +41,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //pushed view controller up when keyboard is shown NOT USED
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        
+        // setting excluded items
+        setAllergies()
+        //setDiets()
         //table set up
         self.tableView.separatorColor = UIColor.clear
         
@@ -153,6 +157,43 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func handleRightSwipe(gestureRecognizer: UIGestureRecognizer) {
         prevSpotlightItem()
     }
+    
+    func setAllergies () {
+        if let user = FIRAuth.auth()?.currentUser
+        {
+            let uid = user.uid
+            
+            ref1.child(uid).queryOrdered(byChild: "completed").observe(.value, with: { snapshot in
+                var allergies: [Allergies] = []
+                
+                for item in snapshot.children {
+                    let allergiesItem = Allergies(snapshot: item as! FIRDataSnapshot)
+                    allergies.append(allergiesItem)
+                }
+                
+                ExcludedIngredients.allergies = allergies
+            })
+        }
+    }
+    
+    func setDiets() {
+        if let user = FIRAuth.auth()?.currentUser {
+            let uid = user.uid
+            
+            ref2.child(uid).queryOrdered(byChild: "diet").observe(.value, with: { snapshot in
+                var diets = [Diet]()
+                
+                for item in snapshot.children {
+                    let dietItem = Diet(snapshot: item as! FIRDataSnapshot)
+                    //print(dietItem.diet)
+                    //print(dietItem.dietSwitch)
+                    diets.append(dietItem)
+                }
+                ExcludedIngredients.diets = diets
+            })
+        }
+    }
+
     
 //    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
 //        let query = "\(searchBar.text!)"
