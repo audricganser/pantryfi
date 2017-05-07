@@ -28,12 +28,15 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
     
     var searchFromHome = false
     var queryFromHome = ""
+    var excludedIngredients = ""
+    var diets = ""
     
      //var searchActive : Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setExcludedIngredients()
         getIngredients()
         
         tableView.delegate = self
@@ -50,6 +53,24 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func setExcludedIngredients () {
+        print("Excluded Ingredients")
+        
+        for a in ExcludedIngredients.allergies {
+            
+            self.excludedIngredients += a.name + ","
+        }
+        
+//        for d in ExcludedIngredients.diets {
+//            print(d.diet)
+//            print(d.dietSwitch)
+//            if d.dietSwitch {
+//                self.diets += d.diet + ","
+//            }
+//        }
+
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -167,6 +188,7 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
     
     // API Complex Recipe Search Function
     func complexSearch (query:String = "", includeIngredients: String = "", excludeIngredients: String = "", intolerances: String = "", number: Int = 10, offset: Int = 0, type: String = "") {
+        setExcludedIngredients()
         
         let baseUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/searchComplex"
         let headers: HTTPHeaders = ["X-Mashape-Key": "oWragx4kwsmshOw6ZL8IH8RP81DUp1L0QFVjsn0JaX9pEIPpUg"]
@@ -175,7 +197,7 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
                                       "limitLicense": "true",
                                       "fillIngredients": "true",
                                       "includeIngredients": includeIngredients,
-                                      "excludeIngredients": excludeIngredients,
+                                      "excludeIngredients": self.excludedIngredients,
                                       "intolerances": intolerances,
                                       "number": number,
                                       "offset": offset,

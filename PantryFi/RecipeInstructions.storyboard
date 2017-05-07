@@ -6,25 +6,43 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller-->
+        <!--Recipe Instructions Table View Controller-->
         <scene sceneID="QMB-av-5an">
             <objects>
-                <tableViewController storyboardIdentifier="recipeInstructions" id="fMY-1m-H5s" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="recipeInstructions" id="fMY-1m-H5s" customClass="RecipeInstructionsTableViewController" customModule="PantryFi" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="kqc-C0-xjD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="wqT-Xq-Eo3">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="recipeInstructionCell" id="wqT-Xq-Eo3" customClass="RecipeInstructionsTableViewCell" customModule="PantryFi" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wqT-Xq-Eo3" id="EJl-v0-l3P">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;Instuction&gt;" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ihr-9o-6dc">
+                                            <rect key="frame" x="8" y="9" width="359" height="25.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Ihr-9o-6dc" secondAttribute="bottom" constant="1" id="3Z0-HL-goJ"/>
+                                        <constraint firstItem="Ihr-9o-6dc" firstAttribute="leading" secondItem="EJl-v0-l3P" secondAttribute="leadingMargin" id="Q19-33-vrj"/>
+                                        <constraint firstItem="Ihr-9o-6dc" firstAttribute="top" secondItem="EJl-v0-l3P" secondAttribute="topMargin" constant="1" id="ZJk-z3-tC7"/>
+                                        <constraint firstItem="Ihr-9o-6dc" firstAttribute="trailing" secondItem="EJl-v0-l3P" secondAttribute="trailingMargin" id="awX-da-T0h"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="stepInstructionLabel" destination="Ihr-9o-6dc" id="KyJ-zy-Y6r"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

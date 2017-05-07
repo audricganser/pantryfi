@@ -45,7 +45,7 @@ class DietViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         self.saveDiet(diet: d)
                     }
                 }
-
+                ExcludedIngredients.diets = self.diets
                 //self.items = self.diets
                 self.tableView.reloadData()
                 
@@ -111,7 +111,6 @@ class DietViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
             dietItemRef.setValue(diet.toAnyObject())
         }
-
     }
     
     @IBAction func switchChange(_ sender: UISwitch) {
@@ -120,5 +119,6 @@ class DietViewController: UIViewController, UITableViewDataSource, UITableViewDe
         diet.dietSwitch = sender.isOn
         print(diet.dietSwitch)
         saveDiet(diet: diet)
+        ExcludedIngredients.diets[row].dietSwitch = sender.isOn
     }
 }
