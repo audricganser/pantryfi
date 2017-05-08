@@ -18,6 +18,8 @@ class ShoppingTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        splashText()
+        
         tableView.allowsMultipleSelectionDuringEditing = false
         self.tableView.dataSource = self
         self.tableView.delegate = self
@@ -47,6 +49,7 @@ class ShoppingTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     @IBAction func didPress(_ sender: Any) {
         self.performSegue(withIdentifier: "addIngredient", sender: self)
     }
@@ -79,6 +82,7 @@ class ShoppingTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        tableView.backgroundView  = nil
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath)
         let shoppingItem = items[indexPath.row]
         
@@ -97,7 +101,12 @@ class ShoppingTableViewController: UITableViewController {
         if editingStyle == .delete {
             let shoppingItem = items[indexPath.row]
             shoppingItem.ref?.removeValue()
+            
+            if tableView.visibleCells.count == 1 {
+                splashText()
+            }
         }
+        
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -119,6 +128,15 @@ class ShoppingTableViewController: UITableViewController {
             cell.detailTextLabel?.textColor = UIColor.gray
         }
     }
+    
+    func splashText() {
+        let noDataLabel: UILabel     = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+        noDataLabel.text          = "Add Shopping Items"
+        noDataLabel.textColor     = UIColor.black
+        noDataLabel.textAlignment = .center
+        tableView.backgroundView  = noDataLabel
+    }
+
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -36,6 +36,7 @@ class PantrySearchViewController: UIViewController, UITableViewDataSource, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         setExcludedIngredients()
         getIngredients()
         
