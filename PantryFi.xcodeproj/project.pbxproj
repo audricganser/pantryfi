@@ -144,7 +144,7 @@
 			children = (
 				15D29BB71EBA55E800523943 /* Models */,
 				753AA0C11EB29D7700895E9F /* Favorite */,
-				159E5A001EAEC01100BEE0C8 /* Menu Items */,
+				159E5A001EAEC01100BEE0C8 /* Settings */,
 				1518B9661E85A6320046868C /* Search */,
 				2B1AD5C41E84BEF200FBEA48 /* Recipe Screen */,
 				152A24681E7F29F300C42EAA /* Login */,
@@ -176,7 +176,7 @@
 			name = "Home Screen";
 			sourceTree = "<group>";
 		};
-		159E5A001EAEC01100BEE0C8 /* Menu Items */ = {
+		159E5A001EAEC01100BEE0C8 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
 				159E5A031EAEC08D00BEE0C8 /* userProfiles.storyboard */,
@@ -187,7 +187,7 @@
 				2B6262481EB97D4C00415C12 /* allergies.storyboard */,
 				2B08AB181EB99570003575F7 /* AllergiesTableViewController.swift */,
 			);
-			name = "Menu Items";
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		15D29BA71EB8E41200523943 /* Recipe Attr Table Views */ = {

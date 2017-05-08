@@ -46,7 +46,7 @@
         <scene sceneID="BRa-L2-Hv5">
             <objects>
                 <collectionViewController id="Dgv-XI-jiN" customClass="FavoritesCollectionViewController" customModule="PantryFi" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="zQK-3A-47A">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="zQK-3A-47A">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -121,7 +121,9 @@
                             <outlet property="delegate" destination="Dgv-XI-jiN" id="PFD-MG-3BQ"/>
                         </connections>
                     </collectionView>
-                    <tabBarItem key="tabBarItem" title="" image="007-mark-as-favourite-star" selectedImage="007-mark-as-favourite-star" id="IcK-Sa-KDI"/>
+                    <tabBarItem key="tabBarItem" title="" image="007-mark-as-favourite-star" selectedImage="007-mark-as-favourite-star" id="IcK-Sa-KDI">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" title="Favorites" id="txw-Ah-3oH"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </collectionViewController>

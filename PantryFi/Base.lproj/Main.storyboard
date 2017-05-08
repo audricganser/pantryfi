@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="jdi-RH-9mD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="jdi-RH-9mD">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -55,8 +55,8 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PVA-fg-pww">
                                         <rect key="frame" x="0.0" y="637" width="107" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="107" id="InP-iZ-33q"/>
-                                            <constraint firstAttribute="height" constant="30" id="w53-9D-dqN"/>
+                                            <constraint firstAttribute="width" constant="107" id="0jL-Iu-fSr"/>
+                                            <constraint firstAttribute="height" constant="30" id="m6W-TJ-tcU"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
                                         <state key="normal" title="Create Account">
@@ -97,8 +97,7 @@
                                         <rect key="frame" x="42" y="421" width="290" height="53"/>
                                         <color key="backgroundColor" red="0.22537201642990112" green="0.34264656901359558" blue="0.60412263870239258" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="53" id="Xre-lq-qjx"/>
-                                            <constraint firstAttribute="width" constant="290" id="hsQ-hH-Zcr"/>
+                                            <constraint firstAttribute="height" constant="53" id="NlU-3Y-fml"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                                         <state key="normal" title="Login with Facebook">
@@ -111,25 +110,27 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="PVA-fg-pww" firstAttribute="top" secondItem="iVg-d5-tiv" secondAttribute="bottom" constant="230" id="0s9-Of-yPD"/>
                                     <constraint firstItem="E10-le-DrE" firstAttribute="centerX" secondItem="OrU-mA-lNq" secondAttribute="centerX" id="1TP-K9-1fh"/>
                                     <constraint firstItem="dwS-V1-Y7J" firstAttribute="leading" secondItem="iVg-d5-tiv" secondAttribute="leading" id="8Yy-Wq-Idm"/>
                                     <constraint firstItem="E10-le-DrE" firstAttribute="top" secondItem="OrU-mA-lNq" secondAttribute="top" constant="106" id="97h-jo-04v"/>
                                     <constraint firstItem="O7m-ku-GxU" firstAttribute="leading" secondItem="TCs-yr-Zux" secondAttribute="leading" id="9nP-cH-60a"/>
                                     <constraint firstItem="O7m-ku-GxU" firstAttribute="trailing" secondItem="dwS-V1-Y7J" secondAttribute="trailing" id="DGe-FC-iqX"/>
-                                    <constraint firstItem="mlf-I7-xUT" firstAttribute="leading" secondItem="iVg-d5-tiv" secondAttribute="leading" id="Es5-XT-qoj"/>
                                     <constraint firstItem="TCs-yr-Zux" firstAttribute="top" secondItem="O7m-ku-GxU" secondAttribute="bottom" constant="3" id="FqA-rp-E1q"/>
                                     <constraint firstItem="O7m-ku-GxU" firstAttribute="trailing" secondItem="TCs-yr-Zux" secondAttribute="trailing" id="GJU-sU-1sK"/>
                                     <constraint firstItem="TCs-yr-Zux" firstAttribute="trailing" secondItem="iVg-d5-tiv" secondAttribute="trailing" id="HuP-hN-7zR"/>
                                     <constraint firstItem="dwS-V1-Y7J" firstAttribute="top" secondItem="E10-le-DrE" secondAttribute="bottom" constant="62" id="Ixe-4R-s75"/>
+                                    <constraint firstItem="PVA-fg-pww" firstAttribute="leading" secondItem="OrU-mA-lNq" secondAttribute="leading" id="Nfl-OT-YsN"/>
+                                    <constraint firstItem="mlf-I7-xUT" firstAttribute="leading" secondItem="iVg-d5-tiv" secondAttribute="leading" id="Ojn-WY-z6p"/>
                                     <constraint firstItem="iVg-d5-tiv" firstAttribute="top" secondItem="dwS-V1-Y7J" secondAttribute="bottom" constant="39" id="PDJ-c6-Q5D"/>
+                                    <constraint firstAttribute="bottom" secondItem="PVA-fg-pww" secondAttribute="bottom" id="TiG-Zl-4mw"/>
+                                    <constraint firstAttribute="bottom" secondItem="mlf-I7-xUT" secondAttribute="bottom" constant="193" id="bII-kg-Q8h"/>
+                                    <constraint firstItem="mlf-I7-xUT" firstAttribute="top" secondItem="iVg-d5-tiv" secondAttribute="bottom" constant="14" id="eRf-QT-ET5"/>
                                     <constraint firstItem="dwS-V1-Y7J" firstAttribute="bottom" secondItem="TCs-yr-Zux" secondAttribute="bottom" id="fVF-ZC-pFj"/>
                                     <constraint firstItem="dwS-V1-Y7J" firstAttribute="leading" secondItem="OrU-mA-lNq" secondAttribute="leading" constant="42" id="gC7-QD-tKc"/>
                                     <constraint firstItem="O7m-ku-GxU" firstAttribute="leading" secondItem="OrU-mA-lNq" secondAttribute="leading" constant="68" id="hJu-tx-pkR"/>
-                                    <constraint firstItem="iVg-d5-tiv" firstAttribute="leading" secondItem="PVA-fg-pww" secondAttribute="leading" constant="42" id="haE-Qa-BFk"/>
                                     <constraint firstItem="dwS-V1-Y7J" firstAttribute="top" secondItem="O7m-ku-GxU" secondAttribute="top" id="qbE-zC-Sod"/>
+                                    <constraint firstItem="mlf-I7-xUT" firstAttribute="trailing" secondItem="iVg-d5-tiv" secondAttribute="trailing" id="rEP-yP-eP3"/>
                                     <constraint firstItem="E10-le-DrE" firstAttribute="centerX" secondItem="dwS-V1-Y7J" secondAttribute="centerX" id="vCM-PA-ecS"/>
-                                    <constraint firstItem="mlf-I7-xUT" firstAttribute="top" secondItem="iVg-d5-tiv" secondAttribute="bottom" constant="14" id="yeD-8o-Oil"/>
                                 </constraints>
                             </view>
                         </subviews>

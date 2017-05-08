@@ -147,7 +147,9 @@
                             <constraint firstItem="o6A-pp-ilt" firstAttribute="trailing" secondItem="Wv0-pf-5xc" secondAttribute="trailing" id="ZfB-2U-sTD"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="002-search-symbol-in-black-circular-button" selectedImage="002-search-symbol-in-black-circular-button" id="JgX-Xj-auF"/>
+                    <tabBarItem key="tabBarItem" title="" image="002-search-symbol-in-black-circular-button" selectedImage="002-search-symbol-in-black-circular-button" id="JgX-Xj-auF">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="1" vertical="0.0"/>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" title="PantryFi" id="CKX-X5-wvl">
                         <barButtonItem key="backBarButtonItem" title="Back" id="a1q-Uh-fXT"/>
                     </navigationItem>

@@ -32,7 +32,9 @@
                             <outlet property="delegate" destination="m7e-ro-UCH" id="CjJ-54-KjI"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="" image="001-line" selectedImage="001-line" id="in8-aB-AVB"/>
+                    <tabBarItem key="tabBarItem" title="" image="001-line" selectedImage="001-line" id="in8-aB-AVB">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" title="Settings" id="QOZ-Gh-g8H"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
